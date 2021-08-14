@@ -5,7 +5,7 @@ const X_OFFSET: float = 1.7
 const Z_OFFSET: float = 1.5
 
 # Scenes
-onready var Tile: Object = preload("res://scenes/props/tile.tscn")
+var Tile: Object = preload("res://scenes/props/tile.tscn")
 
 # Variables
 var tiles: Array = []
@@ -44,9 +44,21 @@ func _flip_odd_row() -> void:
 	else:
 		odd_row = true
 
-# Find the tile at x, y on the grid return null otherwise
-func find_tile(var x: int, var y: int) -> Object:
+# Returns true if x and y are in the grid range
+func _in_range(var x:int , var y: int) -> bool:
 	if x > -1 and x < tiles.size():
 		if y > -1 and y < tiles[x].size():
+			return true
+	return false
+
+# Find the tile at x, y on the grid return null otherwise
+func find_tile(var x: int, var y: int) -> Object:
+	if _in_range(x, y):
 			return tiles[x][y]
 	return null
+
+# Returns an array of all neighboring tiles or null
+func find_neighbors(var x: int, var y: int) -> Array:
+	var neighbors: Array = []
+	print("Find Neighbors: (" + str(x) + ", " + str(y) + ")")
+	return neighbors

@@ -2,8 +2,8 @@ extends Node
 
 # Constants
 const DEBUG: bool = true
-# Map size
-const MAP_SIZE: int = 25
+# Map size - *** MUST BE EVEN ***
+const MAP_SIZE: int = 26
 
 func capture_mouse() -> void:
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
