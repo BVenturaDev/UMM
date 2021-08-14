@@ -32,6 +32,7 @@ func _add_tile(var x: int, var y: int) -> Object:
 	new_tile.y = y
 	new_tile.global_transform.origin.x = float(x) * X_OFFSET
 	new_tile.global_transform.origin.z = float(y) * Z_OFFSET
+	new_tile.odd_row = odd_row
 	# Offset for every other row
 	if odd_row:
 		new_tile.global_transform.origin.x += X_OFFSET / 2.0
@@ -60,5 +61,23 @@ func find_tile(var x: int, var y: int) -> Object:
 # Returns an array of all neighboring tiles or null
 func find_neighbors(var x: int, var y: int) -> Array:
 	var neighbors: Array = []
-	print("Find Neighbors: (" + str(x) + ", " + str(y) + ")")
+	var this_tile: Object = find_tile(x, y)
+	if Globals.DEBUG:
+		print("Find Neighbors: (" + str(x) + ", " + str(y) + ")")
+	for i_x in range(-1, 2):
+		for i_y in range(-1, 2):
+			# Value to check edges because of odd / even offset
+			var in_bounds: bool = true
+			if this_tile.odd_row:
+				if i_x == -1 and not i_y == 0:
+					in_bounds = false
+			else:
+				if i_x == 1 and not i_y == 0:
+					in_bounds = false
+			if _in_range(x + i_x, y + i_y) and in_bounds:
+				var neighbor: Object = find_tile(x + i_x, y + i_y)
+				if Globals.DEBUG:
+					print("Adding Neighbor: (" + str(x + i_x) + ", " + str(y + i_y) + ")")
+				# Found neighbor
+				neighbors.append(neighbor)
 	return neighbors
