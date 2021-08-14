@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Squirrel Hit+death.mp3-22478b7120691e16c10737dae02f87b1.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Squirrel Hit+death.mp3"
+dest_files=[ "res://.import/Squirrel Hit+death.mp3-22478b7120691e16c10737dae02f87b1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

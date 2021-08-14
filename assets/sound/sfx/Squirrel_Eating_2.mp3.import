@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Squirrel_Eating_2.mp3-52666fff198d5fc40bb9792a10150272.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Squirrel_Eating_2.mp3"
+dest_files=[ "res://.import/Squirrel_Eating_2.mp3-52666fff198d5fc40bb9792a10150272.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

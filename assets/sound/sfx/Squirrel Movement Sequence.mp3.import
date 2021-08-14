@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Squirrel Movement Sequence.mp3-df94b5c3a796b4c32337d80aef835e74.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Squirrel Movement Sequence.mp3"
+dest_files=[ "res://.import/Squirrel Movement Sequence.mp3-df94b5c3a796b4c32337d80aef835e74.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

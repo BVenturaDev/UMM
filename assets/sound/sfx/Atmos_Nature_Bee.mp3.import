@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Atmos_Nature_Bee.mp3-26742a57d8f81385d7f16dcff37a3ef2.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Atmos_Nature_Bee.mp3"
+dest_files=[ "res://.import/Atmos_Nature_Bee.mp3-26742a57d8f81385d7f16dcff37a3ef2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

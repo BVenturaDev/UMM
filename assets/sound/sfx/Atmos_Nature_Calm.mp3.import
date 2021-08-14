@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Atmos_Nature_Calm.mp3-f59ec7fcd46c6b2a10e451a4b6937ec2.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Atmos_Nature_Calm.mp3"
+dest_files=[ "res://.import/Atmos_Nature_Calm.mp3-f59ec7fcd46c6b2a10e451a4b6937ec2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

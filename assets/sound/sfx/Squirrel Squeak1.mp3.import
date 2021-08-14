@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Squirrel Squeak1.mp3-69cb3e9a5df0d448dacf12e3cdf7fd77.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Squirrel Squeak1.mp3"
+dest_files=[ "res://.import/Squirrel Squeak1.mp3-69cb3e9a5df0d448dacf12e3cdf7fd77.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

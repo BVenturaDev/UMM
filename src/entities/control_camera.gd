@@ -4,7 +4,7 @@ const MAX_SPEED: float = 10.0
 const ZOOM_SPEED: float = 7.5
 const ROT_SPEED: float = 0.09
 const CAM_Y_MIN: float = 2.0
-const CAM_Y_MAX: float = 10.0
+const CAM_Y_MAX: float = 20.0
 
 var can_rot = false
 

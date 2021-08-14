@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Atmos_Nature_Windy.mp3-1a965f544eadf92bd42a38c71749ce47.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Atmos_Nature_Windy.mp3"
+dest_files=[ "res://.import/Atmos_Nature_Windy.mp3-1a965f544eadf92bd42a38c71749ce47.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

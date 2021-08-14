@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/hex_tile.glb-04b37dbc82d9a0d3749661267610af15.scn"
+path="res://.import/test_tile.glb-61babb1585e12dbdb531f0e91a5bfdd7.scn"
 
 [deps]
 
-source_file="res://assets/models/hex_tile/hex_tile.glb"
-dest_files=[ "res://.import/hex_tile.glb-04b37dbc82d9a0d3749661267610af15.scn" ]
+source_file="res://assets/models/hex_tile/test_tile.glb"
+dest_files=[ "res://.import/test_tile.glb-61babb1585e12dbdb531f0e91a5bfdd7.scn" ]
 
 [params]
 
