@@ -1,6 +1,7 @@
 extends Spatial
 tool
 # Constants
+const MAP_SIZE = 50
 const X_OFFSET: float = 1.7
 const Z_OFFSET: float = 1.5
 
@@ -85,24 +86,26 @@ func find_neighbors(var x: int, var y: int) -> Array:
 					in_bounds = false
 			if _in_range(x + i_x, y + i_y) and in_bounds:
 				var neighbor: Object = find_tile(x + i_x, y + i_y)
-				if Globals.DEBUG:
-					print("Adding Neighbor: (" + str(x + i_x) + ", " + str(y + i_y) + ")")
-				# Found neighbor
-				neighbors.append(neighbor)
+				if not neighbor == this_tile:
+					if Globals.DEBUG:
+						print("Adding Neighbor: (" + str(x + i_x) + ", " + str(y + i_y) + ")")
+					# Found neighbor
+					neighbors.append(neighbor)
 	return neighbors
 	
 	# Finds all neighbors in 3 tile range
 func find_region(var x: int, var y: int) -> Array:
 	var region: Array = []
-	var _this_tile: Object = find_tile(x, y)
+	var this_tile: Object = find_tile(x, y)
 	for i_x in range(-2, 3):
 		for i_y in range(-2, 3):
 			if _in_range(x + i_x, y + i_y):
 				var neighbor: Object = find_tile(x + i_x, y + i_y)
-				if Globals.DEBUG:
-					print("Adding Neighbor: (" + str(x + i_x) + ", " + str(y + i_y) + ")")
-				# Found neighbor
-				region.append(neighbor)
+				if not neighbor == this_tile:
+					if Globals.DEBUG:
+						print("Adding Neighbor: (" + str(x + i_x) + ", " + str(y + i_y) + ")")
+					# Found neighbor
+					region.append(neighbor)
 	return region
 
 
