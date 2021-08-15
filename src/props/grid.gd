@@ -1,6 +1,7 @@
 extends Spatial
 
 # Constants
+const MAP_SIZE = 50
 const X_OFFSET: float = 1.7
 const Z_OFFSET: float = 1.5
 

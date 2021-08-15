@@ -2,6 +2,6 @@
 
 [ext_resource path="res://src/entities/control_camera.gd" type="Script" id=1]
 
-[node name="Control_Camera" type="Camera"]
+[node name="control_camera" type="Camera"]
 current = true
 script = ExtResource( 1 )

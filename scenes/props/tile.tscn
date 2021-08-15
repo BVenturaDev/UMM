@@ -10,3 +10,6 @@ script = ExtResource( 2 )
 
 [node name="resource_point" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.270006, 0 )
+
+[node name="food_stack" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.566021, 0.373357, 0 )

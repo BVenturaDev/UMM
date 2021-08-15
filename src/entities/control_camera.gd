@@ -47,8 +47,8 @@ func _input(var event: InputEvent) -> void:
 	if event is InputEventMouseMotion and can_rot:
 		# Calculate camera rotation
 		rotate_y(deg2rad(-event.relative.x * ROT_SPEED))
-		rotate_x(deg2rad(-event.relative.y * ROT_SPEED))
+		rotate_object_local(Vector3(1.0, 0, 0),  deg2rad(-event.relative.y * ROT_SPEED))
 		# Keep camera from looking too far up or upside down
-		rotation.x = clamp(rotation.x, deg2rad(-90.0), deg2rad(45.0))
+		rotation.x = clamp(rotation.x, deg2rad(-88.0), deg2rad(45.0))
 		# Stop camera tilt
 		rotation.z = 0
