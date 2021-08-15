@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/props/grid_editor.gd" type="Script" id=1]
+
+[node name="grid_editor" type="Spatial"]
+script = ExtResource( 1 )
+show_tiles_in_editor = true
+map_size = 12
