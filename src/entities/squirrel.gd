@@ -11,6 +11,7 @@ class Coordinates:
 		x = _x
 		y = _y
 
+export(NodePath) onready var tween = get_node(tween) as Tween
 
 var current_coordinates : Coordinates = Coordinates.new(0,0)
 
@@ -24,21 +25,21 @@ func _do_turn():
 
 func _wander():
 	var tile: Object = Globals.grid.find_tile(0, 0)
-	if is_instance_valid(tile):
-		print(tile)
+	if not is_instance_valid(tile):
+		return
 	var neighbors = Globals.grid.find_neighbors(current_coordinates.x, current_coordinates.y)
-	print(neighbors)
 	neighbors.shuffle()
 	var random_tile: Spatial = neighbors[0]
-	# transform.origin.x = random_tile.transform.origin.x
-	# transform.origin.z = random_tile.transform.origin.z
 	current_coordinates.set_coord(random_tile.x, random_tile.y)
-	$Tween.interpolate_property(
+	move_to_tile(random_tile)
+
+func move_to_tile(tile):
+	tween.interpolate_property(
 			self, 'translation:x', 
-			global_transform.origin.x, random_tile.global_transform.origin.x, 
+			global_transform.origin.x, tile.global_transform.origin.x, 
 			0.3, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	$Tween.interpolate_property(
+	tween.interpolate_property(
 			self, 'translation:z', 
-			global_transform.origin.z, random_tile.global_transform.origin.z, 
+			global_transform.origin.z, tile.global_transform.origin.z, 
 			0.3, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	$Tween.start()
+	tween.start()

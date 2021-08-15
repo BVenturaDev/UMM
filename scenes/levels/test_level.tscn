@@ -34,6 +34,7 @@ script = ExtResource( 5 )
 script = ExtResource( 6 )
 
 [node name="grid_editor" parent="." instance=ExtResource( 9 )]
+show_tiles_in_editor = false
 map_size = 20
 
 [node name="grid" parent="." instance=ExtResource( 1 )]
