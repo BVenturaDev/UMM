@@ -16,10 +16,6 @@ var odd_row: bool = false
 # Array of all food stored in this tile
 var tile_food: Array = []
 
-func _ready() -> void:
-	for _i in range(0, 5):
-		spawn_food()
-
 func spawn_food() -> void:
 	var new_food = food.instance()
 	add_child(new_food)
@@ -42,8 +38,8 @@ func remove_food(var id: int) -> void:
 
 # Called when the tile was clicked
 func clicked() -> void:
-	# Debug to test find_neighbors(x, y)
-	if Globals.DEBUG:
+	# Debug to test find_neighbors(x, y) Disabled for now
+	if Globals.DEBUG and false:
 		print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
 		_lift_neighbors()
 	
