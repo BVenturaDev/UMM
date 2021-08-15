@@ -16,11 +16,10 @@ export(NodePath) onready var tween = get_node(tween) as Tween
 var current_coordinates : Coordinates = Coordinates.new(0,0)
 
 func _ready() -> void:
-	assert(GameSignals.connect("enter_nature_turn", self, "_do_turn") == 0)
 	current_coordinates.set_coord(0,0)
 	
 
-func _do_turn():
+func do_turn():
 	_wander()
 
 func _wander():

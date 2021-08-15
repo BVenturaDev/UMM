@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/entities/control_camera.tscn" type="PackedScene" id=2]
@@ -10,13 +10,28 @@
 [ext_resource path="res://scenes/entities/squirrel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/props/grid_editor.tscn" type="PackedScene" id=9]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="InputEventAction" id=1]
+action = "ui_accept"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[sub_resource type="GDScript" id=3]
 script/source = "extends Button
 
+func _ready() -> void:
+	assert(GameSignals.connect(\"enter_player_turn\", self, \"_enable_button\") == 0)
+	assert(GameSignals.connect(\"exit_player_turn\", self, \"_disable_button\") == 0)
 
+func _enable_button():
+	self.disabled = false
+
+func _disable_button():
+	self.disabled = true
 
 func _on_pressed() -> void:
 	GameSignals.emit_signal(\"next_turn\")
+
 "
 
 [node name="test_level" type="Spatial"]
@@ -34,7 +49,6 @@ script = ExtResource( 5 )
 script = ExtResource( 6 )
 
 [node name="grid_editor" parent="." instance=ExtResource( 9 )]
-show_tiles_in_editor = false
 map_size = 20
 
 [node name="grid" parent="." instance=ExtResource( 1 )]
@@ -49,14 +63,35 @@ margin_left = 45.0
 margin_top = 45.0
 margin_right = 12.0
 margin_bottom = 20.0
+shortcut = SubResource( 2 )
 text = "NEXT TURN"
-script = SubResource( 1 )
+script = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="fungus" parent="." instance=ExtResource( 7 )]
 
-[node name="squirrel" parent="." instance=ExtResource( 8 )]
+[node name="squirrels" type="Spatial" parent="."]
+
+[node name="squirrel" parent="squirrels" instance=ExtResource( 8 )]
+
+[node name="squirrel2" parent="squirrels" instance=ExtResource( 8 )]
+
+[node name="squirrel3" parent="squirrels" instance=ExtResource( 8 )]
+
+[node name="squirrel4" parent="squirrels" instance=ExtResource( 8 )]
+
+[node name="squirrel5" parent="squirrels" instance=ExtResource( 8 )]
+
+[node name="squirrel6" parent="squirrels" instance=ExtResource( 8 )]
+
+[node name="squirrel7" parent="squirrels" instance=ExtResource( 8 )]
+
+[node name="squirrel8" parent="squirrels" instance=ExtResource( 8 )]
+
+[node name="squirrel9" parent="squirrels" instance=ExtResource( 8 )]
+
+[node name="squirrel10" parent="squirrels" instance=ExtResource( 8 )]
 
 [connection signal="button_up" from="CanvasLayer/next_turn_buttom" to="CanvasLayer/next_turn_buttom" method="_on_pressed"]
