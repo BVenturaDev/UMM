@@ -18,6 +18,8 @@ func _on_pressed() -> void:
 [node name="test_level" type="Spatial"]
 
 [node name="grid" parent="." instance=ExtResource( 1 )]
+show_tiles_in_editor = true
+map_size = 14
 
 [node name="Control_Camera" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 0 )
