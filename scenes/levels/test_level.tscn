@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/entities/control_camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://states/state_machine.gd" type="Script" id=3]
 [ext_resource path="res://states/game/turn_player.gd" type="Script" id=4]
 [ext_resource path="res://states/game/turn_ai.gd" type="Script" id=5]
+[ext_resource path="res://scenes/entities/fungus.tscn" type="PackedScene" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -18,7 +19,6 @@ func _on_pressed() -> void:
 [node name="test_level" type="Spatial"]
 
 [node name="grid" parent="." instance=ExtResource( 1 )]
-show_tiles_in_editor = true
 map_size = 12
 
 [node name="Control_Camera" parent="." instance=ExtResource( 2 )]
@@ -45,5 +45,7 @@ script = ExtResource( 4 )
 
 [node name="turn_ai" type="Node" parent="game_states"]
 script = ExtResource( 5 )
+
+[node name="fungus" parent="." instance=ExtResource( 6 )]
 
 [connection signal="button_up" from="CanvasLayer/next_turn_buttom" to="CanvasLayer/next_turn_buttom" method="_on_pressed"]
