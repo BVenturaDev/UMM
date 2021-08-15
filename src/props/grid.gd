@@ -1,5 +1,5 @@
 extends Spatial
-
+class_name MapGrid
 # Constants
 const MAP_SIZE = 50
 const X_OFFSET: float = 1.7

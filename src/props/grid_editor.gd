@@ -16,7 +16,8 @@ func _clean_children():
 	for child in get_children():
 		(child as Node).queue_free()
 
-
+func _ready() -> void:
+	_clean_children()
 # Functions below only for show editor purposes
 
 func set_show_in_editor(new_value):
