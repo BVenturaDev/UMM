@@ -1,7 +1,8 @@
 extends Node
 
 # Constants
-const DEBUG: bool = true
+const DEBUG: bool = false
+const DEBUG_SM: bool = true
 # Map size - *** MUST BE EVEN ***
 const MAP_SIZE: int = 26
 

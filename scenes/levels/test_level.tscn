@@ -7,7 +7,7 @@
 [ext_resource path="res://states/game/ai_turn.gd" type="Script" id=5]
 [ext_resource path="res://states/game/nature_turn.gd" type="Script" id=6]
 [ext_resource path="res://scenes/entities/fungus.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/entities/squirrel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/entities/critter.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/props/grid_editor.tscn" type="PackedScene" id=9]
 
 [sub_resource type="InputEventAction" id=1]

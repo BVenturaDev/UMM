@@ -11,6 +11,8 @@ func enter():
 	_next_turn()
 
 func exit(next_state: String):
+	if Globals.DEBUG_SM:
+		print("Exiting state: ", name)
 	GameSignals.disconnect("next_turn", self, "_next_turn")
 	# Events on exit
 	GameSignals.emit_signal("exit_nature_turn")

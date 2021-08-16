@@ -9,6 +9,8 @@ func enter():
 	GameSignals.emit_signal("enter_player_turn")
 
 func exit(next_state: String):
+	if Globals.DEBUG_SM:
+		print("Exiting state: ", name)
 	GameSignals.disconnect("next_turn", self, "_next_turn")
 	# Events on exit
 	GameSignals.emit_signal("exit_player_turn")
