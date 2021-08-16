@@ -12,9 +12,10 @@ func enter():
 	_next_turn()
 
 
-func exit():
+func exit(next_state: String):
 	GameSignals.disconnect("next_turn", self, "_next_turn")
+	state_machine.change_to(next_state)
 
 
 func _next_turn() -> void:
-	state_machine.change_to("nature_turn")
+	exit("nature_turn")
