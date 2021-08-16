@@ -1,6 +1,6 @@
 extends Node
 
-var state_machine: StateMachine
+var state_machine
 
 func enter():
 	exit("next_state")

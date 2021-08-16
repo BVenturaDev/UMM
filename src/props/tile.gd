@@ -14,7 +14,7 @@ var y: int = -1
 var odd_row: bool = false
 var owner_fungus: Object = null
 var turn_used: bool = false
-var entitie: Spatial = null
+var critter: Spatial = null
 # Array of all food stored in this tile
 var tile_food: Array = []
 

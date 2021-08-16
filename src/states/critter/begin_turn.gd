@@ -1,6 +1,6 @@
 extends Node
 
-var state_machine: StateMachine
+var state_machine
 var critter: Critter
 
 func enter() -> void:
@@ -22,6 +22,6 @@ func decide_what_do() -> String:
 
 func is_some_nearby_tile_allows_movement() -> bool:
 	for neighbor in critter.neighbors:
-		if not is_instance_valid((neighbor as Tile).entitie):
+		if not is_instance_valid((neighbor as Tile).critter):
 			return true
 	return false
