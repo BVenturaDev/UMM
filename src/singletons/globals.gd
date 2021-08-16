@@ -9,6 +9,7 @@ var grid: Object = null
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	rng.seed = randi()
 	rng.randomize()
 
 func capture_mouse() -> void:
