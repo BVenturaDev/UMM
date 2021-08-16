@@ -67,8 +67,6 @@ func find_tile(var x: int, var y: int) -> Object:
 func find_neighbors(var x: int, var y: int) -> Array:
 	var neighbors: Array = []
 	var this_tile: Object = find_tile(x, y)
-	if Globals.DEBUG:
-		print("Find Neighbors: (" + str(x) + ", " + str(y) + ")")
 	for i_x in range(-1, 2):
 		for i_y in range(-1, 2):
 			# Value to check edges because of odd / even offset
@@ -83,8 +81,6 @@ func find_neighbors(var x: int, var y: int) -> Array:
 				var neighbor: Object = find_tile(x + i_x, y + i_y)
 				if neighbor and this_tile:
 					if not neighbor == this_tile:
-						if Globals.DEBUG:
-							print("Adding Neighbor: (" + str(x + i_x) + ", " + str(y + i_y) + ")")
 						# Found neighbor
 						neighbors.append(neighbor)
 	return neighbors
@@ -99,8 +95,6 @@ func find_region(var x: int, var y: int) -> Array:
 				var neighbor: Object = find_tile(x + i_x, y + i_y)
 				if neighbor and this_tile:
 					if not neighbor == this_tile:
-						if Globals.DEBUG:
-							print("Adding Neighbor: (" + str(x + i_x) + ", " + str(y + i_y) + ")")
 						# Found neighbor
 						region.append(neighbor)
 	return region

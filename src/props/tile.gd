@@ -41,6 +41,7 @@ func add_food(var new_food: Object) -> void:
 # Remove food from our tile
 func remove_food(var id: int) -> void:
 	if id > -1 and id < tile_food.size():
+		tile_food[id].queue_free()
 		tile_food.remove(id)
 		
 func remove_num_food(var amount: int) -> void:
@@ -51,7 +52,7 @@ func remove_num_food(var amount: int) -> void:
 # Called when the tile was clicked
 func clicked() -> void:
 	# Debug to test find_neighbors(x, y) Disabled for now
-	if Globals.DEBUG:
+	if not Globals.DEBUG:
 		print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
 		_lift_neighbors()
 	
