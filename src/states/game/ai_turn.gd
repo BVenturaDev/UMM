@@ -3,6 +3,8 @@ extends Node
 var state_machine: StateMachine
 
 func enter():
+	if Globals.DEBUG_SM:
+		print("Exiting state: ", name)
 	assert(GameSignals.connect("next_turn", self, "_next_turn") == 0)
 	# Actions
 	if Globals.DEBUG:
@@ -11,9 +13,10 @@ func enter():
 	_next_turn()
 
 
-func exit():
+func exit(next_state: String):
 	GameSignals.disconnect("next_turn", self, "_next_turn")
+	state_machine.change_to(next_state)
 
 
 func _next_turn() -> void:
-	state_machine.change_to("nature_turn")
+	exit("nature_turn")
