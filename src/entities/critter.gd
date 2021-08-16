@@ -2,7 +2,6 @@ extends Spatial
 class_name Critter
 
 export(NodePath) onready var tween = get_node(tween) as Tween
-export(NodePath) onready var state_machine = get_node(state_machine) as Node
 export var coord_x: int = 0
 export var coord_y: int = 0
 var neighbors: Array
@@ -23,13 +22,13 @@ func _set_current_tile(new_value: Tile) -> void:
 
 func _ready() -> void:
 	actualize_current_tile()
-	for state in state_machine.get_children():
+	for state in $state_machine.get_children():
 		if "critter" in state:
 			state.critter = self
 
 
 func do_turn():
-	state_machine.start_machine()
+	$state_machine.start_machine()
 
 
 func wander() -> void:

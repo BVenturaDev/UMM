@@ -38,6 +38,18 @@ func _on_pressed() -> void:
 
 [node name="main_level" type="Spatial"]
 
+[node name="state_machine" type="Node" parent="."]
+script = ExtResource( 10 )
+
+[node name="player_turn" type="Node" parent="state_machine"]
+script = ExtResource( 7 )
+
+[node name="ai_turn" type="Node" parent="state_machine"]
+script = ExtResource( 11 )
+
+[node name="nature_turn" type="Node" parent="state_machine"]
+script = ExtResource( 8 )
+
 [node name="grid_editor" parent="." instance=ExtResource( 1 )]
 map_size = 8
 
@@ -69,7 +81,6 @@ __meta__ = {
 [node name="critter4" parent="critters" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.00668, 0.279601, 4.40851 )
 tween = NodePath("../critter/Tween")
-state_machine = NodePath("../critter/critter4")
 coord_x = 1
 
 [node name="critter5" parent="critters" instance=ExtResource( 5 )]
@@ -104,19 +115,8 @@ environment = ExtResource( 9 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 1, 0, 0, 0, -0.642788, 0.766045, 0, -0.766045, -0.642788, 144.949, 142.423, -121.397 )
+visible = false
 light_energy = 1.25
 shadow_enabled = true
-
-[node name="state_machine" type="Node" parent="."]
-script = ExtResource( 10 )
-
-[node name="player_turn" type="Node" parent="state_machine"]
-script = ExtResource( 7 )
-
-[node name="ai_turn" type="Node" parent="state_machine"]
-script = ExtResource( 11 )
-
-[node name="nature_turn" type="Node" parent="state_machine"]
-script = ExtResource( 8 )
 
 [connection signal="button_up" from="CanvasLayer/next_turn_buttom" to="CanvasLayer/next_turn_buttom" method="_on_pressed"]
