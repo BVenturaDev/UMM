@@ -12,6 +12,8 @@ onready var stack = $food_stack
 var x: int = -1
 var y: int = -1
 var odd_row: bool = false
+var owner_fungus: Object = null
+var turn_used: bool = false
 
 # Array of all food stored in this tile
 var tile_food: Array = []
@@ -20,6 +22,11 @@ func spawn_food() -> void:
 	var new_food = food.instance()
 	add_child(new_food)
 	add_food(new_food)
+	
+func spawn_num_food(var num: int) -> void:
+	if num > 0:
+		for _i in range(0, num):
+			spawn_food()
 
 # Add food to our tile
 func add_food(var new_food: Object) -> void:
@@ -34,12 +41,18 @@ func add_food(var new_food: Object) -> void:
 # Remove food from our tile
 func remove_food(var id: int) -> void:
 	if id > -1 and id < tile_food.size():
+		tile_food[id].queue_free()
 		tile_food.remove(id)
+		
+func remove_num_food(var amount: int) -> void:
+	if amount > 0:
+		for _i in range(0, amount):
+			remove_food(tile_food.size() - 1)
 
 # Called when the tile was clicked
 func clicked() -> void:
 	# Debug to test find_neighbors(x, y) Disabled for now
-	if Globals.DEBUG:
+	if not Globals.DEBUG:
 		print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
 		_lift_neighbors()
 	
