@@ -9,18 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Spatial",
-"class": "MapGrid",
-"language": "GDScript",
-"path": "res://src/props/grid.gd"
-}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://states/state_machine.gd"
 } ]
 _global_script_class_icons={
-"MapGrid": "",
 "StateMachine": ""
 }
 

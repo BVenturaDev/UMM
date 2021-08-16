@@ -70,7 +70,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="fungus" parent="." instance=ExtResource( 7 )]
+[node name="fungus" parent="." groups=[
+"nature",
+] instance=ExtResource( 7 )]
 
 [node name="squirrels" type="Spatial" parent="."]
 
