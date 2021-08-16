@@ -2,11 +2,11 @@
 
 [ext_resource path="res://src/entities/critter.gd" type="Script" id=1]
 [ext_resource path="res://states/state_machine.gd" type="Script" id=2]
-[ext_resource path="res://scenes/entities/attracted_to_poison.gd" type="Script" id=3]
-[ext_resource path="res://scenes/entities/end_turn.gd" type="Script" id=4]
-[ext_resource path="res://scenes/entities/wander.gd" type="Script" id=5]
-[ext_resource path="res://scenes/entities/begin_turn.gd" type="Script" id=6]
-[ext_resource path="res://scenes/entities/eat.gd" type="Script" id=7]
+[ext_resource path="res://src/states/critter/attracted_to_poison.gd" type="Script" id=3]
+[ext_resource path="res://src/states/critter/end_turn.gd" type="Script" id=4]
+[ext_resource path="res://src/states/critter/wander.gd" type="Script" id=5]
+[ext_resource path="res://src/states/critter/begin_turn.gd" type="Script" id=6]
+[ext_resource path="res://src/states/critter/eat.gd" type="Script" id=7]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.25, 1, 0.25 )

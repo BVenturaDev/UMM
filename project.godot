@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://states/state_machine.gd"
+"path": "res://src/states/state_machine.gd"
 }, {
 "base": "Spatial",
 "class": "Tile",
@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Uncontrollable Mushroom Madness"
-run/main_scene="res://scenes/levels/test_level.tscn"
+run/main_scene="res://scenes/levels/main_level.tscn"
 config/icon="res://icon.png"
 
 [autoload]

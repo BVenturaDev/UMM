@@ -2,14 +2,13 @@ extends Node
 
 var state_machine: StateMachine
 
-
 func enter():
 	if Globals.DEBUG_SM:
 		print("Exiting state: ", name)
 	assert(GameSignals.connect("next_turn", self, "_next_turn") == 0)
 	# Actions
 	if Globals.DEBUG:
-		print("IA is thinking")
+		print("AI is thinking")
 		yield(get_tree().create_timer(0.5), "timeout")
 	_next_turn()
 
