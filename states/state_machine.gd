@@ -7,7 +7,6 @@ var state: Object
 var history = []
 
 func _ready() -> void:
-	state = get_child(0)
 	if autostart:
 		start_machine()
 	else:
@@ -15,6 +14,7 @@ func _ready() -> void:
 
 func start_machine():
 	# Set the initial state to the first child node
+	state = get_child(0)
 	_enabled_node()
 	call_deferred("_enter_state")
 
