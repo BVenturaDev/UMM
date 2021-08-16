@@ -269,7 +269,7 @@ bones/2/name = "Bone.002"
 bones/2/parent = 1
 bones/2/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52217, 0 )
 bones/2/enabled = true
-bones/2/bound_children = [  ]
+bones/2/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="shroom" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
