@@ -49,6 +49,7 @@ script = ExtResource( 11 )
 
 [node name="nature_turn" type="Node" parent="state_machine"]
 script = ExtResource( 8 )
+spawn_critter_turns = 1
 
 [node name="grid" parent="." instance=ExtResource( 2 )]
 
@@ -84,10 +85,9 @@ transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.350209, 0 )
 environment = ExtResource( 9 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
-
 transform = Transform( 0.34202, -0.538986, 0.769751, 7.16125e-08, 0.819152, 0.573577, -0.939693, -0.196175, 0.280166, 228.275, 154.801, 48.0567 )
+visible = false
 light_energy = 2.0
-
 shadow_enabled = true
 
 [connection signal="button_up" from="CanvasLayer/next_turn_buttom" to="CanvasLayer/next_turn_buttom" method="_on_pressed"]

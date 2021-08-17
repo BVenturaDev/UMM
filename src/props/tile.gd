@@ -26,9 +26,9 @@ func _ready() -> void:
 
 func set_critter(new_value: Object) -> void:
 	if not new_value:
-		TilesReferences.tile_without_critter(self)
+		TilesReferences.tile_without_entitie(self)
 	else:
-		TilesReferences.tile_with_critter(self)
+		TilesReferences.tile_with_entitie(self)
 	critter = new_value
 
 func spawn_food() -> void:

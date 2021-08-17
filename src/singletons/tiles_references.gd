@@ -10,17 +10,17 @@ func _ready() -> void:
 #		if not is_instance_valid(tile.critter):
 #			empty_tiles[tile.name] = tile
 
-func get_tiles_without_critters() -> Array:
+func get_tiles_without_entitie() -> Array:
 	return empty_tiles.keys()
 
-func tile_without_critter(tile: Object) -> void:
+func tile_without_entitie(tile: Object) -> void:
 	empty_tiles[tile.name] = tile
 
-func tile_with_critter(tile: Object) -> void:
+func tile_with_entitie(tile: Object) -> void:
 	# warning-ignore:return_value_discarded
 	empty_tiles.erase(tile.name)
 
-func get_random_tile_without_critter() -> Object:
+func get_random_tile_without_entitie() -> Object:
 	if empty_tiles.size() > 0:
 		var all_keys = empty_tiles.keys()
 		all_keys.shuffle()

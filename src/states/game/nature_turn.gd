@@ -2,8 +2,9 @@ extends Node
 
 var state_machine
 var critter_scene = preload("res://scenes/entities/critter.tscn")
-export var spawn_critter_turns := 3
-
+export(int, 1, 10) var spawn_critter_turns := 3
+var turns_from_last_critter_spawn := 0
+ 
 func enter():
 	assert(GameSignals.connect("next_turn", self, "_next_turn") == 0)
 	# Events on enter
@@ -35,11 +36,13 @@ func _do_group_nature_turn():
 
 
 func _spawn_critter() -> void:
-	var critter : Critter = critter_scene.instance()
-	var random_tile: Spatial = TilesReferences.get_random_tile_without_critter()
-	if not is_instance_valid(random_tile):
-		return
-	critter.transform.origin = random_tile.transform.origin
-	critter.set_coord(random_tile.x,random_tile.y)
-	get_tree().current_scene.add_child(critter)
-	pass
+	if turns_from_last_critter_spawn == spawn_critter_turns:
+		var critter : Critter = critter_scene.instance()
+		var random_tile: Spatial = TilesReferences.get_random_tile_without_entitie()
+		if not is_instance_valid(random_tile):
+			return
+		critter.transform.origin = random_tile.transform.origin
+		critter.set_coord(random_tile.x,random_tile.y)
+		get_tree().current_scene.add_child(critter)
+		turns_from_last_critter_spawn = 0
+	turns_from_last_critter_spawn += 1
