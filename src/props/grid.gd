@@ -1,6 +1,5 @@
 extends Spatial
 # Constants
-const MAP_SIZE = 50
 const X_OFFSET: float = 1.7
 const Z_OFFSET: float = 1.5
 
@@ -14,7 +13,6 @@ var odd_row = false
 
 func _ready() -> void:
 	Globals.grid = self
-	# Clean editor, just
 	# Generate the grid
 	_generate_grid(Globals.MAP_SIZE)
 

@@ -6,9 +6,9 @@ const Z_OFFSET: float = 1.5
 
 export(bool) var show_tiles_in_editor = false setget set_show_in_editor
 # If map_size value is to large the editor can break, limitatios is own computer
-export(int, 4, 24, 2) var map_size = 4 setget set_map_size_debug
+export(int, 4, 24, 2) var map_size = 12 setget set_map_size_debug
 
-var Tile: Object = preload("res://scenes/props/tile.tscn")
+var Tile: Object = preload("res://assets/models/hex_tile/test_tile.glb")
 
 var odd_row = false
 
