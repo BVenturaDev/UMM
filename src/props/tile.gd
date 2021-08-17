@@ -16,18 +16,20 @@ var owner_fungus: Object = null
 var turn_used: bool = false
 var critter: Object = null setget set_critter
 
-func set_critter(new_value: Object) -> void:
-	if not new_value:
-		TilesReferences.tile_without_critter(self)
-	else:
-		TilesReferences.tile_with_critter(self)
-	critter = new_value
+
 # Array of all food stored in this tile
 var tile_food: Array = []
 
 func _ready() -> void:
 	# Initialize the reference dictionary for tiles without critters
 	self.critter = null
+
+func set_critter(new_value: Object) -> void:
+	if not new_value:
+		TilesReferences.tile_without_critter(self)
+	else:
+		TilesReferences.tile_with_critter(self)
+	critter = new_value
 
 func spawn_food() -> void:
 	var new_food = food.instance()

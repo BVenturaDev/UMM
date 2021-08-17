@@ -1,15 +1,18 @@
 extends Node
 
+export(bool) var DEBUG = false
+
 var state_machine
 var critter: Critter
 
 func enter() -> void:
+	yield(GameSignals,"enter_nature_turn")
 	critter.actualize_neighbors()
 	exit(decide_what_do())
 
 
 func exit(next_state) -> void:
-	if Globals.DEBUG_SM:
+	if Globals.DEBUG_SM or DEBUG:
 		print("Exiting state: ", name)
 	state_machine.change_to(next_state)
 

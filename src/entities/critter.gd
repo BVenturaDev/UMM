@@ -30,10 +30,6 @@ func _ready() -> void:
 			state.critter = self
 
 
-func do_turn():
-	state_machine.start_machine()
-
-
 func wander() -> void:
 	var posible_tiles = get_tiles_whitout_entities()
 	posible_tiles.shuffle()

@@ -2,7 +2,7 @@ extends Node
 
 var state_machine
 var critter_scene = preload("res://scenes/entities/critter.tscn")
-export var spawn_critter_turn := 3
+export var spawn_critter_turns := 3
 
 func enter():
 	assert(GameSignals.connect("next_turn", self, "_next_turn") == 0)

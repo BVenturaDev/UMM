@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
+[ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/entities/fungus.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/entities/control_camera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/props/grid_editor.gd" type="Script" id=5]
 [ext_resource path="res://scenes/entities/gather_shroom.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/states/game/player_turn.gd" type="Script" id=7]
 [ext_resource path="res://src/states/game/nature_turn.gd" type="Script" id=8]
@@ -50,6 +52,10 @@ script = ExtResource( 8 )
 
 [node name="grid" parent="." instance=ExtResource( 2 )]
 
+[node name="Test_Grid" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+show_tiles_in_editor = true
+
 [node name="Control_Camera" parent="." instance=ExtResource( 4 )]
 transform = Transform( -0.707107, 0.40558, -0.579228, 0, 0.819152, 0.573577, 0.707107, 0.40558, -0.579228, 0, 5, 0 )
 
@@ -79,7 +85,6 @@ environment = ExtResource( 9 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 1, 0, 0, 0, -0.642788, 0.766045, 0, -0.766045, -0.642788, 144.949, 142.423, -121.397 )
-visible = false
 light_energy = 1.25
 shadow_enabled = true
 
