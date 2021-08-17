@@ -7,6 +7,7 @@ const DEBUG_SM: bool = true
 const MAP_SIZE: int = 24
 
 var grid: Object
+var build_ui: Object
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:

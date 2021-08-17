@@ -64,10 +64,9 @@ func remove_num_food(var amount: int) -> void:
 
 # Called when the tile was clicked
 func clicked() -> void:
-	# Debug to test find_neighbors(x, y) Disabled for now
-	if false:
-		print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
-		_lift_neighbors()
+	print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
+	if Globals.build_ui:
+		Globals.build_ui.make_build_menu(tile_food.size(), self)
 	
 # Debug function lift neighbors raise neighbors y axis
 func _lift_neighbors() -> void:
