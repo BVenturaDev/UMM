@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/entities/critter.gd" type="Script" id=1]
+[ext_resource path="res://src/states/state_machine.gd" type="Script" id=2]
+[ext_resource path="res://src/states/critter/attracted_to_poison.gd" type="Script" id=3]
+[ext_resource path="res://src/states/critter/end_turn.gd" type="Script" id=4]
+[ext_resource path="res://src/states/critter/wander.gd" type="Script" id=5]
+[ext_resource path="res://src/states/critter/begin_turn.gd" type="Script" id=6]
+[ext_resource path="res://src/states/critter/eat.gd" type="Script" id=7]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.25, 1, 0.25 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.698039, 0.478431, 0.345098, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+size = Vector3( 0.5, 2, 0.5 )
+
+[node name="critter" type="Spatial" groups=[
+"nature",
+]]
+script = ExtResource( 1 )
+tween = NodePath("Tween")
+state_machine = NodePath("state_machine")
+
+[node name="state_machine" type="Node" parent="."]
+script = ExtResource( 2 )
+autostart = false
+
+[node name="begin_turn" type="Node" parent="state_machine"]
+script = ExtResource( 6 )
+
+[node name="wander" type="Node" parent="state_machine"]
+script = ExtResource( 5 )
+
+[node name="attracted_to_poison" type="Node" parent="state_machine"]
+script = ExtResource( 3 )
+
+[node name="eat" type="Node" parent="state_machine"]
+script = ExtResource( 7 )
+
+[node name="end_turn" type="Node" parent="state_machine"]
+script = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 3 )
+material/0 = null

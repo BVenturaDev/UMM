@@ -9,13 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Spatial",
+"class": "Critter",
+"language": "GDScript",
+"path": "res://src/entities/critter.gd"
+}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/states/state_machine.gd"
+}, {
+"base": "Spatial",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://src/props/tile.gd"
 } ]
 _global_script_class_icons={
-"StateMachine": ""
+"Critter": "",
+"StateMachine": "",
+"Tile": ""
 }
 
 [application]

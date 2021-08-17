@@ -1,5 +1,5 @@
 extends Spatial
-
+class_name Tile
 const stack_offset: float = 0.2
 
 var food = preload("res://scenes/entities/food.tscn")
@@ -14,7 +14,7 @@ var y: int = -1
 var odd_row: bool = false
 var owner_fungus: Object = null
 var turn_used: bool = false
-
+var entitie: Spatial = null
 # Array of all food stored in this tile
 var tile_food: Array = []
 
