@@ -2,33 +2,32 @@ extends Spatial
 class_name Critter
 
 export(NodePath) onready var tween = get_node(tween) as Tween
+export(NodePath) onready var state_machine = get_node(state_machine) as Node
 export var coord_x: int = 0
 export var coord_y: int = 0
 var neighbors: Array
 
-var current_tile: Tile setget _set_current_tile
+var current_tile: Tile setget set_current_tile
 
-func _set_current_tile(new_value: Tile) -> void:
+func set_current_tile(new_tile: Tile) -> void:
 	if not is_instance_valid(current_tile):
-		current_tile = new_value
-		current_tile.entitie = self
+		current_tile = new_tile
 		return
+	coord_x = new_tile.x
+	coord_y = new_tile.y
 	# Clean of the current tile
-	current_tile.entitie = null
-	current_tile = new_value
+	current_tile.critter = null
+	current_tile = new_tile
 	# Assign to the new tile
-	current_tile.entitie = self
+	current_tile.critter = self
+	actualize_neighbors()
 
 
 func _ready() -> void:
 	actualize_current_tile()
-	for state in $state_machine.get_children():
+	for state in state_machine.get_children():
 		if "critter" in state:
 			state.critter = self
-
-
-func do_turn():
-	$state_machine.start_machine()
 
 
 func wander() -> void:
@@ -41,7 +40,7 @@ func wander() -> void:
 func get_tiles_whitout_entities() -> Array:
 	var tiles_whitout_entities = []
 	for neighboor in neighbors:
-		if not is_instance_valid(neighboor.entitie):
+		if not is_instance_valid(neighboor.critter):
 			tiles_whitout_entities.append(neighboor)
 	return tiles_whitout_entities
 

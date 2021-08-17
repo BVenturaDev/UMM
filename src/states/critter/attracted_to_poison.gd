@@ -1,12 +1,14 @@
 extends Node
 
-var state_machine: StateMachine
+export(bool) var DEBUG = false
+
+var state_machine
 
 func enter():
 	exit("next_state")
 
 func exit(next_state):
-	if Globals.DEBUG:
+	if Globals.DEBUG or DEBUG:
 		print("Exiting state: ", name)
 	state_machine.change_to(next_state)
 

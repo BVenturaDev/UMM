@@ -40,6 +40,7 @@ config/icon="res://icon.png"
 
 Globals="*res://src/singletons/globals.gd"
 GameSignals="*res://src/singletons/game_signals.gd"
+TilesReferences="*res://src/singletons/tiles_references.gd"
 
 [debug]
 

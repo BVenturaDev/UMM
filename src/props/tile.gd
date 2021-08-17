@@ -14,9 +14,22 @@ var y: int = -1
 var odd_row: bool = false
 var owner_fungus: Object = null
 var turn_used: bool = false
-var entitie: Spatial = null
+var critter: Object = null setget set_critter
+
+
 # Array of all food stored in this tile
 var tile_food: Array = []
+
+func _ready() -> void:
+	# Initialize the reference dictionary for tiles without critters
+	self.critter = null
+
+func set_critter(new_value: Object) -> void:
+	if not new_value:
+		TilesReferences.tile_without_entitie(self)
+	else:
+		TilesReferences.tile_with_entitie(self)
+	critter = new_value
 
 func spawn_food() -> void:
 	var new_food = food.instance()
