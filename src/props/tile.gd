@@ -52,7 +52,7 @@ func remove_num_food(var amount: int) -> void:
 # Called when the tile was clicked
 func clicked() -> void:
 	# Debug to test find_neighbors(x, y) Disabled for now
-	if not Globals.DEBUG:
+	if false:
 		print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
 		_lift_neighbors()
 	
