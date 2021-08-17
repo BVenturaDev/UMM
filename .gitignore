@@ -10,3 +10,6 @@ data_*/
 
 # Build data
 build/
+
+# Ignore vscode folder
+.vscode
