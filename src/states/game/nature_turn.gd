@@ -1,13 +1,15 @@
 extends Node
 
-var state_machine: StateMachine
-
+var state_machine
+var critter_scene = preload("res://scenes/entities/critter.tscn")
+export var spawn_critter_turn := 3
 
 func enter():
 	assert(GameSignals.connect("next_turn", self, "_next_turn") == 0)
 	# Events on enter
 	GameSignals.emit_signal("enter_nature_turn")
 	_do_group_nature_turn()
+	_spawn_critter()
 	_next_turn()
 
 func exit(next_state: String):
@@ -30,3 +32,10 @@ func _do_group_nature_turn():
 	for nature in all_nature_in_scene:
 		if nature.has_method("do_turn"):
 			nature.do_turn()
+
+
+func _spawn_critter() -> void:
+	var critter : Critter = critter_scene.instance()
+	critter.current_tile = null
+	get_tree().current_scene.add_child(critter)
+	pass

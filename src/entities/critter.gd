@@ -7,12 +7,11 @@ export var coord_x: int = 0
 export var coord_y: int = 0
 var neighbors: Array
 
-var current_tile: Tile setget _set_current_tile
+var current_tile: Tile setget set_current_tile
 
-func _set_current_tile(new_value: Tile) -> void:
+func set_current_tile(new_value: Tile) -> void:
 	if not is_instance_valid(current_tile):
 		current_tile = new_value
-		current_tile.critter = self
 		return
 	# Clean of the current tile
 	current_tile.critter = null

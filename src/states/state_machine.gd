@@ -1,7 +1,7 @@
 extends Node
 class_name StateMachine
 
-export(bool) var autostart = true
+export(bool) var autostart := true
 var state: Object
 
 var history = []
