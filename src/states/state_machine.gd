@@ -65,8 +65,9 @@ func _unhandled_key_input(event):
 		state.unhandled_key_input(event)
 
 func _notification(what):
-	if state && state.has_method("notification"):
-		state.notification(what)
+	if is_instance_valid(state):
+		if state && state.has_method("notification"):
+			state.notification(what)
 
 func _disabled_node():
 	set_process(false)
