@@ -2,11 +2,11 @@ extends Node
 
 # Constants
 const DEBUG: bool = false
-const DEBUG_SM: bool = true
+const DEBUG_SM: bool = false
 # Map size - *** MUST BE EVEN ***
 const MAP_SIZE: int = 26
 
-var grid: Object = null
+var grid: Object
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:

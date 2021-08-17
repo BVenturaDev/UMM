@@ -36,6 +36,10 @@ func _do_group_nature_turn():
 
 func _spawn_critter() -> void:
 	var critter : Critter = critter_scene.instance()
-	critter.current_tile = null
+	var random_tile: Spatial = TilesReferences.get_random_tile_without_critter()
+	if not is_instance_valid(random_tile):
+		return
+	critter.transform.origin = random_tile.transform.origin
+	critter.set_coord(random_tile.x,random_tile.y)
 	get_tree().current_scene.add_child(critter)
 	pass

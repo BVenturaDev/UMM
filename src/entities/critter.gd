@@ -9,15 +9,18 @@ var neighbors: Array
 
 var current_tile: Tile setget set_current_tile
 
-func set_current_tile(new_value: Tile) -> void:
+func set_current_tile(new_tile: Tile) -> void:
 	if not is_instance_valid(current_tile):
-		current_tile = new_value
+		current_tile = new_tile
 		return
+	coord_x = new_tile.x
+	coord_y = new_tile.y
 	# Clean of the current tile
 	current_tile.critter = null
-	current_tile = new_value
+	current_tile = new_tile
 	# Assign to the new tile
 	current_tile.critter = self
+	actualize_neighbors()
 
 
 func _ready() -> void:
