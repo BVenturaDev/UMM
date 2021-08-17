@@ -3,9 +3,11 @@ class_name Tile
 const stack_offset: float = 0.2
 
 var food = preload("res://scenes/entities/food.tscn")
+var gather_shroom = preload("res://scenes/entities/gather_shroom.tscn")
 
 onready var hex = $hex_tile
 onready var stack = $food_stack
+onready var resource_pos = $resource_point
 
 # Variables
 # Grid Location
@@ -15,6 +17,7 @@ var odd_row: bool = false
 var owner_fungus: Object = null
 var turn_used: bool = false
 var critter: Object = null setget set_critter
+var cur_shroom: Object = null
 
 
 # Array of all food stored in this tile
@@ -67,9 +70,12 @@ func clicked() -> void:
 	print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
 	if Globals.build_ui:
 		Globals.build_ui.make_build_menu(tile_food.size(), self)
-	
-# Debug function lift neighbors raise neighbors y axis
-func _lift_neighbors() -> void:
-	var neighbors: Array = get_parent().find_neighbors(x, y)
-	for i in neighbors:
-		i.transform.origin.y += 1.0
+
+func build_gather_shroom() -> void:
+	if tile_food.size() > 5 and not cur_shroom:
+		var new_shroom = gather_shroom.instance()
+		add_child(new_shroom)
+		new_shroom.transform.origin = resource_pos.transform.origin
+		new_shroom.owner_tile = self
+		cur_shroom = new_shroom
+		remove_num_food(5)

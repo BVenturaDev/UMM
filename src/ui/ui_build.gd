@@ -33,3 +33,8 @@ func _on_close_button_pressed():
 	selected_tile = null
 	food_move_amount = 0
 	tile_food = 0
+
+
+func _on_gather_shroom_button_pressed():
+	if selected_tile:
+		selected_tile.build_gather_shroom()

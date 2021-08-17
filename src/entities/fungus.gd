@@ -8,7 +8,7 @@ func _ready() -> void:
 	var tile: Object = grid.find_tile(Globals.MAP_SIZE * 0.25, Globals.MAP_SIZE * 0.25)
 	if tile:
 		_claim_tile(tile)
-		tile.spawn_num_food(1000)
+		tile.spawn_num_food(20)
 		
 func _claim_tile(var tile: Object) -> void:
 	tile.owner_fungus = self

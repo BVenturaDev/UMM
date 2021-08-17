@@ -109,3 +109,4 @@ __meta__ = {
 
 [connection signal="pressed" from="build_popup/VBoxContainer/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="value_changed" from="build_popup/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="build_popup/VBoxContainer/gather_shroom_button" to="." method="_on_gather_shroom_button_pressed"]
