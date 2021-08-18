@@ -1,11 +1,22 @@
 extends Spatial
 
-var grid: Object = null
+const PLAYER_OFFSET: float = 0.25
+const AI_OFFSET: float = 0.25
+
+var my_owner: Object = null
 var owned_tiles: Array = []
 
 func _ready() -> void:
-	grid = get_parent().get_node("grid")
-	var tile: Object = grid.find_tile(Globals.MAP_SIZE * 0.25, Globals.MAP_SIZE * 0.25)
+	my_owner = get_parent()
+	var x: int = 0
+	var y: int = 0
+	if my_owner.name == "player":
+		x = int(Globals.MAP_SIZE * PLAYER_OFFSET)
+		y = int(Globals.MAP_SIZE * PLAYER_OFFSET)
+	else:
+		x = int(Globals.MAP_SIZE * AI_OFFSET)
+		y = int(Globals.MAP_SIZE * AI_OFFSET)
+	var tile: Object = Globals.grid.find_tile(x, y)
 	if tile:
 		_claim_tile(tile)
 		tile.spawn_num_food(20)
@@ -13,8 +24,9 @@ func _ready() -> void:
 		
 func _claim_tile(var tile: Object) -> void:
 	tile.owner_fungus = self
-	tile.generate_friendly_ui()
 	owned_tiles.append(tile)
+	if my_owner.name == "player":
+		tile.generate_friendly_ui()
 
 func add_tile(var tile: Object) -> void:
 	owned_tiles.append(tile)

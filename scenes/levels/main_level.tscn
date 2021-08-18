@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/entities/fungus.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/entities/control_camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/props/grid_editor.gd" type="Script" id=5]
+[ext_resource path="res://src/entities/ai.gd" type="Script" id=6]
 [ext_resource path="res://src/states/game/player_turn.gd" type="Script" id=7]
 [ext_resource path="res://src/states/game/nature_turn.gd" type="Script" id=8]
 [ext_resource path="res://scenes/world_env.tres" type="Environment" id=9]
@@ -79,10 +80,6 @@ __meta__ = {
 
 [node name="ui_build" parent="CanvasLayer" instance=ExtResource( 12 )]
 
-[node name="fungus" parent="." groups=[
-"nature",
-] instance=ExtResource( 3 )]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
 
@@ -90,5 +87,18 @@ environment = ExtResource( 9 )
 transform = Transform( 0.34202, -0.538986, 0.769751, 7.16125e-08, 0.819152, 0.573577, -0.939693, -0.196175, 0.280166, 228.275, 154.801, 48.0567 )
 light_energy = 2.0
 shadow_enabled = true
+
+[node name="ai" type="Spatial" parent="." groups=[
+"ai",
+]]
+script = ExtResource( 6 )
+
+[node name="fungus" parent="ai" instance=ExtResource( 3 )]
+
+[node name="player" type="Spatial" parent="."]
+
+[node name="fungus" parent="player" groups=[
+"nature",
+] instance=ExtResource( 3 )]
 
 [connection signal="button_up" from="CanvasLayer/next_turn_buttom" to="CanvasLayer/next_turn_buttom" method="_on_pressed"]

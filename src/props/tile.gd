@@ -102,12 +102,14 @@ func spawn_log() -> void:
 
 # Called when the tile was clicked
 func clicked() -> void:
-	if Globals.DEBUG:
-		print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
-	if Globals.moving_tile:
-		Globals.moving_tile.try_move_food(self)
-	elif Globals.build_ui:
-		Globals.build_ui.make_build_menu(tile_food.size(), self)
+	if owner_fungus:
+		if owner_fungus.my_owner.name == "player":
+			if Globals.DEBUG:
+				print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
+			if Globals.moving_tile:
+				Globals.moving_tile.try_move_food(self)
+			elif Globals.build_ui:
+				Globals.build_ui.make_build_menu(tile_food.size(), self)
 
 func build_gather_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom and cur_resource:
