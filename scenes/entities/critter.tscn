@@ -24,7 +24,6 @@ size = Vector3( 0.5, 2, 0.5 )
 [node name="critter" type="Spatial" groups=[
 "nature",
 ]]
-visible = false
 script = ExtResource( 1 )
 tween = NodePath("Tween")
 state_machine = NodePath("state_machine")
