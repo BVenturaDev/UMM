@@ -9,6 +9,7 @@ const MAP_SIZE: int = 6
 var grid: Object
 var build_ui: Object
 var rng = RandomNumberGenerator.new()
+var moving_tile: Object = null
 
 func _ready() -> void:
 	rng.seed = randi()

@@ -96,4 +96,14 @@ func find_region(var x: int, var y: int) -> Array:
 						# Found neighbor
 						region.append(neighbor)
 	return region
+	
+func gray_all_tiles() -> void:
+	for x in range(0, tiles.size()):
+		for y in range(0, tiles[x].size()):
+			tiles[x][y].enable_grayed_out()
+			
+func disable_gray_all_tiles() -> void:
+	for x in range(0, tiles.size()):
+		for y in range(0, tiles[x].size()):
+			tiles[x][y].disable_grayed_out()
 
