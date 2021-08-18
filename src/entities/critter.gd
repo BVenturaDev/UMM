@@ -6,6 +6,8 @@ enum LifeState {
 	DEAD
 	}
 
+const FOOD_AMOUNT: int = 10
+
 export(NodePath) onready var tween = get_node(tween) as Tween
 export(NodePath) onready var state_machine = get_node(state_machine) as Node
 export(NodePath) onready var mesh_instance = get_node(mesh_instance) as MeshInstance
@@ -13,6 +15,8 @@ export(LifeState) var life_state = LifeState.ALIVE
 export(int) var max_age := 6
 export var age := 0
 var is_eating := false
+var is_poisoned := false
+var eating_mushroom : Object = null setget set_eating_mushroom
 var current_tile: Tile setget set_current_tile
 
 func set_current_tile(new_tile: Tile) -> void:
@@ -27,6 +31,12 @@ func set_current_tile(new_tile: Tile) -> void:
 	# Assign to the new tile
 	move_to_tile(current_tile)
 
+func set_eating_mushroom(new_shroom) -> void:
+	if not is_instance_valid(new_shroom):
+		is_eating = false
+	else:
+		is_eating = true
+	eating_mushroom = new_shroom
 
 func _ready() -> void:
 	for state in state_machine.get_children():
@@ -71,4 +81,9 @@ func move_to_tile(tile) -> void:
 func get_close_neighbors() -> Array:
 	return current_tile.close_neighbors
 
-
+func get_tiles_with_shroom() -> Array:
+	var tiles_with_shroom = []
+	for neighbor in get_close_neighbors():
+		if is_instance_valid(neighbor.cur_shroom):
+			tiles_with_shroom.append(neighbor.cur_shroom)
+	return tiles_with_shroom

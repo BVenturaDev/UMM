@@ -22,10 +22,10 @@ var owner_fungus: Object = null
 var turn_used: bool = false
 var close_neighbors : Array
 var region_neighbors : Array
-var critter: Object = null setget set_critter
 
+var critter: Object = null setget set_critter
 var cur_shroom: Object = null setget set_cur_shroom
-var cur_resource: Object = null
+var cur_resource: Object = null setget set_cur_resource
 var move_amount: int = 0
 
 
@@ -43,25 +43,29 @@ func initialize_references():
 	$InitTimer.start()
 	yield($InitTimer,"timeout")
 	$InitTimer.queue_free()
-	self.critter = null
-	self.cur_shroom = null
+	self.critter = critter
+	self.cur_shroom = cur_shroom
+	self.cur_resource = cur_resource
 	close_neighbors = Globals.grid.find_neighbors(x, y)
 	region_neighbors = Globals.grid.find_region(x, y)
 
 func set_critter(new_value: Object) -> void:
-	if not new_value:
-		TilesReferences.tile_without_entitie(self)
-	else:
-		TilesReferences.tile_with_entitie(self)
+	update_entitie_state(new_value)
 	critter = new_value
 
 func set_cur_shroom(new_value: Object) -> void:
+	update_entitie_state(new_value)
+	cur_shroom = new_value
+
+func set_cur_resource(new_value: Object) -> void:
+	update_entitie_state(new_value)
+	cur_resource = new_value
+
+func update_entitie_state(new_value: Object) -> void:
 	if not new_value:
 		TilesReferences.tile_without_entitie(self)
 	else:
 		TilesReferences.tile_with_entitie(self)
-	cur_shroom = new_value
-
 func spawn_food() -> void:
 	var new_food = food.instance()
 	add_child(new_food)
@@ -98,7 +102,7 @@ func spawn_log() -> void:
 		var new_log: Object = resource_log.instance()
 		add_child(new_log)
 		new_log.transform.origin = resource_pos.transform.origin
-		cur_resource = new_log
+		self.cur_resource = new_log
 
 # Called when the tile was clicked
 func clicked() -> void:
@@ -125,7 +129,7 @@ func build_poison_shroom() -> void:
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
 		new_shroom.owner_tile = self
-		cur_shroom = new_shroom
+		self.cur_shroom = new_shroom
 		remove_num_food(5)
 		
 func build_scout_shroom() -> void:
@@ -134,7 +138,7 @@ func build_scout_shroom() -> void:
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
 		new_shroom.owner_tile = self
-		cur_shroom = new_shroom
+		self.cur_shroom = new_shroom
 		remove_num_food(5)
 		
 func move_food(var amount: int) -> void:

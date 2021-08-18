@@ -28,7 +28,7 @@ script = ExtResource( 1 )
 tween = NodePath("Tween")
 state_machine = NodePath("state_machine")
 mesh_instance = NodePath("Area/MeshInstance")
-max_age = 12
+max_age = 1000
 
 [node name="state_machine" type="Node" parent="."]
 script = ExtResource( 2 )
