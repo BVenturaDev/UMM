@@ -30,7 +30,7 @@ var move_amount: int = 0
 
 # Array of all food stored in this tile
 var tile_food: Array = []
-# Array of region available to 
+# Array of region available to
 var region: Array = []
 
 func _ready() -> void:
@@ -72,7 +72,7 @@ func spawn_food() -> void:
 	var new_food = food.instance()
 	add_child(new_food)
 	add_food(new_food)
-	
+
 func spawn_num_food(var num: int) -> void:
 	if num > 0:
 		for _i in range(0, num):
@@ -93,7 +93,7 @@ func remove_food(var id: int) -> void:
 	if id > -1 and id < tile_food.size():
 		tile_food[id].queue_free()
 		tile_food.remove(id)
-		
+
 func remove_num_food(var amount: int) -> void:
 	if amount > 0:
 		for _i in range(0, amount):
@@ -108,13 +108,14 @@ func spawn_log() -> void:
 
 # Called when the tile was clicked
 func clicked() -> void:
-	if not turn_used:
-		if Globals.DEBUG:
-			print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
-		if Globals.moving_tile:
-			Globals.moving_tile.try_move_food(self)
-		elif Globals.build_ui:
-			Globals.build_ui.make_build_menu(tile_food.size(), self)
+	if owner_fungus and not turn_used:
+		if owner_fungus.my_owner.name == "player":
+			if Globals.DEBUG:
+				print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
+			if Globals.moving_tile:
+				Globals.moving_tile.try_move_food(self)
+			elif Globals.build_ui:
+				Globals.build_ui.make_build_menu(tile_food.size(), self)
 
 func build_gather_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom and cur_resource:
@@ -126,7 +127,7 @@ func build_gather_shroom() -> void:
 		self.cur_shroom = new_shroom
 		remove_num_food(5)
 		turn_complete()
-		
+
 func build_poison_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom:
 		var new_shroom = poison_shroom.instance()
@@ -136,7 +137,7 @@ func build_poison_shroom() -> void:
 		cur_shroom = new_shroom
 		remove_num_food(5)
 		turn_complete()
-		
+
 func build_scout_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom:
 		var new_shroom = scout_shroom.instance()
@@ -146,7 +147,7 @@ func build_scout_shroom() -> void:
 		cur_shroom = new_shroom
 		remove_num_food(5)
 		turn_complete()
-		
+
 func move_food(var amount: int) -> void:
 	if tile_food.size() >= amount and not Globals.moving_tile and owner_fungus:
 		move_amount = amount
@@ -166,7 +167,7 @@ func stop_move_food() -> void:
 	region = []
 	Globals.grid.disable_gray_all_tiles()
 	move_amount = 0
-	
+
 func try_move_food(var other_tile: Object) -> void:
 	if region.size() > 0:
 		for i in region:
@@ -186,7 +187,7 @@ func unselect() -> void:
 
 func enable_grayed_out() -> void:
 	hex.enable_grayed_out()
-	
+
 func disable_grayed_out() -> void:
 	hex.disable_grayed_out()
 

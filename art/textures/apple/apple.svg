@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="16.177523"
-     inkscape:cx="423.9603"
-     inkscape:cy="321.03697"
+     inkscape:zoom="1.0110952"
+     inkscape:cx="294.9858"
+     inkscape:cy="547.787"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
@@ -67,12 +67,18 @@
        style="fill:#8a2e11;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 98.408569,105.56268 c 0,0 -5.455543,-2.07849 1.933891,-14.703268 7.28451,-12.445511 10.43438,-11.162729 10.43438,-11.162729 l 0.26921,0.904871 c 0,0 -6.11003,5.070421 -8.62863,10.774247 -2.08209,4.715266 -1.39971,13.857579 -1.39971,13.857579 z"
        id="path6593"
-       sodipodi:nodetypes="csccscc" />
+       sodipodi:nodetypes="csccscc"
+       inkscape:export-filename="B:\dev\godot\UMM\assets\textures\apple.png"
+       inkscape:export-xdpi="130.20322"
+       inkscape:export-ydpi="130.20322" />
     <path
        id="path180"
        style="fill:url(#linearGradient2684);fill-opacity:1;stroke:#000000;stroke-width:3.77952761;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        d="M 295.18945,355.22656 C 279.67398,354.28658 261.50559,361.20468 242,377.5 c -31.54191,35.80391 -49.04654,82.58954 -49.06641,131.14258 5.4e-4,107.29856 83.66098,194.28101 186.86133,194.28125 103.20035,-2.4e-4 186.86079,-86.98269 186.86133,-194.28125 -0.004,-40.05055 -12.10419,-74.72617 -38.39565,-108.62211 -38.58955,-43.90845 -74.00092,-53.38354 -115.94659,-33.35309 -25.67595,12.26114 -15.9567,15.06772 -33.15162,16.57375 -18.26894,1.6001 -35.88498,-18.49202 -35.88498,-18.49202 0,0 -16.66094,-7.61859 -48.08796,-9.52255 z"
        transform="scale(0.26458333)"
-       sodipodi:nodetypes="scccccsscs" />
+       sodipodi:nodetypes="scccccsscs"
+       inkscape:export-filename="B:\dev\godot\UMM\assets\textures\apple.png"
+       inkscape:export-xdpi="130.20322"
+       inkscape:export-ydpi="130.20322" />
   </g>
 </svg>

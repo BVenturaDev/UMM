@@ -7,6 +7,11 @@ onready var food_amount_text = $build_popup/VBoxContainer/HBoxContainer2/food_am
 onready var cur_food_text = $build_popup/VBoxContainer/HBoxContainer/cur_food_label
 onready var food_slider = $build_popup/VBoxContainer/HBoxContainer2/HSlider
 onready var kill_shroom = $build_popup/VBoxContainer/kill_shroom
+onready var gather_shroom = $build_popup/VBoxContainer/gather_shroom_button
+onready var poison_shroom = $build_popup/VBoxContainer/poison_shroom
+onready var scout_shroom = $build_popup/VBoxContainer/scout_shroom
+onready var slider_cont = $build_popup/VBoxContainer/HBoxContainer2
+onready var move_food_butt = $build_popup/VBoxContainer/move_food_button
 
 var food_move_amount: int = 0
 var tile_food: int = 0
@@ -20,6 +25,26 @@ func make_build_menu(var cur_food: int, var tile: Object) -> void:
 		kill_shroom.visible = true
 	else:
 		kill_shroom.visible = false
+		
+	if tile.cur_resource and cur_food > 5:
+		gather_shroom.visible = true
+	else:
+		gather_shroom.visible = false
+		
+	if cur_food > 5:
+		poison_shroom.visible = true
+		scout_shroom.visible = true
+	else:
+		poison_shroom.visible = false
+		scout_shroom.visible = false
+		
+	if cur_food < 2:
+		slider_cont.visible = false
+		move_food_butt.visible = false
+	else:
+		slider_cont.visible = true
+		move_food_butt.visible = true
+		
 	tile_food = cur_food
 	cur_food_text.text = str(cur_food)
 	if cur_food < MAX_FOOD_MOVE:
