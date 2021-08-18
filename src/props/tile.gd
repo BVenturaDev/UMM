@@ -38,13 +38,15 @@ func _ready() -> void:
 	initialize_references()
 
 func _process(_delta) -> void:
-	if owner_fungus:
+	if owner_fungus and not Globals.moving_tile:
 		if owner_fungus.my_owner.name == "player":
 			hex.enable_undergrowth()
 		elif Globals.DEBUG and owner_fungus.my_owner.name == "ai":
 			hex.enable_undergrowth()
 		else:
 			hex.disable_undergrowth()
+	else:
+		hex.disable_undergrowth()
 
 func initialize_references():
 	$InitTimer.start()
