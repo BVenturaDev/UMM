@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/entities/critter.gd" type="Script" id=1]
 [ext_resource path="res://src/states/state_machine.gd" type="Script" id=2]
@@ -7,14 +7,17 @@
 [ext_resource path="res://src/states/critter/wander.gd" type="Script" id=5]
 [ext_resource path="res://src/states/critter/begin_turn.gd" type="Script" id=6]
 [ext_resource path="res://src/states/critter/eat.gd" type="Script" id=7]
+[ext_resource path="res://scenes/entities/die.gd" type="Script" id=8]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.25, 1, 0.25 )
 
 [sub_resource type="SpatialMaterial" id=2]
+resource_local_to_scene = true
 albedo_color = Color( 0.698039, 0.478431, 0.345098, 1 )
 
 [sub_resource type="CubeMesh" id=3]
+resource_local_to_scene = true
 material = SubResource( 2 )
 size = Vector3( 0.5, 2, 0.5 )
 
@@ -24,6 +27,8 @@ size = Vector3( 0.5, 2, 0.5 )
 script = ExtResource( 1 )
 tween = NodePath("Tween")
 state_machine = NodePath("state_machine")
+mesh_instance = NodePath("Area/MeshInstance")
+max_age = 12
 
 [node name="state_machine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -34,7 +39,7 @@ script = ExtResource( 6 )
 [node name="wander" type="Node" parent="state_machine"]
 script = ExtResource( 5 )
 
-[node name="attracted_to_poison" type="Node" parent="state_machine"]
+[node name="move_to_shroom" type="Node" parent="state_machine"]
 script = ExtResource( 3 )
 
 [node name="eat" type="Node" parent="state_machine"]
@@ -42,6 +47,9 @@ script = ExtResource( 7 )
 
 [node name="end_turn" type="Node" parent="state_machine"]
 script = ExtResource( 4 )
+
+[node name="die" type="Node" parent="state_machine"]
+script = ExtResource( 8 )
 
 [node name="Tween" type="Tween" parent="."]
 

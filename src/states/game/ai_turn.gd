@@ -7,7 +7,7 @@ func enter():
 		print("Exiting state: ", name)
 	assert(GameSignals.connect("next_turn", self, "_next_turn") == 0)
 	# Actions
-	if Globals.DEBUG:
+	if Globals.DEBUG_SM:
 		print("AI is thinking")
 		yield(get_tree().create_timer(0.5), "timeout")
 	_next_turn()
