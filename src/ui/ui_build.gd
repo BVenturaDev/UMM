@@ -48,3 +48,9 @@ func _on_move_food_button_pressed():
 		var amount: int = int(food_slider.value)
 		selected_tile.move_food(amount)
 	_close_menu()
+
+
+func _on_poison_shroom_pressed():
+	if selected_tile:
+		selected_tile.build_poison_shroom()
+	_close_menu()

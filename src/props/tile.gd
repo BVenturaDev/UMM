@@ -4,6 +4,7 @@ const stack_offset: float = 0.2
 
 var food = preload("res://scenes/entities/food.tscn")
 var gather_shroom = preload("res://scenes/entities/gather_shroom.tscn")
+var poison_shroom = preload("res://scenes/entities/poison_shroom.tscn")
 
 onready var hex = $hex_tile
 onready var stack = $food_stack
@@ -85,14 +86,26 @@ func build_gather_shroom() -> void:
 		cur_shroom = new_shroom
 		remove_num_food(5)
 		
+func build_poison_shroom() -> void:
+	if tile_food.size() > 5 and not cur_shroom:
+		var new_shroom = poison_shroom.instance()
+		add_child(new_shroom)
+		new_shroom.transform.origin = resource_pos.transform.origin
+		new_shroom.owner_tile = self
+		cur_shroom = new_shroom
+		remove_num_food(5)
+		
 func move_food(var amount: int) -> void:
-	if tile_food.size() >= amount and not Globals.moving_tile:
+	if tile_food.size() >= amount and not Globals.moving_tile and owner_fungus:
 		move_amount = amount
 		Globals.moving_tile = self
 		region = Globals.grid.find_region(x, y)
 		Globals.grid.gray_all_tiles()
-		for i in region:
-			i.disable_grayed_out()
+		for i in range(region.size() - 1, -1, -1):
+			if not region[i].owner_fungus:
+				region.remove(i)
+			else:
+				region[i].disable_grayed_out()
 
 func stop_move_food() -> void:
 	Globals.moving_tile = null
