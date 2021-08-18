@@ -90,7 +90,8 @@ func remove_num_food(var amount: int) -> void:
 
 # Called when the tile was clicked
 func clicked() -> void:
-	print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
+	if Globals.DEBUG:
+		print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
 	if Globals.moving_tile:
 		Globals.moving_tile.try_move_food(self)
 	elif Globals.build_ui:

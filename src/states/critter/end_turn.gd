@@ -2,9 +2,14 @@ extends Node
 
 export(bool) var DEBUG = false
 var state_machine
+var critter: Critter
 
 func enter():
-	exit("begin_turn")
+	critter.age += 1
+	if critter.age == critter.max_age:
+		exit("die")
+	else:
+		exit("begin_turn")
 
 func exit(next_state):
 	if DEBUG:

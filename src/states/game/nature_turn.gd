@@ -6,7 +6,12 @@ export(int, 1, 10) var spawn_critter_turns := 3
 export(int, 1, 100) var max_critter_alive := 3
 var critters_alive := 0
 var turns_from_last_critter_spawn := 0
- 
+
+func _ready() -> void:
+		# warning-ignore:return_value_discarded
+	GameSignals.connect("critter_died", self, "_died_a_critter")
+
+
 func enter():
 	assert(GameSignals.connect("next_turn", self, "_next_turn") == 0)
 	# Events on enter
@@ -51,3 +56,6 @@ func _spawn_critter() -> void:
 		turns_from_last_critter_spawn = 0
 		critters_alive += 1
 	turns_from_last_critter_spawn += 1
+
+func _died_a_critter() -> void:
+	critters_alive -= 1
