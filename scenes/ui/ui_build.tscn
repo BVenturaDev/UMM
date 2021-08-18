@@ -119,9 +119,17 @@ margin_right = 206.0
 margin_bottom = 197.0
 text = "Build Scout Shroom: 5 food"
 
+[node name="kill_shroom" type="Button" parent="build_popup/VBoxContainer"]
+visible = false
+margin_top = 189.0
+margin_right = 206.0
+margin_bottom = 209.0
+text = "Kill Shroom"
+
 [connection signal="pressed" from="build_popup/VBoxContainer/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="value_changed" from="build_popup/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="build_popup/VBoxContainer/move_food_button" to="." method="_on_move_food_button_pressed"]
 [connection signal="pressed" from="build_popup/VBoxContainer/gather_shroom_button" to="." method="_on_gather_shroom_button_pressed"]
 [connection signal="pressed" from="build_popup/VBoxContainer/poison_shroom" to="." method="_on_poison_shroom_pressed"]
 [connection signal="pressed" from="build_popup/VBoxContainer/scout_shroom" to="." method="_on_scout_shroom_pressed"]
+[connection signal="pressed" from="build_popup/VBoxContainer/kill_shroom" to="." method="_on_kill_shroom_pressed"]

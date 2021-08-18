@@ -1,6 +1,7 @@
 extends Spatial
 
 onready var anim = $AnimationPlayer
+onready var kill_timer = $kill_timer
 
 var food_amount: int = 0
 
@@ -16,3 +17,13 @@ func _process(_delta) -> void:
 func do_turn() -> void:
 	if owner_tile:
 		owner_tile.spawn_num_food(food_amount)
+
+func kill() -> void:
+	anim.stop()
+	anim.play("death")
+	kill_timer.start()
+
+func _on_kill_timer_timeout():
+	if owner_tile:
+		owner_tile.cur_shroom = null
+	queue_free()

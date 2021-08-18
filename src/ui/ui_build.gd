@@ -6,6 +6,7 @@ onready var window = $build_popup
 onready var food_amount_text = $build_popup/VBoxContainer/HBoxContainer2/food_amount
 onready var cur_food_text = $build_popup/VBoxContainer/HBoxContainer/cur_food_label
 onready var food_slider = $build_popup/VBoxContainer/HBoxContainer2/HSlider
+onready var kill_shroom = $build_popup/VBoxContainer/kill_shroom
 
 var food_move_amount: int = 0
 var tile_food: int = 0
@@ -15,6 +16,10 @@ func _ready() -> void:
 	Globals.build_ui = self
 
 func make_build_menu(var cur_food: int, var tile: Object) -> void:
+	if Globals.DEBUG and tile.cur_shroom:
+		kill_shroom.visible = true
+	else:
+		kill_shroom.visible = false
 	tile_food = cur_food
 	cur_food_text.text = str(cur_food)
 	if cur_food < MAX_FOOD_MOVE:
@@ -57,3 +62,8 @@ func _on_scout_shroom_pressed():
 	if selected_tile:
 		selected_tile.build_scout_shroom()
 	_close_menu()
+
+func _on_kill_shroom_pressed():
+	if selected_tile:
+		if selected_tile.cur_shroom:
+			selected_tile.cur_shroom.kill()
