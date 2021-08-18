@@ -15,7 +15,15 @@ func _on_Area_input_event(_camera, var event: InputEvent, _click_position, _clic
 			get_parent().clicked()
 
 func _on_Area_mouse_entered():
-	shader.set_shader_param("is_highlighted", true)
+	if not Globals.moving_tile:
+		shader.set_shader_param("is_highlighted", true)
 
 func _on_Area_mouse_exited():
+	if not Globals.moving_tile:
+		shader.set_shader_param("is_highlighted", false)
+
+func enable_grayed_out() -> void:
+	shader.set_shader_param("is_highlighted", true)
+	
+func disable_grayed_out() -> void:
 	shader.set_shader_param("is_highlighted", false)

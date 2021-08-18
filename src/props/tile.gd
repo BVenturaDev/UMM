@@ -18,10 +18,13 @@ var owner_fungus: Object = null
 var turn_used: bool = false
 var critter: Object = null setget set_critter
 var cur_shroom: Object = null
+var move_amount: int = 0
 
 
 # Array of all food stored in this tile
 var tile_food: Array = []
+# Array of region available to 
+var region: Array = []
 
 func _ready() -> void:
 	# Initialize the reference dictionary for tiles without critters
@@ -68,7 +71,9 @@ func remove_num_food(var amount: int) -> void:
 # Called when the tile was clicked
 func clicked() -> void:
 	print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
-	if Globals.build_ui:
+	if Globals.moving_tile:
+		Globals.moving_tile.try_move_food(self)
+	elif Globals.build_ui:
 		Globals.build_ui.make_build_menu(tile_food.size(), self)
 
 func build_gather_shroom() -> void:
@@ -79,3 +84,36 @@ func build_gather_shroom() -> void:
 		new_shroom.owner_tile = self
 		cur_shroom = new_shroom
 		remove_num_food(5)
+		
+func move_food(var amount: int) -> void:
+	if tile_food.size() >= amount and not Globals.moving_tile:
+		move_amount = amount
+		Globals.moving_tile = self
+		region = Globals.grid.find_region(x, y)
+		Globals.grid.gray_all_tiles()
+		for i in region:
+			i.disable_grayed_out()
+
+func stop_move_food() -> void:
+	Globals.moving_tile = null
+	region = []
+	Globals.grid.disable_gray_all_tiles()
+	move_amount = 0
+	
+func try_move_food(var other_tile: Object) -> void:
+	if region.size() > 0:
+		for i in region:
+			if other_tile == i:
+				if other_tile.owner_fungus:
+					do_move_food(other_tile, move_amount)
+	stop_move_food()
+
+func do_move_food(var other_tile: Object, var amount: int) -> void:
+	other_tile.spawn_num_food(amount)
+	remove_num_food(amount)
+
+func enable_grayed_out() -> void:
+	hex.enable_grayed_out()
+	
+func disable_grayed_out() -> void:
+	hex.disable_grayed_out()
