@@ -50,6 +50,7 @@ script = ExtResource( 11 )
 [node name="nature_turn" type="Node" parent="state_machine"]
 script = ExtResource( 8 )
 spawn_critter_turns = 1
+max_critter_alive = 8
 
 [node name="grid" parent="." instance=ExtResource( 2 )]
 

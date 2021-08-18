@@ -10,3 +10,5 @@ signal exit_player_turn
 signal enter_nature_turn
 # warning-ignore:unused_signal
 signal exit_nature_turn
+# warning-ignore:unused_signal
+signal critter_died

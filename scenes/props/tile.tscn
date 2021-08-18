@@ -15,3 +15,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.300805, 0 )
 
 [node name="food_stack" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.566021, 0.373357, 0 )
+
+[node name="InitTimer" type="Timer" parent="."]
+wait_time = 0.3
