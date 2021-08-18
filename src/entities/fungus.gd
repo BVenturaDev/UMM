@@ -9,6 +9,7 @@ func _ready() -> void:
 	if tile:
 		_claim_tile(tile)
 		tile.spawn_num_food(20)
+		tile.spawn_log()
 		
 func _claim_tile(var tile: Object) -> void:
 	tile.owner_fungus = self

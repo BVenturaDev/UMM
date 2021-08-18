@@ -249,7 +249,7 @@ bones/3/name = "Bone.003"
 bones/3/parent = 2
 bones/3/rest = Transform( 1, 6.05845e-28, 2.15239e-42, -6.05845e-28, 1, 7.10542e-15, 2.15239e-42, -7.10542e-15, 1, 0, 0.583624, 0 )
 bones/3/enabled = true
-bones/3/bound_children = [ NodePath("BoneAttachment") ]
+bones/3/bound_children = [  ]
 
 [node name="scout" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )

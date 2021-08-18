@@ -6,6 +6,7 @@ var food = preload("res://scenes/entities/food.tscn")
 var gather_shroom = preload("res://scenes/entities/gather_shroom.tscn")
 var poison_shroom = preload("res://scenes/entities/poison_shroom.tscn")
 var scout_shroom = preload("res://scenes/entities/scout_shroom.tscn")
+var resource_log = preload("res://scenes/entities/resource_log.tscn")
 
 onready var hex = $hex_tile
 onready var stack = $food_stack
@@ -23,6 +24,7 @@ var region_neighbors : Array
 var critter: Object = null setget set_critter
 
 var cur_shroom: Object = null setget set_cur_shroom
+var cur_resource: Object = null
 var move_amount: int = 0
 
 
@@ -90,6 +92,13 @@ func remove_num_food(var amount: int) -> void:
 		for _i in range(0, amount):
 			remove_food(tile_food.size() - 1)
 
+func spawn_log() -> void:
+	if not cur_resource:
+		var new_log: Object = resource_log.instance()
+		add_child(new_log)
+		new_log.transform.origin = resource_pos.transform.origin
+		cur_resource = new_log
+
 # Called when the tile was clicked
 func clicked() -> void:
 	if Globals.DEBUG:
@@ -100,11 +109,12 @@ func clicked() -> void:
 		Globals.build_ui.make_build_menu(tile_food.size(), self)
 
 func build_gather_shroom() -> void:
-	if tile_food.size() > 5 and not cur_shroom:
+	if tile_food.size() > 5 and not cur_shroom and cur_resource:
 		var new_shroom = gather_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
 		new_shroom.owner_tile = self
+		new_shroom.food_amount = cur_resource.FOOD_AMOUNT
 		self.cur_shroom = new_shroom
 		remove_num_food(5)
 		
@@ -137,6 +147,8 @@ func move_food(var amount: int) -> void:
 				region.remove(i)
 			else:
 				region[i].disable_grayed_out()
+		if region.size() < 1:
+			stop_move_food()
 
 func stop_move_food() -> void:
 	Globals.moving_tile = null

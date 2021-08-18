@@ -36,6 +36,8 @@ func _process(var delta: float) -> void:
 		
 	# Camera Rotation
 	if Input.is_action_pressed("ui_right_click"):
+		if Globals.moving_tile:
+			Globals.moving_tile.stop_move_food()
 		# Capture the mouse for rotation
 		Globals.capture_mouse()
 		can_rot = true
