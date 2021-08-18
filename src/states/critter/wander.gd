@@ -6,11 +6,11 @@ var state_machine
 var critter: Critter
 
 
-func enter():
+func enter() -> void:
 	critter.wander()
 	exit("end_turn")
 
-func exit(next_state):
+func exit(next_state) -> void:
 	if DEBUG:
 		print("Exiting state: ", name)
 	state_machine.change_to(next_state)

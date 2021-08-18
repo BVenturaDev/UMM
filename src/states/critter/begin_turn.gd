@@ -6,7 +6,6 @@ var state_machine
 var critter: Critter
 
 func enter() -> void:
-	yield(GameSignals, "enter_nature_turn")
 	exit(decide_what_do())
 
 
@@ -17,6 +16,8 @@ func exit(next_state) -> void:
 
 
 func decide_what_do() -> String:
+	if not critter.is_alive:
+		return "end_turn"
 	if critter.is_eating:
 		return "move_to_shroom"
 	if is_mushroom_close() or critter.is_eating:

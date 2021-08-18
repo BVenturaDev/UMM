@@ -12,3 +12,5 @@ signal enter_nature_turn
 signal exit_nature_turn
 # warning-ignore:unused_signal
 signal critter_died
+# warning-ignore:unused_signal
+signal spawn_critter

@@ -35,21 +35,27 @@ script = ExtResource( 2 )
 
 [node name="begin_turn" type="Node" parent="state_machine"]
 script = ExtResource( 6 )
+DEBUG = true
 
 [node name="wander" type="Node" parent="state_machine"]
 script = ExtResource( 5 )
+DEBUG = true
 
 [node name="move_to_shroom" type="Node" parent="state_machine"]
 script = ExtResource( 3 )
+DEBUG = true
 
 [node name="eat" type="Node" parent="state_machine"]
 script = ExtResource( 7 )
-
-[node name="end_turn" type="Node" parent="state_machine"]
-script = ExtResource( 4 )
+DEBUG = true
 
 [node name="die" type="Node" parent="state_machine"]
 script = ExtResource( 8 )
+DEBUG = true
+
+[node name="end_turn" type="Node" parent="state_machine"]
+script = ExtResource( 4 )
+DEBUG = true
 
 [node name="Tween" type="Tween" parent="."]
 

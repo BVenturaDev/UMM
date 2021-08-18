@@ -1,5 +1,6 @@
 extends Node
 
+export(bool) var DEBUG := false
 var state_machine: StateMachine
 var critter: Critter
 
@@ -8,10 +9,11 @@ func enter():
 	GameSignals.emit_signal("critter_died")
 	critter.life_state = critter.LifeState.DEAD
 	critter.mesh_instance.mesh.material.albedo_color = Color.red
+	# Convert to resource
 
 func exit(next_state):
 	GameSignals.disconnect("exit_nature_turn", self, "_post_dead_action")
-	if Globals.DEBUG:
+	if DEBUG:
 		print("Exiting state: ", name)
 	state_machine.change_to(next_state)
 

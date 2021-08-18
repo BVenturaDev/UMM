@@ -66,6 +66,8 @@ func update_entitie_state(new_value: Object) -> void:
 		TilesReferences.tile_without_entitie(self)
 	else:
 		TilesReferences.tile_with_entitie(self)
+
+
 func spawn_food() -> void:
 	var new_food = food.instance()
 	add_child(new_food)

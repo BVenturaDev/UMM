@@ -9,7 +9,7 @@ func enter():
 	if critter.age == critter.max_age:
 		exit("die")
 	else:
-		exit("begin_turn")
+		state_machine.stop_machine()
 
 func exit(next_state):
 	if DEBUG:
