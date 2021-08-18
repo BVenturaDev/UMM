@@ -30,9 +30,9 @@ anchor_left = 0.1
 anchor_top = 0.1
 anchor_right = 0.7
 anchor_bottom = 0.7
-margin_left = -17.28
+margin_left = -17.4
 margin_top = -20.8
-margin_right = 59.84
+margin_right = 60.2
 margin_bottom = 70.4
 grow_horizontal = 2
 grow_vertical = 2
@@ -42,15 +42,15 @@ __meta__ = {
 }
 
 [node name="close_button" type="Button" parent="build_popup/VBoxContainer"]
-margin_top = 55.0
-margin_right = 204.0
-margin_bottom = 75.0
+margin_top = 43.0
+margin_right = 206.0
+margin_bottom = 63.0
 text = "Close"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="build_popup/VBoxContainer"]
-margin_top = 79.0
-margin_right = 204.0
-margin_bottom = 93.0
+margin_top = 67.0
+margin_right = 206.0
+margin_bottom = 81.0
 
 [node name="Label" type="Label" parent="build_popup/VBoxContainer/HBoxContainer"]
 margin_right = 141.0
@@ -66,25 +66,25 @@ margin_bottom = 14.0
 text = "0"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="build_popup/VBoxContainer"]
-margin_top = 97.0
-margin_right = 204.0
-margin_bottom = 113.0
+margin_top = 85.0
+margin_right = 206.0
+margin_bottom = 101.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="HSlider" type="HSlider" parent="build_popup/VBoxContainer/HBoxContainer2"]
-margin_right = 192.0
+margin_right = 194.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 10.0
 
 [node name="food_amount" type="Label" parent="build_popup/VBoxContainer/HBoxContainer2"]
-margin_left = 196.0
+margin_left = 198.0
 margin_top = 1.0
-margin_right = 204.0
+margin_right = 206.0
 margin_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -93,28 +93,35 @@ align = 1
 valign = 1
 
 [node name="move_food_button" type="Button" parent="build_popup/VBoxContainer"]
-margin_top = 117.0
-margin_right = 204.0
-margin_bottom = 137.0
+margin_top = 105.0
+margin_right = 206.0
+margin_bottom = 125.0
 text = "Move Food"
 
 [node name="gather_shroom_button" type="Button" parent="build_popup/VBoxContainer"]
-margin_top = 141.0
-margin_right = 204.0
-margin_bottom = 161.0
-text = "Build Gatherer Shroom"
+margin_top = 129.0
+margin_right = 206.0
+margin_bottom = 149.0
+text = "Build Gatherer Shroom: 5 food"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="poison_shroom" type="Button" parent="build_popup/VBoxContainer"]
-margin_top = 165.0
-margin_right = 204.0
-margin_bottom = 185.0
-text = "Build Poison Shroom"
+margin_top = 153.0
+margin_right = 206.0
+margin_bottom = 173.0
+text = "Build Poison Shroom: 5 food"
+
+[node name="scout_shroom" type="Button" parent="build_popup/VBoxContainer"]
+margin_top = 177.0
+margin_right = 206.0
+margin_bottom = 197.0
+text = "Build Scout Shroom: 5 food"
 
 [connection signal="pressed" from="build_popup/VBoxContainer/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="value_changed" from="build_popup/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="build_popup/VBoxContainer/move_food_button" to="." method="_on_move_food_button_pressed"]
 [connection signal="pressed" from="build_popup/VBoxContainer/gather_shroom_button" to="." method="_on_gather_shroom_button_pressed"]
 [connection signal="pressed" from="build_popup/VBoxContainer/poison_shroom" to="." method="_on_poison_shroom_pressed"]
+[connection signal="pressed" from="build_popup/VBoxContainer/scout_shroom" to="." method="_on_scout_shroom_pressed"]

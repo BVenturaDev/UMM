@@ -5,6 +5,7 @@ const stack_offset: float = 0.2
 var food = preload("res://scenes/entities/food.tscn")
 var gather_shroom = preload("res://scenes/entities/gather_shroom.tscn")
 var poison_shroom = preload("res://scenes/entities/poison_shroom.tscn")
+var scout_shroom = preload("res://scenes/entities/scout_shroom.tscn")
 
 onready var hex = $hex_tile
 onready var stack = $food_stack
@@ -110,6 +111,15 @@ func build_gather_shroom() -> void:
 func build_poison_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom:
 		var new_shroom = poison_shroom.instance()
+		add_child(new_shroom)
+		new_shroom.transform.origin = resource_pos.transform.origin
+		new_shroom.owner_tile = self
+		cur_shroom = new_shroom
+		remove_num_food(5)
+		
+func build_scout_shroom() -> void:
+	if tile_food.size() > 5 and not cur_shroom:
+		var new_shroom = scout_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
 		new_shroom.owner_tile = self
