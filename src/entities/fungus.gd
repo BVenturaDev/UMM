@@ -1,7 +1,7 @@
 extends Spatial
 
 const PLAYER_OFFSET: float = 0.25
-const AI_OFFSET: float = 0.25
+const AI_OFFSET: float = 0.75
 
 var my_owner: Object = null
 var owned_tiles: Array = []
