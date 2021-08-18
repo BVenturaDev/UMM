@@ -33,9 +33,11 @@ func add_tile(var tile: Object) -> void:
 	
 func remove_tile(var id: int) -> void:
 	if id > -1 and id < owned_tiles.size():
+		owned_tiles[id].owner_fungus = null
 		owned_tiles.remove(id)
 
 func do_turn() -> void:
+	print("Fungus Turn: " + str(my_owner.name))
 	# Expand the fungus
 	for tile in owned_tiles:
 		var neighbors = Globals.grid.find_neighbors(tile.x, tile.y)

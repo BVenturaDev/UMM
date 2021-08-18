@@ -93,7 +93,9 @@ shadow_enabled = true
 ]]
 script = ExtResource( 6 )
 
-[node name="fungus" parent="ai" instance=ExtResource( 3 )]
+[node name="fungus" parent="ai" groups=[
+"nature",
+] instance=ExtResource( 3 )]
 
 [node name="player" type="Spatial" parent="."]
 

@@ -37,6 +37,15 @@ func _ready() -> void:
 	# Initialize the reference dictionary for tiles with not critters or cur_shroom
 	initialize_references()
 
+func _process(_delta) -> void:
+	if owner_fungus:
+		if owner_fungus.my_owner.name == "player":
+			hex.enable_undergrowth()
+		elif Globals.DEBUG and owner_fungus.my_owner.name == "ai":
+			hex.enable_undergrowth()
+		else:
+			hex.disable_undergrowth()
+
 func initialize_references():
 	$InitTimer.start()
 	yield($InitTimer,"timeout")
@@ -181,9 +190,6 @@ func do_move_food(var other_tile: Object, var amount: int) -> void:
 	remove_num_food(amount)
 	turn_complete()
 
-# Removes select shader
-func unselect() -> void:
-	hex.disable_selected()
 
 func enable_grayed_out() -> void:
 	hex.enable_grayed_out()

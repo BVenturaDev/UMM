@@ -30,21 +30,20 @@ func disable_highlighted() -> void:
 	
 func enable_turn_used() -> void:
 	disable_highlighted()
-	disable_selected()
+	disable_undergrowth()
 	shader.set_shader_param("is_turn_used", true)
 
 func disable_turn_used() -> void:
 	shader.set_shader_param("is_turn_used", false)
 	
-func enable_selected() -> void:
-	disable_highlighted()
-	shader.set_shader_param("is_selected", true)
+func enable_undergrowth() -> void:
+	shader.set_shader_param("is_undergrowth", true)
 
-func disable_selected() -> void:
-	shader.set_shader_param("is_selected", false)
+func disable_undergrowth() -> void:
+	shader.set_shader_param("is_undergrowth", false)
 	
 func enable_grayed_out() -> void:
-	disable_selected()
+	disable_undergrowth()
 	disable_highlighted()
 	shader.set_shader_param("is_grayed_out", true)
 	

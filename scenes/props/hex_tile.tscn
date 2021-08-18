@@ -18,7 +18,7 @@ surfaces/0 = {
 "vertex_count": 80
 }
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/albedo = Color( 1, 1, 1, 1 )
@@ -32,16 +32,16 @@ shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/highlight_color = Color( 0.568627, 0.721569, 0.933333, 1 )
 shader_param/turn_used_color = Color( 1, 0.0980392, 0.0980392, 1 )
-shader_param/selected_color = Color( 0.847059, 0.227451, 1, 1 )
+shader_param/undergrowth_color = Color( 0.654902, 0.345098, 0.827451, 1 )
 shader_param/grayed_out_color = Color( 0.643137, 0.643137, 0.643137, 1 )
 shader_param/mix_amount = 0.75
 shader_param/is_highlighted = false
 shader_param/is_turn_used = false
-shader_param/is_selected = false
+shader_param/is_undergrowth = false
 shader_param/is_grayed_out = false
 shader_param/texture_albedo = ExtResource( 1 )
 
-[sub_resource type="ConcavePolygonShape" id=3]
+[sub_resource type="ConcavePolygonShape" id=2]
 data = PoolVector3Array( 0.866, 0, -0.5, 0.866, 0, 0.5, 0.866, 0.2333, 0.5, 0, 0, 1, -0.866, 0, 0.5, -0.866, 0.2333, 0.5, -0.866, 0, -0.5, 0, 0, -1, 0, 0.2333, -1, 0, 0, -1, 0.866, 0, -0.5, 0.866, 0.2333, -0.5, 0.866, 0, 0.5, 0, 0, 1, 0, 0.2333, 1, -0.866, 0, 0.5, -0.866, 0, -0.5, -0.866, 0.2333, -0.5, 0.866, 0.2333, -0.5, 0.866, 0.2333, 0.5, 0.8274, 0.2796, 0.4777, 0, 0.2333, 1, -0.866, 0.2333, 0.5, -0.8274, 0.2796, 0.4777, 0, 0.2333, -1, 0, 0.2796, -0.9554, -0.8274, 0.2796, -0.4777, 0, 0.2333, -1, 0.866, 0.2333, -0.5, 0.8274, 0.2796, -0.4777, 0, 0.2333, 1, 0, 0.2796, 0.9554, 0.8274, 0.2796, 0.4777, -0.866, 0.2333, 0.5, -0.866, 0.2333, -0.5, -0.8274, 0.2796, -0.4777, 0, 0.2796, 0.9554, 0, 0.2796, 0, 0.8274, 0.2796, 0.4777, -0.8274, 0.2796, -0.4777, 0, 0.2796, 0, -0.8274, 0.2796, 0.4777, 0.8274, 0.2796, 0.4777, 0, 0.2796, 0, 0.8274, 0.2796, -0.4777, -0.8274, 0.2796, 0.4777, 0, 0.2796, 0, 0, 0.2796, 0.9554, 0, 0.2796, -0.9554, 0, 0.2796, 0, -0.8274, 0.2796, -0.4777, 0.8274, 0.2796, -0.4777, 0, 0.2796, 0, 0, 0.2796, -0.9554, 0.866, 0, -0.5, 0.866, 0.2333, 0.5, 0.866, 0.2333, -0.5, 0, 0, 1, -0.866, 0.2333, 0.5, 0, 0.2333, 1, -0.866, 0, -0.5, 0, 0.2333, -1, -0.866, 0.2333, -0.5, 0, 0, -1, 0.866, 0.2333, -0.5, 0, 0.2333, -1, 0.866, 0, 0.5, 0, 0.2333, 1, 0.866, 0.2333, 0.5, -0.866, 0, 0.5, -0.866, 0.2333, -0.5, -0.866, 0.2333, 0.5, 0.866, 0.2333, -0.5, 0.8274, 0.2796, 0.4777, 0.8274, 0.2796, -0.4777, 0, 0.2333, 1, -0.8274, 0.2796, 0.4777, 0, 0.2796, 0.9554, 0, 0.2333, -1, -0.8274, 0.2796, -0.4777, -0.866, 0.2333, -0.5, 0, 0.2333, -1, 0.8274, 0.2796, -0.4777, 0, 0.2796, -0.9554, 0, 0.2333, 1, 0.8274, 0.2796, 0.4777, 0.866, 0.2333, 0.5, -0.866, 0.2333, 0.5, -0.8274, 0.2796, -0.4777, -0.8274, 0.2796, 0.4777 )
 
 [node name="hex_tile" type="Spatial"]
@@ -49,13 +49,13 @@ script = ExtResource( 2 )
 
 [node name="tile" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
-material/0 = SubResource( 4 )
+material/0 = SubResource( 3 )
 
 [node name="Area" type="Area" parent="."]
 collision_layer = 2
 
 [node name="shape0" type="CollisionShape" parent="Area"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [connection signal="input_event" from="Area" to="." method="_on_Area_input_event"]
 [connection signal="mouse_entered" from="Area" to="." method="_on_Area_mouse_entered"]
