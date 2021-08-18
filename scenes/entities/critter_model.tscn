@@ -312,6 +312,7 @@ tracks/15/keys = PoolRealArray( 0, 1, 0, 0, 0, 3.72529e-09, 5.96046e-08, 7.45058
 [sub_resource type="Animation" id=5]
 resource_name = "idle"
 length = 4.0
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:Bone.005")
 tracks/0/interp = 1
