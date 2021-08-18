@@ -37,6 +37,8 @@ func _on_close_button_pressed():
 	_close_menu()
 
 func _close_menu() -> void:
+	if selected_tile:
+		selected_tile.unselect()
 	window.visible = false
 	selected_tile = null
 	food_move_amount = 0

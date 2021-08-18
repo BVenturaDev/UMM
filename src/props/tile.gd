@@ -28,8 +28,6 @@ var cur_shroom: Object = null setget set_cur_shroom
 var cur_resource: Object = null
 var move_amount: int = 0
 
-
-
 # Array of all food stored in this tile
 var tile_food: Array = []
 # Array of region available to 
@@ -61,6 +59,14 @@ func set_cur_shroom(new_value: Object) -> void:
 	else:
 		TilesReferences.tile_with_entitie(self)
 	cur_shroom = new_value
+
+func do_turn() -> void:
+	turn_used = false
+	hex.disable_turn_used()
+
+func turn_complete() -> void:
+	turn_used = true
+	hex.enable_turn_used()
 
 func spawn_food() -> void:
 	var new_food = food.instance()
@@ -102,12 +108,13 @@ func spawn_log() -> void:
 
 # Called when the tile was clicked
 func clicked() -> void:
-	if Globals.DEBUG:
-		print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
-	if Globals.moving_tile:
-		Globals.moving_tile.try_move_food(self)
-	elif Globals.build_ui:
-		Globals.build_ui.make_build_menu(tile_food.size(), self)
+	if not turn_used:
+		if Globals.DEBUG:
+			print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
+		if Globals.moving_tile:
+			Globals.moving_tile.try_move_food(self)
+		elif Globals.build_ui:
+			Globals.build_ui.make_build_menu(tile_food.size(), self)
 
 func build_gather_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom and cur_resource:
@@ -118,6 +125,7 @@ func build_gather_shroom() -> void:
 		new_shroom.food_amount = cur_resource.FOOD_AMOUNT
 		self.cur_shroom = new_shroom
 		remove_num_food(5)
+		turn_complete()
 		
 func build_poison_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom:
@@ -127,6 +135,7 @@ func build_poison_shroom() -> void:
 		new_shroom.owner_tile = self
 		cur_shroom = new_shroom
 		remove_num_food(5)
+		turn_complete()
 		
 func build_scout_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom:
@@ -136,6 +145,7 @@ func build_scout_shroom() -> void:
 		new_shroom.owner_tile = self
 		cur_shroom = new_shroom
 		remove_num_food(5)
+		turn_complete()
 		
 func move_food(var amount: int) -> void:
 	if tile_food.size() >= amount and not Globals.moving_tile and owner_fungus:
@@ -168,6 +178,11 @@ func try_move_food(var other_tile: Object) -> void:
 func do_move_food(var other_tile: Object, var amount: int) -> void:
 	other_tile.spawn_num_food(amount)
 	remove_num_food(amount)
+	turn_complete()
+
+# Removes select shader
+func unselect() -> void:
+	hex.disable_selected()
 
 func enable_grayed_out() -> void:
 	hex.enable_grayed_out()

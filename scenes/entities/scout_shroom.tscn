@@ -245,7 +245,7 @@ bones/3/name = "Bone.003"
 bones/3/parent = 2
 bones/3/rest = Transform( 1, 6.05845e-28, 2.15239e-42, -6.05845e-28, 1, 7.10542e-15, 2.15239e-42, -7.10542e-15, 1, 0, 0.583624, 0 )
 bones/3/enabled = true
-bones/3/bound_children = [ NodePath("BoneAttachment") ]
+bones/3/bound_children = [  ]
 
 [node name="scout" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
@@ -253,7 +253,7 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.655762, -0.754968, 1.19266e-08, 0.754968, 0.655762, 1.13748e-07, -9.36967e-08, -6.55871e-08, 1, -2.07454, 0.423311, -3.37705e-07 )
+transform = Transform( 1, -7.10543e-15, 2.38419e-07, -7.10543e-15, 1, 5.96046e-08, -2.38419e-07, -5.96046e-08, 1, -1.52377e-14, 2.14451, -1.27823e-07 )
 bone_name = "Bone.003"
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Armature/Skeleton/BoneAttachment"]

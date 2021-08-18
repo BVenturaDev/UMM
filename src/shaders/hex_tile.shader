@@ -11,8 +11,14 @@ uniform vec3 uv1_offset;
 uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 uniform vec4 highlight_color : hint_color;
-uniform float mix_amount = 0.5;
+uniform vec4 turn_used_color : hint_color;
+uniform vec4 selected_color : hint_color;
+uniform vec4 grayed_out_color: hint_color;
+uniform float mix_amount = 0.75;
 uniform bool is_highlighted = false;
+uniform bool is_turn_used = false;
+uniform bool is_selected = false;
+uniform bool is_grayed_out = false;
 
 void vertex() {
 	UV=UV*uv1_scale.xy+uv1_offset.xy;
@@ -23,6 +29,15 @@ void fragment() {
 	vec4 albedo_tex = texture(texture_albedo,base_uv);
 	if (is_highlighted == true) {
 		albedo_tex += (highlight_color * mix_amount);
+	}
+	else if (is_turn_used == true) {
+		albedo_tex *= turn_used_color;
+	}
+	else if (is_selected == true) {
+		albedo_tex *= selected_color;
+	}
+	else if (is_grayed_out == true) {
+		albedo_tex = grayed_out_color
 	}
 	albedo_tex *= COLOR;
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
