@@ -13,6 +13,7 @@ func _ready() -> void:
 		
 func _claim_tile(var tile: Object) -> void:
 	tile.owner_fungus = self
+	tile.generate_friendly_ui()
 	owned_tiles.append(tile)
 
 func add_tile(var tile: Object) -> void:

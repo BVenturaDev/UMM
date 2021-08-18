@@ -7,6 +7,7 @@ var gather_shroom = preload("res://scenes/entities/gather_shroom.tscn")
 var poison_shroom = preload("res://scenes/entities/poison_shroom.tscn")
 var scout_shroom = preload("res://scenes/entities/scout_shroom.tscn")
 var resource_log = preload("res://scenes/entities/resource_log.tscn")
+var friendly_ui = preload("res://scenes/ui/friendly_ui.tscn")
 
 onready var hex = $hex_tile
 onready var stack = $food_stack
@@ -173,3 +174,7 @@ func enable_grayed_out() -> void:
 	
 func disable_grayed_out() -> void:
 	hex.disable_grayed_out()
+
+func generate_friendly_ui() -> void:
+	var new_ui = friendly_ui.instance()
+	add_child(new_ui)
