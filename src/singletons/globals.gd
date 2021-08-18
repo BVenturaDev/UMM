@@ -2,9 +2,9 @@ extends Node
 
 # Constants
 const DEBUG: bool = true
-const DEBUG_SM: bool = true
+const DEBUG_SM: bool = false
 # Map size - *** MUST BE EVEN ***
-const MAP_SIZE: int = 24
+const MAP_SIZE: int = 6
 
 var grid: Object
 var build_ui: Object

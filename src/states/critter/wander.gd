@@ -11,7 +11,7 @@ func enter():
 	exit("end_turn")
 
 func exit(next_state):
-	if Globals.DEBUG or DEBUG:
+	if DEBUG:
 		print("Exiting state: ", name)
 	state_machine.change_to(next_state)
 

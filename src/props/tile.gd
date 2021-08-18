@@ -16,16 +16,27 @@ var y: int = -1
 var odd_row: bool = false
 var owner_fungus: Object = null
 var turn_used: bool = false
+var close_neighbors : Array
+var region_neighbors : Array
 var critter: Object = null setget set_critter
-var cur_shroom: Object = null
+var cur_shroom: Object = null setget set_cur_shroom
 
 
 # Array of all food stored in this tile
 var tile_food: Array = []
 
 func _ready() -> void:
-	# Initialize the reference dictionary for tiles without critters
+	# Initialize the reference dictionary for tiles with not critters or cur_shroom
+	initialize_references()
+
+func initialize_references():
+	$InitTimer.start()
+	yield($InitTimer,"timeout")
+	$InitTimer.queue_free()
 	self.critter = null
+	self.cur_shroom = null
+	close_neighbors = Globals.grid.find_neighbors(x, y)
+	region_neighbors = Globals.grid.find_region(x, y)
 
 func set_critter(new_value: Object) -> void:
 	if not new_value:
@@ -33,6 +44,13 @@ func set_critter(new_value: Object) -> void:
 	else:
 		TilesReferences.tile_with_entitie(self)
 	critter = new_value
+
+func set_cur_shroom(new_value: Object) -> void:
+	if not new_value:
+		TilesReferences.tile_without_entitie(self)
+	else:
+		TilesReferences.tile_with_entitie(self)
+	cur_shroom = new_value
 
 func spawn_food() -> void:
 	var new_food = food.instance()
@@ -77,5 +95,5 @@ func build_gather_shroom() -> void:
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
 		new_shroom.owner_tile = self
-		cur_shroom = new_shroom
+		self.cur_shroom = new_shroom
 		remove_num_food(5)
