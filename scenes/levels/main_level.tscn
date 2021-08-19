@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
@@ -13,11 +13,11 @@
 [ext_resource path="res://src/states/game/ai_turn.gd" type="Script" id=11]
 [ext_resource path="res://scenes/ui/ui_build.tscn" type="PackedScene" id=12]
 
-[sub_resource type="InputEventAction" id=1]
+[sub_resource type="InputEventAction" id=5]
 action = "ui_accept"
 
-[sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Button
@@ -39,6 +39,20 @@ func _on_pressed() -> void:
 
 "
 
+[sub_resource type="GDScript" id=4]
+script/source = "extends Button
+
+func _enable_button():
+	self.disabled = false
+
+func _disable_button():
+	self.disabled = true
+
+func _on_pressed() -> void:
+	GameSignals.emit_signal(\"spawn_critter\")
+
+"
+
 [node name="main_level" type="Spatial"]
 
 [node name="state_machine" type="Node" parent="."]
@@ -52,8 +66,8 @@ script = ExtResource( 11 )
 
 [node name="nature_turn" type="Node" parent="state_machine"]
 script = ExtResource( 8 )
-spawn_critter_turns = 1
-max_critter_alive = 8
+spawn_critter_turns = 10
+max_critter_alive = 7
 
 [node name="grid" parent="." instance=ExtResource( 2 )]
 
@@ -66,25 +80,43 @@ transform = Transform( -0.707107, 0.40558, -0.579228, 0, 0.819152, 0.573577, 0.7
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="next_turn_buttom" type="Button" parent="CanvasLayer"]
-margin_left = 45.0
-margin_top = 45.0
-margin_right = 12.0
+[node name="ui_build" parent="CanvasLayer" instance=ExtResource( 12 )]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="next_turn_buttom" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_right = 113.0
 margin_bottom = 20.0
-shortcut = SubResource( 2 )
+shortcut = SubResource( 6 )
 text = "NEXT TURN"
 script = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ui_build" parent="CanvasLayer" instance=ExtResource( 12 )]
+[node name="spawn_critter" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 113.0
+margin_bottom = 44.0
+text = "SPAWN CRITTER"
+script = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 0.34202, -0.538986, 0.769751, 7.16125e-08, 0.819152, 0.573577, -0.939693, -0.196175, 0.280166, 228.275, 154.801, 48.0567 )
+visible = false
 light_energy = 2.0
 shadow_enabled = true
 
@@ -103,4 +135,5 @@ script = ExtResource( 6 )
 "nature",
 ] instance=ExtResource( 3 )]
 
-[connection signal="button_up" from="CanvasLayer/next_turn_buttom" to="CanvasLayer/next_turn_buttom" method="_on_pressed"]
+[connection signal="button_up" from="CanvasLayer/VBoxContainer/next_turn_buttom" to="CanvasLayer/VBoxContainer/next_turn_buttom" method="_on_pressed"]
+[connection signal="button_up" from="CanvasLayer/VBoxContainer/spawn_critter" to="CanvasLayer/VBoxContainer/spawn_critter" method="_on_pressed"]

@@ -2,14 +2,16 @@ extends Node
 
 var state_machine
 var critter_scene = preload("res://scenes/entities/critter.tscn")
-export(int, 1, 10) var spawn_critter_turns := 3
+export(int, 1, 1000) var spawn_critter_turns := 3
 export(int, 1, 100) var max_critter_alive := 3
 var critters_alive := 0
 var turns_from_last_critter_spawn := 0
 
 func _ready() -> void:
-		# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 	GameSignals.connect("critter_died", self, "_died_a_critter")
+	# warning-ignore:return_value_discarded
+	GameSignals.connect("spawn_critter", self, "_spawn_critter")
 
 
 func enter():
@@ -17,7 +19,9 @@ func enter():
 	# Events on enter
 	GameSignals.emit_signal("enter_nature_turn")
 	_do_group_nature_turn()
-	_spawn_critter()
+	if turns_from_last_critter_spawn == spawn_critter_turns:
+		_spawn_critter()
+	turns_from_last_critter_spawn += 1
 	_next_turn()
 
 func exit(next_state: String):
@@ -45,17 +49,16 @@ func _do_group_nature_turn():
 func _spawn_critter() -> void:
 	if critters_alive == max_critter_alive:
 		return
-	if turns_from_last_critter_spawn == spawn_critter_turns:
-		var critter : Critter = critter_scene.instance()
-		var random_tile: Spatial = TilesReferences.get_random_tile_without_entitie()
-		if not is_instance_valid(random_tile):
-			return
-		critter.transform.origin = random_tile.transform.origin
-		critter.current_tile = random_tile
-		get_tree().current_scene.add_child(critter)
-		turns_from_last_critter_spawn = 0
-		critters_alive += 1
-	turns_from_last_critter_spawn += 1
+	var critter : Critter = critter_scene.instance()
+	var random_tile: Spatial = TilesReferences.get_random_tile_without_entitie()
+	if not is_instance_valid(random_tile):
+		return
+	critter.transform.origin = random_tile.transform.origin
+	critter.current_tile = random_tile
+	get_tree().current_scene.add_child(critter)
+	turns_from_last_critter_spawn = 0
+	critters_alive += 1
+	
 
 func _died_a_critter() -> void:
 	critters_alive -= 1

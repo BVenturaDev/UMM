@@ -276,7 +276,7 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.66512, -0.746737, -8.49783e-08, 0.746737, 0.66512, -3.4525e-08, 8.23018e-08, -4.04932e-08, 1, -0.58625, 0.365025, -3.90848e-08 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.694476, 0 )
 bone_name = "Bone.002"
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Armature/Skeleton/BoneAttachment"]

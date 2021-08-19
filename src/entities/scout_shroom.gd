@@ -18,6 +18,7 @@ func kill() -> void:
 	anim.stop()
 	anim.play("death")
 	kill_timer.start()
+	owner_tile.cur_shroom = null
 
 func _on_kill_timer_timeout():
 	if owner_tile:

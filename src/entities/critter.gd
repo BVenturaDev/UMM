@@ -6,13 +6,20 @@ enum LifeState {
 	DEAD
 	}
 
+const FOOD_AMOUNT: int = 10
+
 export(NodePath) onready var tween = get_node(tween) as Tween
 export(NodePath) onready var state_machine = get_node(state_machine) as Node
-export(NodePath) onready var mesh_instance = get_node(mesh_instance) as MeshInstance
+export(NodePath) onready var critter_model = get_node(critter_model) as Spatial
 export(LifeState) var life_state = LifeState.ALIVE
 export(int) var max_age := 6
 export var age := 0
+
+var is_alive := true
 var is_eating := false
+var is_poisoned := false
+
+var eating_mushroom : Object = null setget set_eating_mushroom
 var current_tile: Tile setget set_current_tile
 
 func set_current_tile(new_tile: Tile) -> void:
@@ -27,12 +34,23 @@ func set_current_tile(new_tile: Tile) -> void:
 	# Assign to the new tile
 	move_to_tile(current_tile)
 
+func set_eating_mushroom(new_shroom: Object) -> void:
+	if new_shroom == null:
+		is_eating = false
+		eating_mushroom = null
+		return
+	else:
+		is_eating = true
+		eating_mushroom = new_shroom
+		eating_mushroom.owner_tile.critter = self
 
 func _ready() -> void:
 	for state in state_machine.get_children():
 		if "critter" in state:
 			state.critter = self
 
+func do_turn() -> void:
+	state_machine.start_machine()
 
 func wander() -> void:
 	var posible_tiles: Array = get_tiles_whitout_entities()
@@ -58,6 +76,7 @@ func does_tile_has_mushroom(tile: Tile) -> bool:
 	return is_instance_valid(tile.cur_shroom)
 
 func move_to_tile(tile) -> void:
+	critter_model.set_target(tile.global_transform.origin)
 	tween.interpolate_property(
 			self, 'translation:x', 
 			global_transform.origin.x, tile.global_transform.origin.x, 
@@ -71,4 +90,9 @@ func move_to_tile(tile) -> void:
 func get_close_neighbors() -> Array:
 	return current_tile.close_neighbors
 
-
+func get_tiles_with_shroom() -> Array:
+	var tiles_with_shroom = []
+	for neighbor in get_close_neighbors():
+		if is_instance_valid(neighbor.cur_shroom) and neighbor.critter == null:
+			tiles_with_shroom.append(neighbor.cur_shroom)
+	return tiles_with_shroom
