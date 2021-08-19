@@ -293,6 +293,5 @@ anims/look_back = SubResource( 7 )
 anims/look_up = SubResource( 8 )
 
 [node name="kill_timer" type="Timer" parent="."]
-wait_time = 3.75
 
 [connection signal="timeout" from="kill_timer" to="." method="_on_kill_timer_timeout"]

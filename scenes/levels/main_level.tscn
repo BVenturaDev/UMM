@@ -141,18 +141,14 @@ shadow_enabled = true
 
 [node name="player" type="Spatial" parent="."]
 
-[node name="fungus" parent="player" groups=[
-"nature",
-] instance=ExtResource( 3 )]
+[node name="fungus" parent="player" instance=ExtResource( 3 )]
 
 [node name="ai" type="Spatial" parent="." groups=[
 "ai",
 ]]
 script = ExtResource( 6 )
 
-[node name="fungus" parent="ai" groups=[
-"nature",
-] instance=ExtResource( 3 )]
+[node name="fungus" parent="ai" instance=ExtResource( 3 )]
 
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/next_turn_buttom" to="CanvasLayer/VBoxContainer/next_turn_buttom" method="_on_pressed"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/next_turn_20" to="CanvasLayer/VBoxContainer/next_turn_20" method="_on_next_turn_20_button_up"]
