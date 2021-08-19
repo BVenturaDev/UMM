@@ -36,8 +36,8 @@ func set_current_tile(new_tile: Tile) -> void:
 		# Assign to the new tile
 		move_to_tile(current_tile)
 
+
 func set_eating_mushroom(new_shroom: Object) -> void:
-		
 	if new_shroom == null:
 		is_eating = false
 		if is_instance_valid(eating_mushroom):

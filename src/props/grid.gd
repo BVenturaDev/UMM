@@ -85,15 +85,19 @@ func find_neighbors(var x: int, var y: int) -> Array:
 	
 	# Finds all neighbors in 3 tile range
 func find_region(var x: int, var y: int) -> Array:
+	var max_distance = 34
 	var region: Array = []
-	var this_tile: Object = find_tile(x, y)
-	for i_x in range(-2, 3):
-		for i_y in range(-2, 3):
+	var this_tile: Spatial = find_tile(x, y)
+	for i_x in range(-3, 4):
+		for i_y in range(-3, 4):
 			if _in_range(x + i_x, y + i_y):
 				var neighbor: Object = find_tile(x + i_x, y + i_y)
 				if neighbor and this_tile:
 					if not neighbor == this_tile:
-						# Found neighbor
+						var distance_to_tile = this_tile.global_transform.origin.distance_squared_to(
+								neighbor.global_transform.origin)
+						if distance_to_tile > max_distance:
+							continue
 						region.append(neighbor)
 	return region
 	
