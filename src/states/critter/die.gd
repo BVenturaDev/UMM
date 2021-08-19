@@ -14,6 +14,7 @@ func enter():
 	
 	if not critter.current_tile.cur_resource:
 		critter.current_tile.cur_resource = resource_critter
+		resource_critter.owner_tile = critter.current_tile
 	critter.is_alive = false
 	
 	critter.kill()

@@ -5,7 +5,7 @@ var critter_scene = preload("res://scenes/entities/critter.tscn")
 var tree_scene = preload("res://scenes/entities/resource_tree.tscn")
 export(int, 1, 100) var spawn_critter_turns := 3
 export(int, 1, 100) var spawn_tree_turns: int = 5
-export(int, 1, 100) var max_critter_alive := 3
+export(int, 1, 100) var max_critter_alive := 5
 export(int, 1, 100) var max_trees_alive: int = 10
 var critters_alive := 0
 var trees_alive: int = 0
@@ -79,6 +79,7 @@ func _spawn_tree() -> void:
 	get_tree().current_scene.add_child(tree)
 	tree.global_transform.origin = random_tile.resource_pos.global_transform.origin
 	random_tile.cur_resource = tree
+	tree.owner_tile = random_tile
 	turns_from_last_tree_spawn = 0
 	trees_alive += 1
 

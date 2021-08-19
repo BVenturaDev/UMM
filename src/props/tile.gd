@@ -119,8 +119,9 @@ func remove_num_food(var amount: int) -> void:
 func spawn_log() -> void:
 	if not cur_resource:
 		var new_log: Object = resource_log.instance()
-		add_child(new_log)
-		new_log.transform.origin = resource_pos.transform.origin
+		get_tree().current_scene.add_child(new_log)
+		new_log.owner_tile = self
+		new_log.global_transform.origin = resource_pos.global_transform.origin
 		self.cur_resource = new_log
 
 # Called when the tile was clicked

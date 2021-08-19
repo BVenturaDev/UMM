@@ -80,8 +80,6 @@ script = ExtResource( 11 )
 
 [node name="nature_turn" type="Node" parent="state_machine"]
 script = ExtResource( 8 )
-spawn_critter_turns = 1000
-max_critter_alive = 10
 
 [node name="grid" parent="." instance=ExtResource( 2 )]
 
@@ -152,7 +150,9 @@ shadow_enabled = true
 ]]
 script = ExtResource( 6 )
 
-[node name="fungus" parent="ai" instance=ExtResource( 3 )]
+[node name="fungus" parent="ai" groups=[
+"nature",
+] instance=ExtResource( 3 )]
 
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/next_turn_buttom" to="CanvasLayer/VBoxContainer/next_turn_buttom" method="_on_pressed"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/next_turn_20" to="CanvasLayer/VBoxContainer/next_turn_20" method="_on_next_turn_20_button_up"]

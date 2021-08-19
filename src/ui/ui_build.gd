@@ -26,12 +26,12 @@ func make_build_menu(var cur_food: int, var tile: Object) -> void:
 	else:
 		kill_shroom.visible = false
 		
-	if tile.cur_resource and cur_food > 5:
+	if tile.cur_resource and cur_food > 5 and not tile.cur_shroom:
 		gather_shroom.visible = true
 	else:
 		gather_shroom.visible = false
 		
-	if cur_food > 5:
+	if cur_food > 5 and not tile.cur_shroom:
 		poison_shroom.visible = true
 		scout_shroom.visible = true
 	else:
@@ -49,8 +49,10 @@ func make_build_menu(var cur_food: int, var tile: Object) -> void:
 	cur_food_text.text = str(cur_food)
 	if cur_food < MAX_FOOD_MOVE:
 		food_slider.max_value = cur_food - 1
+		food_slider.value = cur_food - 1
 	else:
 		food_slider.max_value = MAX_FOOD_MOVE
+		food_slider.value = MAX_FOOD_MOVE
 	selected_tile = tile
 	window.popup()
 

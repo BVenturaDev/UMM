@@ -2,5 +2,7 @@
 
 [ext_resource path="res://src/entities/fungus.gd" type="Script" id=1]
 
-[node name="fungus" type="Spatial"]
+[node name="fungus" type="Spatial" groups=[
+"nature",
+]]
 script = ExtResource( 1 )

@@ -20,7 +20,7 @@ func _ready() -> void:
 	if tile:
 		_claim_tile(tile)
 		tile.spawn_num_food(20)
-		tile.spawn_log()
+		tile.call_deferred("spawn_log")
 		
 func _claim_tile(var tile: Object) -> void:
 	tile.owner_fungus = self
@@ -39,14 +39,13 @@ func remove_tile(var id: int) -> void:
 		owned_tiles.remove(id)
 
 func do_turn() -> void:
-	print("Fungus Turn: " + str(my_owner.name))
 	# Expand the fungus
 	for tile in owned_tiles:
 		var neighbors = Globals.grid.find_neighbors(tile.x, tile.y)
 		# Equalize food to neighboring owned tiles
 		for neighbor in neighbors:
 			if neighbor.owner_fungus == self:
-				if neighbor.tile_food.size() < tile.tile_food.size():
+				if neighbor.tile_food.size() < tile.tile_food.size() and not tile.turn_used:
 					tile.remove_num_food(1)
 					neighbor.spawn_food()
 		# Try to expand

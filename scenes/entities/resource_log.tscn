@@ -11,7 +11,9 @@ top_radius = 0.25
 bottom_radius = 0.25
 height = 1.5
 
-[node name="resource_log" type="Spatial"]
+[node name="resource_log" type="Spatial" groups=[
+"nature",
+]]
 script = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
