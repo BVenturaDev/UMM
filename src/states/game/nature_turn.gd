@@ -9,8 +9,8 @@ export(int, 1, 100) var max_critter_alive := 5
 export(int, 1, 100) var max_trees_alive: int = 10
 var critters_alive := 0
 var trees_alive: int = 0
-var turns_from_last_critter_spawn := spawn_critter_turns
-var turns_from_last_tree_spawn: int = spawn_tree_turns
+var turns_from_last_critter_spawn := 0
+var turns_from_last_tree_spawn: int = 0
 
 func _ready() -> void:
 	# warning-ignore:return_value_discarded

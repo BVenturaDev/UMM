@@ -136,7 +136,7 @@ func clicked() -> void:
 				Globals.build_ui.make_build_menu(tile_food.size(), self)
 
 func build_gather_shroom() -> void:
-	if tile_food.size() > 5 and not cur_shroom and cur_resource and not turn_used:
+	if tile_food.size() > 5 and not cur_shroom and cur_resource and not turn_used and not critter:
 		var new_shroom = gather_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
@@ -147,7 +147,7 @@ func build_gather_shroom() -> void:
 		turn_complete()
 
 func build_poison_shroom() -> void:
-	if tile_food.size() > 5 and not cur_shroom and not turn_used:
+	if tile_food.size() > 5 and not cur_shroom and not turn_used and not critter:
 		var new_shroom = poison_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
@@ -157,7 +157,7 @@ func build_poison_shroom() -> void:
 		turn_complete()
 
 func build_scout_shroom() -> void:
-	if tile_food.size() > 5 and not cur_shroom and not turn_used:
+	if tile_food.size() > 5 and not cur_shroom and not turn_used and not critter:
 		var new_shroom = scout_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin

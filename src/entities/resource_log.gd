@@ -1,7 +1,7 @@
 extends Spatial
 
 const FOOD_AMOUNT: int = 5
-const LIFETIME: int = 30
+const LIFETIME: int = 20
 
 var owner_tile = null
 var turns_left = LIFETIME

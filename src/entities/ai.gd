@@ -4,7 +4,7 @@ onready var fungus = $fungus
 
 func do_turn():
 	for tile in fungus.owned_tiles:
-		if not tile.turn_used and not tile.cur_shroom:
+		if not tile.turn_used and not tile.cur_shroom and not tile.critter:
 			# Make gather shroom if possible
 			if tile.cur_resource:
 				if tile.tile_food.size() > 5:
@@ -31,8 +31,6 @@ func do_turn():
 					else:
 						if _try_gather_food(tile):
 							tile.build_poison_shroom()
-						
-				
 
 func _try_gather_food(var tile: Object) -> bool:
 	var region: Array = Globals.grid.find_region(tile.x, tile.y)

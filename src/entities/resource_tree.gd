@@ -1,7 +1,7 @@
 extends Spatial
 
 const FOOD_AMOUNT: int = 1
-const LIFETIME: int = 40
+const LIFETIME: int = 30
 
 var resource_log = preload("res://scenes/entities/resource_log.tscn")
 
