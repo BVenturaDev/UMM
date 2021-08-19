@@ -63,3 +63,11 @@ func do_turn() -> void:
 					tile.remove_num_food(5)
 					_claim_tile(chosen_tile)
 					chosen_tile.spawn_food()
+					
+func owned_tiles_sort(var tiles: Array) -> Array:
+	var out_tiles: Array = []
+	for other_tile in tiles:
+		for my_tile in owned_tiles:
+			if other_tile == my_tile:
+				out_tiles.append(other_tile)
+	return out_tiles

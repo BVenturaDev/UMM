@@ -1,7 +1,7 @@
 extends Spatial
 
 const FOOD_AMOUNT: int = 1
-const LIFETIME: int = 30
+const LIFETIME: int = 40
 
 var resource_log = preload("res://scenes/entities/resource_log.tscn")
 
@@ -19,4 +19,5 @@ func do_turn() -> void:
 			new_log.global_transform.origin = owner_tile.resource_pos.global_transform.origin
 			owner_tile.cur_resource = new_log
 			new_log.owner_tile = owner_tile
+			GameSignals.emit_signal("tree_died")
 			queue_free()

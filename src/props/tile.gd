@@ -192,7 +192,7 @@ func try_move_food(var other_tile: Object) -> void:
 	if region.size() > 0:
 		for i in region:
 			if other_tile == i:
-				if other_tile.owner_fungus:
+				if other_tile.owner_fungus == owner_fungus:
 					do_move_food(other_tile, move_amount)
 	stop_move_food()
 
