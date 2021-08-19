@@ -8,6 +8,7 @@ export(NodePath) onready var tween = get_node(tween) as Tween
 export(NodePath) onready var state_machine = get_node(state_machine) as Node
 export(NodePath) onready var critter_model = get_node(critter_model) as Spatial
 
+export(int) var time_after_death := 10
 export(int) var max_age := 6
 export var age := 0
 
@@ -49,7 +50,13 @@ func _ready() -> void:
 			state.critter = self
 
 func do_turn() -> void:
-	state_machine.start_machine()
+	if is_alive:
+		state_machine.start_machine()
+	else:
+		time_after_death -= 1
+		if time_after_death == 0:
+			current_tile = null
+			queue_free()
 
 func wander() -> void:
 	var posible_tiles: Array = get_tiles_whitout_entities()
@@ -69,6 +76,7 @@ func is_tile_movible(tile: Tile) -> bool:
 	return (
 			not is_instance_valid(tile.critter) 
 			and not does_tile_has_mushroom(tile)
+			and not is_instance_valid(tile.cur_resource)
 	)
 
 func does_tile_has_mushroom(tile: Tile) -> bool:
@@ -96,7 +104,7 @@ func move_to_tile(tile) -> void:
 		yield(get_tree().create_timer(randf()),"timeout")
 		anim.play("idle")
 	else:
-		anim.play("die")
+		anim.play("death")
 
 func get_close_neighbors() -> Array:
 	return current_tile.close_neighbors
