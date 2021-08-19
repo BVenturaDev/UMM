@@ -47,11 +47,10 @@ func set_eating_mushroom(new_shroom: Object) -> void:
 	else:
 		is_eating = true
 		eating_mushroom = new_shroom
-		eating_mushroom.owner_tile.critter = self
-
+		
 		if eating_mushroom.is_in_group("poison"):
 			is_poisoned = true
-			
+		
 		critter_model.set_target(eating_mushroom.global_transform.origin)
 		critter_model.anim.play("eating")
 
@@ -79,15 +78,16 @@ func wander() -> void:
 func get_tiles_whitout_entities() -> Array:
 	var tiles_whitout_entities = []
 	for neighboor in current_tile.close_neighbors:
+		print("Shroom: ", neighboor.cur_shroom, "\nResource: ", neighboor.cur_resource, "\n Critter: ", neighboor.critter)
 		if is_tile_movible(neighboor):
 			tiles_whitout_entities.append(neighboor)
 	return tiles_whitout_entities
 
 func is_tile_movible(tile: Tile) -> bool:
 	return (
-			not is_instance_valid(tile.critter) 
-			and not does_tile_has_mushroom(tile)
-			and not is_instance_valid(tile.cur_resource)
+			tile.critter == null
+			and tile.cur_shroom == null
+			and tile.cur_resource == null
 	)
 func is_tile_walkable(tile: Tile) -> bool:
 	return (
