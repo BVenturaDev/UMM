@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/entities/critter.gd" type="Script" id=1]
 [ext_resource path="res://src/states/state_machine.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/states/critter/die.gd" type="Script" id=8]
 [ext_resource path="res://scenes/entities/critter_model.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/entities/resource_critter.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/entities/calculate_path.gd" type="Script" id=11]
 
 [node name="critter" type="Spatial" groups=[
 "nature",
@@ -19,7 +20,7 @@ resource_critter_scene = ExtResource( 10 )
 tween = NodePath("Tween")
 state_machine = NodePath("state_machine")
 critter_model = NodePath("critter_model")
-max_age = 10
+max_age = 24
 
 [node name="state_machine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -32,9 +33,12 @@ DEBUG = true
 script = ExtResource( 5 )
 DEBUG = true
 
+[node name="calculate_path" type="Node" parent="state_machine"]
+script = ExtResource( 11 )
+DEBUG = true
+
 [node name="move_to_shroom" type="Node" parent="state_machine"]
 script = ExtResource( 3 )
-DEBUG = true
 
 [node name="eat" type="Node" parent="state_machine"]
 script = ExtResource( 7 )

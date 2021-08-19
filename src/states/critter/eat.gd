@@ -18,6 +18,10 @@ func exit(next_state):
 	state_machine.change_to(next_state)
 
 func eat_shroom() -> void:
+	var neigbors = critter.current_tile.close_neighbors
+	for neigbor in neigbors:
+			print(neigbor.cur_shroom)
+	
 	var nearby_shrooms = critter.get_tiles_with_shroom()
 	
 	for shroom in nearby_shrooms:
@@ -28,9 +32,10 @@ func eat_shroom() -> void:
 	if not critter.eating_mushroom:
 		nearby_shrooms.shuffle()
 		critter.eating_mushroom = nearby_shrooms.pop_front()
-	
+		print("hoeu")
 	if is_instance_valid(critter.eating_mushroom):
 		if critter.eating_mushroom.is_in_group("poison"):
 			critter.is_poisoned = true
 		critter.critter_model.set_target(critter.eating_mushroom.global_transform.origin)
 		critter.critter_model.anim.play("eating")
+	print(critter.eating_mushroom)

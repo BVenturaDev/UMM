@@ -39,7 +39,7 @@ bind/3/name = "Bone.003"
 bind/3/bone = -1
 bind/3/pose = Transform( 1, 0, -2.38419e-07, 0, 1, 0, 2.38419e-07, 0, 1, 0, -0.245446, 0 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ],
 "loop": true,
@@ -47,7 +47,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=4]
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:Bone.003")
 tracks/0/interp = 1
@@ -89,7 +89,7 @@ tracks/4/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=5]
 length = 2.0
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:Bone.003")
@@ -132,7 +132,7 @@ tracks/4/keys = {
 "values": [ 0, 2, 4, 1, 0 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=6]
 length = 1.33333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:Bone.003")
@@ -259,13 +259,13 @@ bone_name = "Bone.002"
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Armature/Skeleton/BoneAttachment"]
 transform = Transform( -1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0.613793, 0.954, -0.096362 )
-frames = SubResource( 8 )
+frames = SubResource( 3 )
 frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/death = SubResource( 9 )
-anims/left_and_right = SubResource( 10 )
-anims/look_back = SubResource( 11 )
+anims/death = SubResource( 4 )
+anims/left_and_right = SubResource( 5 )
+anims/look_back = SubResource( 6 )
 anims/wiggle = SubResource( 7 )
 
 [node name="kill_timer" type="Timer" parent="."]
