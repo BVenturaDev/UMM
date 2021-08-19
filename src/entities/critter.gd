@@ -21,19 +21,20 @@ var eating_mushroom: Object = null setget set_eating_mushroom
 var current_tile: Tile setget set_current_tile
 
 func set_current_tile(new_tile: Tile) -> void:
-	if new_tile == null:
-		current_tile = new_tile
-		return
-	if current_tile == null:
+	if is_alive:
+		if new_tile == null:
+			current_tile = new_tile
+			return
+		if current_tile == null:
+			new_tile.critter = self
+			current_tile = new_tile
+			return
+		# Clean of the current tile
 		new_tile.critter = self
+		current_tile.critter = null
 		current_tile = new_tile
-		return
-	# Clean of the current tile
-	new_tile.critter = self
-	current_tile.critter = null
-	current_tile = new_tile
-	# Assign to the new tile
-	move_to_tile(current_tile)
+		# Assign to the new tile
+		move_to_tile(current_tile)
 
 func set_eating_mushroom(new_shroom: Object) -> void:
 	if new_shroom == null:
@@ -88,28 +89,29 @@ func does_tile_has_mushroom(tile: Tile) -> bool:
 	return is_instance_valid(tile.cur_shroom)
 
 func move_to_tile(tile) -> void:
-	var anim: AnimationPlayer = critter_model.anim
-	critter_model.set_target(tile.global_transform.origin)
-	anim.play("walk")
-	
-	tween.interpolate_property(
-			self, 'translation:x', 
-			global_transform.origin.x, tile.global_transform.origin.x, 
-			1, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	tween.interpolate_property(
-			self, 'translation:z', 
-			global_transform.origin.z, tile.global_transform.origin.z, 
-			1, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	global_transform.origin.y = 0.4
-	tween.start()
-	yield(tween,"tween_all_completed")
 	if is_alive:
-		anim.play("idle")
-		anim.stop()
-		yield(get_tree().create_timer(randf()),"timeout")
-		anim.play("idle")
-	else:
-		anim.play("death")
+		var anim: AnimationPlayer = critter_model.anim
+		critter_model.set_target(tile.global_transform.origin)
+		anim.play("walk")
+
+		tween.interpolate_property(
+				self, 'translation:x', 
+				global_transform.origin.x, tile.global_transform.origin.x, 
+				1, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+		tween.interpolate_property(
+				self, 'translation:z', 
+				global_transform.origin.z, tile.global_transform.origin.z, 
+				1, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+		global_transform.origin.y = 0.4
+		tween.start()
+		yield(tween,"tween_all_completed")
+		if is_alive:
+			anim.play("idle")
+			anim.stop()
+			yield(get_tree().create_timer(randf()),"timeout")
+			anim.play("idle")
+		else:
+			anim.play("death")
 
 func get_close_neighbors() -> Array:
 	return current_tile.close_neighbors

@@ -4,7 +4,9 @@ extends Node
 const DEBUG: bool = false
 const DEBUG_SM: bool = false
 # Map size - *** MUST BE EVEN ***
-const MAP_SIZE: int = 16
+
+const MAP_SIZE: int = 6
+
 
 var grid: Object
 var build_ui: Object
