@@ -107,6 +107,10 @@ func move_to_tile(tile) -> void:
 		yield(tween,"tween_all_completed")
 		if is_alive:
 			anim.play("idle")
+			anim.stop()
+			$Timer.wait_time = randf()
+			yield($Timer,"timeout")
+			anim.play("idle")
 		else:
 			anim.play("death")
 
