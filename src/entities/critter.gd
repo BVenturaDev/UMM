@@ -2,7 +2,7 @@ extends Spatial
 class_name Critter
 
 
-const FOOD_AMOUNT: int = 10
+export(bool) var DEBUG = false
 export(PackedScene) var resource_critter_scene : PackedScene
 export(NodePath) onready var tween = get_node(tween) as Tween
 export(NodePath) onready var state_machine = get_node(state_machine) as Node
@@ -36,8 +36,14 @@ func set_current_tile(new_tile: Tile) -> void:
 		# Assign to the new tile
 		move_to_tile(current_tile)
 
-func set_eating_mushroom(new_shroom: Object) -> void:
+func active_highlight(tiles : Array) -> void:
+	for tile in tiles:
+		tile.hex.enable_highlighted()
 		
+func desactive_highlight(tiles : Array) -> void:
+	for tile in tiles:
+		tile.hex.disable_highlighted()
+func set_eating_mushroom(new_shroom: Object) -> void:
 	if new_shroom == null:
 		is_eating = false
 		if is_instance_valid(eating_mushroom):
@@ -78,7 +84,7 @@ func wander() -> void:
 func get_tiles_whitout_entities() -> Array:
 	var tiles_whitout_entities = []
 	for neighboor in current_tile.close_neighbors:
-		if Globals.DEBUG_SM:
+		if DEBUG:
 			print("Shroom: ", neighboor.cur_shroom, "\nResource: ", neighboor.cur_resource, "\n Critter: ", neighboor.critter)
 		if is_tile_movible(neighboor):
 			tiles_whitout_entities.append(neighboor)
@@ -114,6 +120,7 @@ func move_to_tile(tile) -> void:
 				1, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 		global_transform.origin.y = 0.4
 		tween.start()
+		
 		yield(tween,"tween_all_completed")
 		if is_alive:
 			anim.stop()
@@ -139,6 +146,7 @@ func get_distance_to_tile(tile: Tile) -> float:
 
 
 func kill():
+	GameSignals.emit_signal("critter_died")
 	self.current_tile = null
 	self.eating_mushroom = null
 	queue_free()

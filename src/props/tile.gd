@@ -59,22 +59,24 @@ func initialize_references():
 	region_neighbors = Globals.grid.find_region(x, y)
 
 func set_critter(new_value: Object) -> void:
-	update_entitie_state(new_value)
 	critter = new_value
+	update_entitie_state()
 
 func set_cur_shroom(new_value: Object) -> void:
-	update_entitie_state(new_value)
 	cur_shroom = new_value
+	update_entitie_state()
 
 func set_cur_resource(new_value: Object) -> void:
-	update_entitie_state(new_value)
 	cur_resource = new_value
+	update_entitie_state()
 
-func update_entitie_state(new_value: Object) -> void:
-	if not new_value:
-		TilesReferences.tile_without_entitie(self)
-	else:
+func update_entitie_state() -> void:
+	if (is_instance_valid(critter) 
+			or is_instance_valid(cur_shroom) 
+			or is_instance_valid(cur_resource)):
 		TilesReferences.tile_with_entitie(self)
+	else:
+		TilesReferences.tile_without_entitie(self)
 
 
 func do_turn() -> void:
