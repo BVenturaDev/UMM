@@ -27,12 +27,12 @@ func enter():
 	GameSignals.emit_signal("enter_nature_turn")
 	_do_group_nature_turn()
 	# Check squirrel spawns
-	if turns_from_last_critter_spawn == spawn_critter_turns:
+	if turns_from_last_critter_spawn >= spawn_critter_turns:
 		_spawn_critter()
 	turns_from_last_critter_spawn += 1
 
 	# Check tree spawns
-	if turns_from_last_tree_spawn == spawn_tree_turns:
+	if turns_from_last_tree_spawn >= spawn_tree_turns:
 		_spawn_tree()
 	turns_from_last_tree_spawn += 1
 	_next_turn()
@@ -57,7 +57,7 @@ func _do_group_nature_turn():
 
 
 func _spawn_critter() -> void:
-	if critters_alive == max_critter_alive:
+	if critters_alive >= max_critter_alive:
 		return
 	var critter = critter_scene.instance()
 	var random_tile: Spatial = TilesReferences.get_random_tile_without_entitie()
@@ -70,7 +70,7 @@ func _spawn_critter() -> void:
 	critters_alive += 1
 
 func _spawn_tree() -> void:
-	if trees_alive == max_trees_alive:
+	if trees_alive >= max_trees_alive:
 		return
 	var random_tile: Spatial = TilesReferences.get_random_tile_without_entitie()
 	if not is_instance_valid(random_tile):
