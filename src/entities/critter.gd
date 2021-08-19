@@ -108,7 +108,8 @@ func move_to_tile(tile) -> void:
 		if is_alive:
 			anim.play("idle")
 			anim.stop()
-			yield(get_tree().create_timer(randf()),"timeout")
+			$Timer.wait_time = randf()
+			yield($Timer,"timeout")
 			anim.play("idle")
 		else:
 			anim.play("death")
