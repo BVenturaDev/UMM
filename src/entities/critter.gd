@@ -78,7 +78,8 @@ func wander() -> void:
 func get_tiles_whitout_entities() -> Array:
 	var tiles_whitout_entities = []
 	for neighboor in current_tile.close_neighbors:
-		print("Shroom: ", neighboor.cur_shroom, "\nResource: ", neighboor.cur_resource, "\n Critter: ", neighboor.critter)
+		if Globals.DEBUG_SM:
+			print("Shroom: ", neighboor.cur_shroom, "\nResource: ", neighboor.cur_resource, "\n Critter: ", neighboor.critter)
 		if is_tile_movible(neighboor):
 			tiles_whitout_entities.append(neighboor)
 	return tiles_whitout_entities

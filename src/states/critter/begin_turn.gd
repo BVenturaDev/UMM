@@ -10,7 +10,7 @@ func enter() -> void:
 
 
 func exit(next_state) -> void:
-	if DEBUG:
+	if Globals.DEBUG_SM:
 		print("Exiting state: ", name)
 		print("Next state is: ", next_state)
 	state_machine.change_to(next_state)
