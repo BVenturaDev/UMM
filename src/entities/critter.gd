@@ -2,7 +2,7 @@ extends Spatial
 class_name Critter
 
 
-const FOOD_AMOUNT: int = 10
+export(bool) var DEBUG = false
 export(PackedScene) var resource_critter_scene : PackedScene
 export(NodePath) onready var tween = get_node(tween) as Tween
 export(NodePath) onready var state_machine = get_node(state_machine) as Node
@@ -78,7 +78,8 @@ func wander() -> void:
 func get_tiles_whitout_entities() -> Array:
 	var tiles_whitout_entities = []
 	for neighboor in current_tile.close_neighbors:
-		print("Shroom: ", neighboor.cur_shroom, "\nResource: ", neighboor.cur_resource, "\n Critter: ", neighboor.critter)
+		if DEBUG:
+			print("Shroom: ", neighboor.cur_shroom, "\nResource: ", neighboor.cur_resource, "\n Critter: ", neighboor.critter)
 		if is_tile_movible(neighboor):
 			tiles_whitout_entities.append(neighboor)
 	return tiles_whitout_entities
