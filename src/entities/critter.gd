@@ -114,6 +114,7 @@ func move_to_tile(tile) -> void:
 				1, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 		global_transform.origin.y = 0.4
 		tween.start()
+		
 		yield(tween,"tween_all_completed")
 		if is_alive:
 			anim.stop()

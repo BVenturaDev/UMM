@@ -12,7 +12,7 @@ func enter():
 	get_tree().current_scene.add_child(resource_critter)
 	resource_critter.global_transform.origin = critter.current_tile.global_transform.origin
 	
-	if not critter.current_tile.cur_resource:
+	if not is_instance_valid(critter.current_tile.cur_resource):
 		critter.current_tile.cur_resource = resource_critter
 	critter.is_alive = false
 	
