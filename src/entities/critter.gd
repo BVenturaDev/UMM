@@ -125,3 +125,9 @@ func get_tiles_with_shroom() -> Array:
 
 func get_distance_to_tile(tile: Tile) -> float:
 	return global_transform.origin.distance_squared_to(tile.global_transform.origin)
+
+
+func kill():
+	self.current_tile = null
+	self.eating_mushroom = null
+	queue_free()
