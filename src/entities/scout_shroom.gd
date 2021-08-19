@@ -9,6 +9,9 @@ var idle_anims: Array = ["back_and_forth", "left_and_right", "look_around"]
 var owner_tile: Object = null
 
 func _process(_delta):
+	if owner_tile:
+		if not owner_tile.cur_shroom == self:
+			queue_free()
 	if anim:
 		if not anim.is_playing():
 			var i = Globals.rng.randi_range(0, idle_anims.size() - 1)

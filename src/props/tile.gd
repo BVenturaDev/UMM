@@ -119,8 +119,9 @@ func remove_num_food(var amount: int) -> void:
 func spawn_log() -> void:
 	if not cur_resource:
 		var new_log: Object = resource_log.instance()
-		add_child(new_log)
-		new_log.transform.origin = resource_pos.transform.origin
+		get_tree().current_scene.add_child(new_log)
+		new_log.owner_tile = self
+		new_log.global_transform.origin = resource_pos.global_transform.origin
 		self.cur_resource = new_log
 
 # Called when the tile was clicked
@@ -135,7 +136,7 @@ func clicked() -> void:
 				Globals.build_ui.make_build_menu(tile_food.size(), self)
 
 func build_gather_shroom() -> void:
-	if tile_food.size() > 5 and not cur_shroom and cur_resource:
+	if tile_food.size() > 5 and not cur_shroom and cur_resource and not turn_used:
 		var new_shroom = gather_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
@@ -146,7 +147,7 @@ func build_gather_shroom() -> void:
 		turn_complete()
 
 func build_poison_shroom() -> void:
-	if tile_food.size() > 5 and not cur_shroom:
+	if tile_food.size() > 5 and not cur_shroom and not turn_used:
 		var new_shroom = poison_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
@@ -156,7 +157,7 @@ func build_poison_shroom() -> void:
 		turn_complete()
 
 func build_scout_shroom() -> void:
-	if tile_food.size() > 5 and not cur_shroom:
+	if tile_food.size() > 5 and not cur_shroom and not turn_used:
 		var new_shroom = scout_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
