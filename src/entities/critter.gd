@@ -107,9 +107,6 @@ func move_to_tile(tile) -> void:
 		yield(tween,"tween_all_completed")
 		if is_alive:
 			anim.play("idle")
-			anim.stop()
-			yield(get_tree().create_timer(randf()),"timeout")
-			anim.play("idle")
 		else:
 			anim.play("death")
 
