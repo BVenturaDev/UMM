@@ -26,7 +26,7 @@ func decide_what_do() -> String:
 	if is_mushroom_close() or critter.is_eating:
 		return "eat"
 	if is_there_shroom_in_area():
-		return "move_to_shroom"
+		return "calculate_path"
 	if is_some_nearby_tile_allows_movement():
 		return "wander"
 	return "end_turn"

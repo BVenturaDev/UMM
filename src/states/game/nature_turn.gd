@@ -30,7 +30,7 @@ func enter():
 	if turns_from_last_critter_spawn == spawn_critter_turns:
 		_spawn_critter()
 	turns_from_last_critter_spawn += 1
-	
+
 	# Check tree spawns
 	if turns_from_last_tree_spawn == spawn_tree_turns:
 		_spawn_tree()
@@ -45,9 +45,6 @@ func exit(next_state: String):
 	GameSignals.emit_signal("exit_nature_turn")
 	state_machine.change_to(next_state)
 
-#Can add the built functions if is defined in StateMachine class
-func _process(_delta: float) -> void:
-	pass
 
 func _next_turn() -> void:
 	exit("player_turn")
@@ -71,7 +68,7 @@ func _spawn_critter() -> void:
 	get_tree().current_scene.add_child(critter)
 	turns_from_last_critter_spawn = 0
 	critters_alive += 1
-	
+
 func _spawn_tree() -> void:
 	if trees_alive == max_trees_alive:
 		return
@@ -79,10 +76,10 @@ func _spawn_tree() -> void:
 	if not is_instance_valid(random_tile):
 		return
 	trees_alive += 1
-		
+
 func _tree_died() -> void:
 	trees_alive -= 1
-	
+
 
 func _died_a_critter() -> void:
 	critters_alive -= 1

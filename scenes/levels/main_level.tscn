@@ -5,7 +5,6 @@
 [ext_resource path="res://scenes/entities/fungus.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/entities/control_camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/props/grid_editor.gd" type="Script" id=5]
-[ext_resource path="res://src/entities/ai.gd" type="Script" id=6]
 [ext_resource path="res://src/states/game/player_turn.gd" type="Script" id=7]
 [ext_resource path="res://src/states/game/nature_turn.gd" type="Script" id=8]
 [ext_resource path="res://scenes/world_env.tres" type="Environment" id=9]
@@ -39,6 +38,17 @@ func _on_pressed() -> void:
 
 "
 
+[sub_resource type="GDScript" id=5]
+script/source = "extends Button
+
+func _ready() -> void:
+	focus_mode = Control.FOCUS_NONE
+
+func _on_next_turn_20_button_up() -> void:
+	for i in 50:
+		GameSignals.emit_signal(\"next_turn\")
+"
+
 [sub_resource type="GDScript" id=4]
 script/source = "extends Button
 
@@ -47,6 +57,9 @@ func _enable_button():
 
 func _disable_button():
 	self.disabled = true
+
+func _ready() -> void:
+	focus_mode = Control.FOCUS_NONE
 
 func _on_pressed() -> void:
 	GameSignals.emit_signal(\"spawn_critter\")
@@ -67,7 +80,7 @@ script = ExtResource( 11 )
 [node name="nature_turn" type="Node" parent="state_machine"]
 script = ExtResource( 8 )
 spawn_critter_turns = 1000
-max_critter_alive = 7
+max_critter_alive = 10
 
 [node name="grid" parent="." instance=ExtResource( 2 )]
 
@@ -92,7 +105,7 @@ __meta__ = {
 }
 
 [node name="next_turn_buttom" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_right = 113.0
+margin_right = 115.0
 margin_bottom = 20.0
 shortcut = SubResource( 2 )
 text = "NEXT TURN"
@@ -101,10 +114,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="spawn_critter" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="next_turn_20" type="Button" parent="CanvasLayer/VBoxContainer"]
 margin_top = 24.0
-margin_right = 113.0
+margin_right = 115.0
 margin_bottom = 44.0
+text = "NEXT TURN X 20"
+script = SubResource( 5 )
+
+[node name="spawn_critter" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_top = 48.0
+margin_right = 115.0
+margin_bottom = 68.0
 text = "SPAWN CRITTER"
 script = SubResource( 4 )
 __meta__ = {
@@ -120,15 +140,6 @@ visible = false
 light_energy = 2.0
 shadow_enabled = true
 
-[node name="ai" type="Spatial" parent="." groups=[
-"ai",
-]]
-script = ExtResource( 6 )
-
-[node name="fungus" parent="ai" groups=[
-"nature",
-] instance=ExtResource( 3 )]
-
 [node name="player" type="Spatial" parent="."]
 
 [node name="fungus" parent="player" groups=[
@@ -136,4 +147,5 @@ script = ExtResource( 6 )
 ] instance=ExtResource( 3 )]
 
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/next_turn_buttom" to="CanvasLayer/VBoxContainer/next_turn_buttom" method="_on_pressed"]
+[connection signal="button_up" from="CanvasLayer/VBoxContainer/next_turn_20" to="CanvasLayer/VBoxContainer/next_turn_20" method="_on_next_turn_20_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/spawn_critter" to="CanvasLayer/VBoxContainer/spawn_critter" method="_on_pressed"]

@@ -16,7 +16,8 @@ var is_alive := true
 var is_eating := false
 var is_poisoned := false
 
-var eating_mushroom : Object = null setget set_eating_mushroom
+var target_tile_with_shroom: Tile = null
+var eating_mushroom: Object = null setget set_eating_mushroom
 var current_tile: Tile setget set_current_tile
 
 func set_current_tile(new_tile: Tile) -> void:
@@ -79,7 +80,11 @@ func is_tile_movible(tile: Tile) -> bool:
 			and not does_tile_has_mushroom(tile)
 			and not is_instance_valid(tile.cur_resource)
 	)
-
+func is_tile_walkable(tile: Tile) -> bool:
+	return (
+			not is_instance_valid(tile.critter) 
+			and not is_instance_valid(tile.cur_resource)
+	)
 func does_tile_has_mushroom(tile: Tile) -> bool:
 	return is_instance_valid(tile.cur_shroom)
 
@@ -114,8 +119,15 @@ func get_close_neighbors() -> Array:
 func get_tiles_with_shroom() -> Array:
 	var tiles_with_shroom = []
 	for neighbor in get_close_neighbors():
-		if is_instance_valid(neighbor.cur_shroom) and neighbor.critter == null:
+		if is_instance_valid(neighbor.cur_shroom):
 			tiles_with_shroom.append(neighbor.cur_shroom)
 	return tiles_with_shroom
 
+func get_distance_to_tile(tile: Tile) -> float:
+	return global_transform.origin.distance_squared_to(tile.global_transform.origin)
 
+
+func kill():
+	self.current_tile = null
+	self.eating_mushroom = null
+	queue_free()
