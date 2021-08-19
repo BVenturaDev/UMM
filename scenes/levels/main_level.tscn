@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/entities/fungus.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/entities/control_camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/props/grid_editor.gd" type="Script" id=5]
-[ext_resource path="res://src/entities/ai.gd" type="Script" id=6]
 [ext_resource path="res://src/states/game/player_turn.gd" type="Script" id=7]
 [ext_resource path="res://src/states/game/nature_turn.gd" type="Script" id=8]
 [ext_resource path="res://scenes/world_env.tres" type="Environment" id=9]
@@ -69,8 +68,8 @@ script = ExtResource( 11 )
 
 [node name="nature_turn" type="Node" parent="state_machine"]
 script = ExtResource( 8 )
-spawn_critter_turns = 10
-max_critter_alive = 7
+spawn_critter_turns = 1000
+max_critter_alive = 1
 
 [node name="grid" parent="." instance=ExtResource( 2 )]
 
@@ -108,8 +107,6 @@ __meta__ = {
 margin_top = 24.0
 margin_right = 113.0
 margin_bottom = 44.0
-focus_mode = 0
-enabled_focus_mode = 0
 text = "SPAWN CRITTER"
 script = SubResource( 4 )
 __meta__ = {
@@ -124,15 +121,6 @@ transform = Transform( 0.34202, -0.538986, 0.769751, 7.16125e-08, 0.819152, 0.57
 visible = false
 light_energy = 2.0
 shadow_enabled = true
-
-[node name="ai" type="Spatial" parent="." groups=[
-"ai",
-]]
-script = ExtResource( 6 )
-
-[node name="fungus" parent="ai" groups=[
-"nature",
-] instance=ExtResource( 3 )]
 
 [node name="player" type="Spatial" parent="."]
 
