@@ -85,10 +85,12 @@ func _spawn_tree() -> void:
 
 func _tree_died() -> void:
 # warning-ignore:narrowing_conversion
+	trees_alive -= 1
 	trees_alive = clamp(trees_alive,0,  max_trees_alive)
 
 
 func _died_a_critter() -> void:
 # warning-ignore:narrowing_conversion
+	critters_alive -= 1
 	critters_alive = clamp(critters_alive,0,  max_critter_alive)
 	
