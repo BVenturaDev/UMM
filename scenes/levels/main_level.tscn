@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
@@ -38,6 +38,17 @@ func _on_pressed() -> void:
 
 "
 
+[sub_resource type="GDScript" id=5]
+script/source = "extends Button
+
+func _ready() -> void:
+	focus_mode = Control.FOCUS_NONE
+
+func _on_next_turn_20_button_up() -> void:
+	for i in 50:
+		GameSignals.emit_signal(\"next_turn\")
+"
+
 [sub_resource type="GDScript" id=4]
 script/source = "extends Button
 
@@ -69,7 +80,7 @@ script = ExtResource( 11 )
 [node name="nature_turn" type="Node" parent="state_machine"]
 script = ExtResource( 8 )
 spawn_critter_turns = 1000
-max_critter_alive = 1
+max_critter_alive = 10
 
 [node name="grid" parent="." instance=ExtResource( 2 )]
 
@@ -94,7 +105,7 @@ __meta__ = {
 }
 
 [node name="next_turn_buttom" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_right = 113.0
+margin_right = 115.0
 margin_bottom = 20.0
 shortcut = SubResource( 2 )
 text = "NEXT TURN"
@@ -103,10 +114,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="spawn_critter" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="next_turn_20" type="Button" parent="CanvasLayer/VBoxContainer"]
 margin_top = 24.0
-margin_right = 113.0
+margin_right = 115.0
 margin_bottom = 44.0
+text = "NEXT TURN X 20"
+script = SubResource( 5 )
+
+[node name="spawn_critter" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_top = 48.0
+margin_right = 115.0
+margin_bottom = 68.0
 text = "SPAWN CRITTER"
 script = SubResource( 4 )
 __meta__ = {
@@ -129,4 +147,5 @@ shadow_enabled = true
 ] instance=ExtResource( 3 )]
 
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/next_turn_buttom" to="CanvasLayer/VBoxContainer/next_turn_buttom" method="_on_pressed"]
+[connection signal="button_up" from="CanvasLayer/VBoxContainer/next_turn_20" to="CanvasLayer/VBoxContainer/next_turn_20" method="_on_next_turn_20_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/spawn_critter" to="CanvasLayer/VBoxContainer/spawn_critter" method="_on_pressed"]

@@ -20,7 +20,7 @@ resource_critter_scene = ExtResource( 10 )
 tween = NodePath("Tween")
 state_machine = NodePath("state_machine")
 critter_model = NodePath("critter_model")
-max_age = 10
+max_age = 24
 
 [node name="state_machine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -39,7 +39,6 @@ DEBUG = true
 
 [node name="move_to_shroom" type="Node" parent="state_machine"]
 script = ExtResource( 3 )
-DEBUG = true
 
 [node name="eat" type="Node" parent="state_machine"]
 script = ExtResource( 7 )

@@ -87,3 +87,7 @@ func enter():
 
 func exit(_next_state):
 	pass
+
+
+func _on_pressed() -> void:
+	pass # Replace with function body.

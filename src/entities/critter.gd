@@ -117,7 +117,7 @@ func get_close_neighbors() -> Array:
 func get_tiles_with_shroom() -> Array:
 	var tiles_with_shroom = []
 	for neighbor in get_close_neighbors():
-		if is_instance_valid(neighbor.cur_shroom) and neighbor.critter == null:
+		if is_instance_valid(neighbor.cur_shroom):
 			tiles_with_shroom.append(neighbor.cur_shroom)
 	return tiles_with_shroom
 
