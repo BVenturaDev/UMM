@@ -41,28 +41,29 @@ func remove_tile(var id: int) -> void:
 func do_turn() -> void:
 	# Expand the fungus
 	for tile in owned_tiles:
+		# Try to expand
+		if tile.tile_food.size() >= 6:
+			var clean_neighbors: Array = Globals.grid.find_neighbors(tile.x, tile.y)
+			# Has enough food check for expansion tile
+			if clean_neighbors.size() > 0:
+				# Remove tiles with an owner
+				for i in range(clean_neighbors.size() - 1, -1, -1):
+					if not clean_neighbors[i].owner_fungus == null:
+						clean_neighbors.remove(i)
+				# If any remain then pick a random tile and expand
+				if clean_neighbors.size() > 0:
+					# Remove 5 food from this tile
+					var chosen_tile: Object = clean_neighbors[Globals.rng.randi_range(0, clean_neighbors.size() - 1)]
+					tile.remove_num_food(5)
+					_claim_tile(chosen_tile)
+					chosen_tile.spawn_food()
 		var neighbors = Globals.grid.find_neighbors(tile.x, tile.y)
 		# Equalize food to neighboring owned tiles
 		for neighbor in neighbors:
 			if neighbor.owner_fungus == self:
-				if neighbor.tile_food.size() < tile.tile_food.size() and not tile.turn_used:
+				if neighbor.tile_food.size() < tile.tile_food.size():
 					tile.remove_num_food(1)
 					neighbor.spawn_food()
-		# Try to expand
-		if tile.tile_food.size() >= 6 and not tile.turn_used:
-			# Has enough food check for expansion tile
-			if neighbors.size() > 0:
-				# Remove tiles with an owner
-				for i in range(neighbors.size() - 1, -1, -1):
-					if not neighbors[i].owner_fungus == null:
-						neighbors.remove(i)
-				# If any remain then pick a random tile and expand
-				if neighbors.size() > 0:
-					# Remove 5 food from this tile
-					var chosen_tile: Object = neighbors[Globals.rng.randi_range(0, neighbors.size() - 1)]
-					tile.remove_num_food(5)
-					_claim_tile(chosen_tile)
-					chosen_tile.spawn_food()
 					
 func owned_tiles_sort(var tiles: Array) -> Array:
 	var out_tiles: Array = []
