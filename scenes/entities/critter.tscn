@@ -22,6 +22,7 @@ critter_model = NodePath("critter_model")
 max_age = 24
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="state_machine" type="Node" parent="."]
 script = ExtResource( 2 )

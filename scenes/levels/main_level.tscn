@@ -45,9 +45,13 @@ script/source = "extends Button
 func _ready() -> void:
 	focus_mode = Control.FOCUS_NONE
 
+
+
 func _on_next_turn_20_button_up() -> void:
 	for i in 50:
 		GameSignals.emit_signal(\"next_turn\")
+		$Timer.start()
+		yield($Timer,\"timeout\")
 "
 
 [sub_resource type="GDScript" id=5]
@@ -119,6 +123,10 @@ margin_right = 115.0
 margin_bottom = 44.0
 text = "NEXT TURN X 20"
 script = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="CanvasLayer/VBoxContainer/next_turn_20"]
+wait_time = 0.2
+one_shot = true
 
 [node name="spawn_critter" type="Button" parent="CanvasLayer/VBoxContainer"]
 margin_top = 48.0

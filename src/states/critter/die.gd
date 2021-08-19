@@ -6,7 +6,6 @@ var critter: Critter
 
 func enter():
 	# warning-ignore:return_value_discarded
-	GameSignals.emit_signal("critter_died")
 	var resource_critter = critter.resource_critter_scene.instance()
 
 	get_tree().current_scene.add_child(resource_critter)

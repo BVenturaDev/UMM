@@ -146,6 +146,7 @@ func get_distance_to_tile(tile: Tile) -> float:
 
 
 func kill():
+	GameSignals.emit_signal("critter_died")
 	self.current_tile = null
 	self.eating_mushroom = null
 	queue_free()
