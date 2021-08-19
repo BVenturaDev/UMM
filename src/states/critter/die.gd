@@ -10,7 +10,7 @@ func enter():
 	var resource_critter = critter.resource_critter_scene.instance()
 	
 	get_tree().current_scene.add_child(resource_critter)
-	resource_critter.global_transform.origin = critter.global_transform.origin
+	resource_critter.global_transform.origin = critter.current_tile.global_transform.origin
 	
 	if not critter.current_tile.cur_resource:
 		critter.current_tile.cur_resource = resource_critter

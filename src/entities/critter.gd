@@ -37,14 +37,23 @@ func set_current_tile(new_tile: Tile) -> void:
 		move_to_tile(current_tile)
 
 func set_eating_mushroom(new_shroom: Object) -> void:
+		
 	if new_shroom == null:
 		is_eating = false
+		if is_instance_valid(eating_mushroom):
+			eating_mushroom.kill()
+			critter_model.anim.play("idle")
 		eating_mushroom = null
-		return
 	else:
 		is_eating = true
 		eating_mushroom = new_shroom
 		eating_mushroom.owner_tile.critter = self
+
+		if eating_mushroom.is_in_group("poison"):
+			is_poisoned = true
+			
+		critter_model.set_target(eating_mushroom.global_transform.origin)
+		critter_model.anim.play("eating")
 
 func _ready() -> void:
 	for state in state_machine.get_children():
@@ -106,9 +115,9 @@ func move_to_tile(tile) -> void:
 		tween.start()
 		yield(tween,"tween_all_completed")
 		if is_alive:
-			anim.play("idle")
 			anim.stop()
 			$Timer.wait_time = randf()
+			$Timer.start()
 			yield($Timer,"timeout")
 			anim.play("idle")
 		else:

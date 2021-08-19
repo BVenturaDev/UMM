@@ -9,7 +9,10 @@ func enter():
 	if DEBUG:
 		print("Entering state", name)
 	# Do action eat?
-	eat_shroom()
+	if critter.is_eating:
+		critter.eating_mushroom = null
+	else:
+		search_shroom_to_eat()
 	exit("end_turn")
 
 func exit(next_state):
@@ -17,10 +20,7 @@ func exit(next_state):
 		print("Exiting state: ", name)
 	state_machine.change_to(next_state)
 
-func eat_shroom() -> void:
-	var neigbors = critter.current_tile.close_neighbors
-	for neigbor in neigbors:
-			print(neigbor.cur_shroom)
+func search_shroom_to_eat() -> void:
 	
 	var nearby_shrooms = critter.get_tiles_with_shroom()
 	
@@ -32,10 +32,5 @@ func eat_shroom() -> void:
 	if not critter.eating_mushroom:
 		nearby_shrooms.shuffle()
 		critter.eating_mushroom = nearby_shrooms.pop_front()
-		print("hoeu")
-	if is_instance_valid(critter.eating_mushroom):
-		if critter.eating_mushroom.is_in_group("poison"):
-			critter.is_poisoned = true
-		critter.critter_model.set_target(critter.eating_mushroom.global_transform.origin)
-		critter.critter_model.anim.play("eating")
-	print(critter.eating_mushroom)
+
+
