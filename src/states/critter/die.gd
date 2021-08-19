@@ -9,12 +9,12 @@ func enter():
 	GameSignals.emit_signal("critter_died")
 	var resource_critter = critter.resource_critter_scene.instance()
 	get_tree().current_scene.add_child(resource_critter)
-	critter.current_tile.cur_resource = resource_critter
+	resource_critter.global_transform.origin = critter.global_transform.origin
+	if not critter.current_tile.cur_resource:
+		critter.current_tile.cur_resource = resource_critter
 	critter.is_alive = false
-	critter.critter_model.start_dead()
+	critter.call_deferred("queue_free")
 	# Convert to resource
-
-
 
 func exit(next_state):
 	if DEBUG:
