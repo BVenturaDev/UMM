@@ -9,7 +9,7 @@
 [ext_resource path="res://src/states/critter/die.gd" type="Script" id=8]
 [ext_resource path="res://scenes/entities/critter_model.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/entities/resource_critter.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/entities/calculate_path.gd" type="Script" id=11]
+[ext_resource path="res://src/states/critter/calculate_path.gd" type="Script" id=11]
 
 [node name="critter" type="Spatial" groups=[
 "nature",
@@ -22,27 +22,34 @@ critter_model = NodePath("critter_model")
 max_age = 24
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="state_machine" type="Node" parent="."]
 script = ExtResource( 2 )
 
 [node name="begin_turn" type="Node" parent="state_machine"]
 script = ExtResource( 6 )
+DEBUG = true
 
 [node name="wander" type="Node" parent="state_machine"]
 script = ExtResource( 5 )
+DEBUG = true
 
 [node name="calculate_path" type="Node" parent="state_machine"]
 script = ExtResource( 11 )
+DEBUG = true
 
 [node name="eat" type="Node" parent="state_machine"]
 script = ExtResource( 7 )
+DEBUG = true
 
 [node name="die" type="Node" parent="state_machine"]
 script = ExtResource( 8 )
+DEBUG = true
 
 [node name="end_turn" type="Node" parent="state_machine"]
 script = ExtResource( 4 )
+DEBUG = true
 
 [node name="Tween" type="Tween" parent="."]
 

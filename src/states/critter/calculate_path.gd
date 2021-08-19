@@ -14,11 +14,13 @@ var tiles_in_region_comun := []
 func enter():
 	if DEBUG:
 		print("Exiting state: ", name)
+		
 	astar_node = AStar2D.new()
 	search_closes_mushroom()
 	var walkable_tiles = astar_add_walkable_tile()
 	astar_connect_walkable_tiles(walkable_tiles)
 	get_astar_path(critter.current_tile, critter.target_tile_with_shroom)
+	
 	if DEBUG:
 		print_debug("Path is: ",_point_path)
 		print_debug("Current tile is:", calculate_point_index(critter.current_tile))
@@ -80,6 +82,7 @@ func astar_add_walkable_tile() -> Array:
 		var point_index = calculate_point_index(tile)
 		astar_node.add_point(point_index, Vector2(tile.x, tile.y))
 	# Its adding points and adding tiles walkable
+	# Those are the critter and the shroom owner tile
 	tiles_walkable_array.append(add_tile_to_astar(critter.current_tile))
 	tiles_walkable_array.append(add_tile_to_astar(critter.target_tile_with_shroom))
 	if DEBUG:

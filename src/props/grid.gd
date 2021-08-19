@@ -85,16 +85,20 @@ func find_neighbors(var x: int, var y: int) -> Array:
 	
 	# Finds all neighbors in 3 tile range
 func find_region(var x: int, var y: int) -> Array:
+	# warning-ignore:unused_variable
+	var max_distance_hexagon_3 = 34
 	var region: Array = []
-	var this_tile: Object = find_tile(x, y)
-	for i_x in range(-2, 3):
-		for i_y in range(-2, 3):
+	var this_tile: Spatial = find_tile(x, y)
+	for i_x in range(-3, 4):
+		for i_y in range(-3, 4):
 			if _in_range(x + i_x, y + i_y):
 				var neighbor: Object = find_tile(x + i_x, y + i_y)
 				if neighbor and this_tile:
 					if not neighbor == this_tile:
-						# Found neighbor
-						region.append(neighbor)
+						var distance_to_tile = this_tile.global_transform.origin.distance_squared_to(
+								neighbor.global_transform.origin)
+						if distance_to_tile < max_distance_hexagon_3:
+							region.append(neighbor)
 	return region
 	
 func gray_all_tiles() -> void:
@@ -106,4 +110,3 @@ func disable_gray_all_tiles() -> void:
 	for x in range(0, tiles.size()):
 		for y in range(0, tiles[x].size()):
 			tiles[x][y].disable_grayed_out()
-
