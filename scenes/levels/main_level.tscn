@@ -48,6 +48,9 @@ func _enable_button():
 func _disable_button():
 	self.disabled = true
 
+func _ready() -> void:
+	focus_mode = Control.FOCUS_NONE
+
 func _on_pressed() -> void:
 	GameSignals.emit_signal(\"spawn_critter\")
 
@@ -66,7 +69,7 @@ script = ExtResource( 11 )
 
 [node name="nature_turn" type="Node" parent="state_machine"]
 script = ExtResource( 8 )
-spawn_critter_turns = 1000
+spawn_critter_turns = 10
 max_critter_alive = 7
 
 [node name="grid" parent="." instance=ExtResource( 2 )]
@@ -105,6 +108,8 @@ __meta__ = {
 margin_top = 24.0
 margin_right = 113.0
 margin_bottom = 44.0
+focus_mode = 0
+enabled_focus_mode = 0
 text = "SPAWN CRITTER"
 script = SubResource( 4 )
 __meta__ = {
