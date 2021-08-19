@@ -18,18 +18,7 @@ func exit(next_state):
 
 func move_to_target() -> void:
 	# Not Implemented yed
-	if critter.is_eating:
-		move_to_kill(critter.eating_mushroom)
-	else: 
+	if not critter.is_eating:
 		exit("wander")
 	exit("end_turn")
-
-func move_to_kill(eating_mushroom) -> void:
-	critter.is_eating = false
-	if eating_mushroom == null:
-		return
-	critter.current_tile = eating_mushroom.owner_tile
-	critter.eating_mushroom.kill()
-	critter.eating_mushroom = null
-
 

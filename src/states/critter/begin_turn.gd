@@ -12,17 +12,13 @@ func enter() -> void:
 func exit(next_state) -> void:
 	if DEBUG:
 		print("Exiting state: ", name)
+		print("Next state is: ", next_state)
 	state_machine.change_to(next_state)
 
 
 func decide_what_do() -> String:
 	if critter.is_poisoned:
-		critter.eating_mushroom.kill()
 		return "die"
-	if not critter.is_alive:
-		return "end_turn"
-	if critter.is_eating:
-		return "move_to_shroom"
 	if is_mushroom_close() or critter.is_eating:
 		return "eat"
 	if is_there_shroom_in_area():
