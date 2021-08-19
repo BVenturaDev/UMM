@@ -5,14 +5,18 @@ var state_machine: StateMachine
 var critter: Critter
 
 func enter():
-	assert(GameSignals.connect("exit_nature_turn", self, "_post_dead_action") == 0)
+	# warning-ignore:return_value_discarded
 	GameSignals.emit_signal("critter_died")
+	var resource_critter = critter.resource_critter_scene.instance()
+	get_tree().current_scene.add_child(resource_critter)
+	critter.current_tile.cur_resource = resource_critter
 	critter.is_alive = false
 	critter.critter_model.start_dead()
 	# Convert to resource
 
+
+
 func exit(next_state):
-	GameSignals.disconnect("exit_nature_turn", self, "_post_dead_action")
 	if DEBUG:
 		print("Exiting state: ", name)
 	state_machine.change_to(next_state)
