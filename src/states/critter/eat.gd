@@ -10,7 +10,6 @@ func enter():
 		print("Entering state", name)
 	# Do action eat?
 	eat_shroom()
-	critter.mesh_instance.mesh.material.albedo_color = Color.darkgoldenrod
 	exit("end_turn")
 
 func exit(next_state):

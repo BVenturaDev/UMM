@@ -16,14 +16,37 @@ func _on_Area_input_event(_camera, var event: InputEvent, _click_position, _clic
 
 func _on_Area_mouse_entered():
 	if not Globals.moving_tile:
-		shader.set_shader_param("is_highlighted", true)
+		enable_highlighted()
 
 func _on_Area_mouse_exited():
 	if not Globals.moving_tile:
-		shader.set_shader_param("is_highlighted", false)
-
-func enable_grayed_out() -> void:
+		disable_highlighted()
+		
+func enable_highlighted() -> void:
 	shader.set_shader_param("is_highlighted", true)
 	
-func disable_grayed_out() -> void:
+func disable_highlighted() -> void:
 	shader.set_shader_param("is_highlighted", false)
+	
+func enable_turn_used() -> void:
+	disable_highlighted()
+	disable_selected()
+	shader.set_shader_param("is_turn_used", true)
+
+func disable_turn_used() -> void:
+	shader.set_shader_param("is_turn_used", false)
+	
+func enable_selected() -> void:
+	disable_highlighted()
+	shader.set_shader_param("is_selected", true)
+
+func disable_selected() -> void:
+	shader.set_shader_param("is_selected", false)
+	
+func enable_grayed_out() -> void:
+	disable_selected()
+	disable_highlighted()
+	shader.set_shader_param("is_grayed_out", true)
+	
+func disable_grayed_out() -> void:
+	shader.set_shader_param("is_grayed_out", false)

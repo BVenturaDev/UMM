@@ -10,7 +10,7 @@ const FOOD_AMOUNT: int = 10
 
 export(NodePath) onready var tween = get_node(tween) as Tween
 export(NodePath) onready var state_machine = get_node(state_machine) as Node
-export(NodePath) onready var mesh_instance = get_node(mesh_instance) as MeshInstance
+export(NodePath) onready var critter_model = get_node(critter_model) as Spatial
 export(LifeState) var life_state = LifeState.ALIVE
 export(int) var max_age := 6
 export var age := 0
@@ -76,6 +76,7 @@ func does_tile_has_mushroom(tile: Tile) -> bool:
 	return is_instance_valid(tile.cur_shroom)
 
 func move_to_tile(tile) -> void:
+	critter_model.set_target(tile.global_transform.origin)
 	tween.interpolate_property(
 			self, 'translation:x', 
 			global_transform.origin.x, tile.global_transform.origin.x, 

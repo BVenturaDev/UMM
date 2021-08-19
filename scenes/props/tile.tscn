@@ -4,6 +4,7 @@
 [ext_resource path="res://src/props/tile.gd" type="Script" id=2]
 
 [node name="tile" type="Spatial" groups=[
+"nature",
 "tile",
 ]]
 script = ExtResource( 2 )

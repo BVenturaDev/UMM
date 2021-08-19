@@ -7,8 +7,8 @@ var critter: Critter
 func enter():
 	assert(GameSignals.connect("exit_nature_turn", self, "_post_dead_action") == 0)
 	GameSignals.emit_signal("critter_died")
-	critter.life_state = critter.LifeState.DEAD
-	critter.mesh_instance.mesh.material.albedo_color = Color.red
+	critter.is_alive = false
+	critter.critter_model.start_dead()
 	# Convert to resource
 
 func exit(next_state):
