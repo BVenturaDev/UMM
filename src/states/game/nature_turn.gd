@@ -46,7 +46,7 @@ func _do_group_nature_turn():
 func _spawn_critter() -> void:
 	if critters_alive == max_critter_alive:
 		return
-	var critter : Critter = critter_scene.instance()
+	var critter = critter_scene.instance()
 	var random_tile: Spatial = TilesReferences.get_random_tile_without_entitie()
 	if not is_instance_valid(random_tile):
 		return
