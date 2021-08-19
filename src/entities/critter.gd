@@ -36,7 +36,13 @@ func set_current_tile(new_tile: Tile) -> void:
 		# Assign to the new tile
 		move_to_tile(current_tile)
 
-
+func active_highlight(tiles : Array) -> void:
+	for tile in tiles:
+		tile.hex.enable_highlighted()
+		
+func desactive_highlight(tiles : Array) -> void:
+	for tile in tiles:
+		tile.hex.disable_highlighted()
 func set_eating_mushroom(new_shroom: Object) -> void:
 	if new_shroom == null:
 		is_eating = false
