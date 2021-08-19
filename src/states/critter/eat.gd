@@ -28,3 +28,7 @@ func eat_shroom() -> void:
 	if not critter.eating_mushroom:
 		nearby_shrooms.shuffle()
 		critter.eating_mushroom = nearby_shrooms.pop_front()
+	
+	if is_instance_valid(critter.eating_mushroom):
+		critter.critter_model.set_target(critter.eating_mushroom.global_transform.origin)
+		critter.critter_model.anim.play("eating")

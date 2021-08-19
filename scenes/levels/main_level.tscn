@@ -13,11 +13,11 @@
 [ext_resource path="res://src/states/game/ai_turn.gd" type="Script" id=11]
 [ext_resource path="res://scenes/ui/ui_build.tscn" type="PackedScene" id=12]
 
-[sub_resource type="InputEventAction" id=5]
+[sub_resource type="InputEventAction" id=1]
 action = "ui_accept"
 
-[sub_resource type="ShortCut" id=6]
-shortcut = SubResource( 5 )
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Button
@@ -66,7 +66,7 @@ script = ExtResource( 11 )
 
 [node name="nature_turn" type="Node" parent="state_machine"]
 script = ExtResource( 8 )
-spawn_critter_turns = 10
+spawn_critter_turns = 1000
 max_critter_alive = 7
 
 [node name="grid" parent="." instance=ExtResource( 2 )]
@@ -94,7 +94,7 @@ __meta__ = {
 [node name="next_turn_buttom" type="Button" parent="CanvasLayer/VBoxContainer"]
 margin_right = 113.0
 margin_bottom = 20.0
-shortcut = SubResource( 6 )
+shortcut = SubResource( 2 )
 text = "NEXT TURN"
 script = SubResource( 3 )
 __meta__ = {

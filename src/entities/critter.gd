@@ -1,17 +1,13 @@
 extends Spatial
 class_name Critter
 
-enum LifeState {
-	ALIVE,
-	DEAD
-	}
 
 const FOOD_AMOUNT: int = 10
-
+export(PackedScene) var resource_critter_scene : PackedScene
 export(NodePath) onready var tween = get_node(tween) as Tween
 export(NodePath) onready var state_machine = get_node(state_machine) as Node
 export(NodePath) onready var critter_model = get_node(critter_model) as Spatial
-export(LifeState) var life_state = LifeState.ALIVE
+
 export(int) var max_age := 6
 export var age := 0
 
@@ -23,6 +19,9 @@ var eating_mushroom : Object = null setget set_eating_mushroom
 var current_tile: Tile setget set_current_tile
 
 func set_current_tile(new_tile: Tile) -> void:
+	if new_tile == null:
+		current_tile = new_tile
+		return
 	if current_tile == null:
 		new_tile.critter = self
 		current_tile = new_tile
@@ -76,16 +75,28 @@ func does_tile_has_mushroom(tile: Tile) -> bool:
 	return is_instance_valid(tile.cur_shroom)
 
 func move_to_tile(tile) -> void:
+	var anim: AnimationPlayer = critter_model.anim
 	critter_model.set_target(tile.global_transform.origin)
+	anim.play("walk")
+	
 	tween.interpolate_property(
 			self, 'translation:x', 
 			global_transform.origin.x, tile.global_transform.origin.x, 
-			0.3, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+			1, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.interpolate_property(
 			self, 'translation:z', 
 			global_transform.origin.z, tile.global_transform.origin.z, 
-			0.3, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+			1, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	global_transform.origin.y = 0.4
 	tween.start()
+	yield(tween,"tween_all_completed")
+	if is_alive:
+		anim.play("idle")
+		anim.stop()
+		yield(get_tree().create_timer(randf()),"timeout")
+		anim.play("idle")
+	else:
+		anim.play("die")
 
 func get_close_neighbors() -> Array:
 	return current_tile.close_neighbors
@@ -96,3 +107,5 @@ func get_tiles_with_shroom() -> Array:
 		if is_instance_valid(neighbor.cur_shroom) and neighbor.critter == null:
 			tiles_with_shroom.append(neighbor.cur_shroom)
 	return tiles_with_shroom
+
+

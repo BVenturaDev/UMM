@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/entities/critter.gd" type="Script" id=1]
 [ext_resource path="res://src/states/state_machine.gd" type="Script" id=2]
@@ -9,11 +9,13 @@
 [ext_resource path="res://src/states/critter/eat.gd" type="Script" id=7]
 [ext_resource path="res://src/states/critter/die.gd" type="Script" id=8]
 [ext_resource path="res://scenes/entities/critter_model.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/entities/resource_critter.tscn" type="PackedScene" id=10]
 
 [node name="critter" type="Spatial" groups=[
 "nature",
 ]]
 script = ExtResource( 1 )
+resource_critter_scene = ExtResource( 10 )
 tween = NodePath("Tween")
 state_machine = NodePath("state_machine")
 critter_model = NodePath("critter_model")
@@ -49,3 +51,8 @@ DEBUG = true
 [node name="Tween" type="Tween" parent="."]
 
 [node name="critter_model" parent="." instance=ExtResource( 9 )]
+
+[node name="Armature" parent="critter_model" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.126187, 0.445514, 0.126188 )
+
+[editable path="critter_model"]
