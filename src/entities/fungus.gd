@@ -27,7 +27,9 @@ func _claim_tile(var tile: Object) -> void:
 	owned_tiles.append(tile)
 	if my_owner.name == "player":
 		tile.generate_friendly_ui()
-
+	elif my_owner.name == "ai" and Globals.DEBUG:
+		tile.generate_friendly_ui()
+		
 func add_tile(var tile: Object) -> void:
 	owned_tiles.append(tile)
 	

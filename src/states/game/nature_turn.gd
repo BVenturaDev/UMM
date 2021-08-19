@@ -75,6 +75,11 @@ func _spawn_tree() -> void:
 	var random_tile: Spatial = TilesReferences.get_random_tile_without_entitie()
 	if not is_instance_valid(random_tile):
 		return
+	var tree : Object = tree_scene.instance()
+	get_tree().current_scene.add_child(tree)
+	tree.global_transform.origin = random_tile.resource_pos.global_transform.origin
+	random_tile.cur_resource = tree
+	turns_from_last_tree_spawn = 0
 	trees_alive += 1
 
 func _tree_died() -> void:
