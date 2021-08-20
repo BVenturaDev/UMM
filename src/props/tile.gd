@@ -147,7 +147,34 @@ func build_gather_shroom() -> void:
 		self.cur_shroom = new_shroom
 		remove_num_food(5)
 		turn_complete()
-
+		
+func enable_glow(var neighbor: Tile) -> void:
+	var hex_to_glow :Hex = neighbor.hex
+	var direction := (transform.origin.direction_to(neighbor.transform.origin))
+	# Finded with cardinal coords
+	if direction.x < 0 and direction.z == 0:
+		#S enable N
+		hex_to_glow.enable_b_d_l()
+		pass
+	if direction.x < 0 and direction.z < 0:
+		#SO enable NE
+		hex_to_glow.enable_b_l()
+		pass
+	if direction.x < 0 and direction.z > 0:
+		#SE enable NO
+		hex_to_glow.enable_b_d_r()
+		pass
+	if direction.x > 0 and direction.z < 0:
+		#NO enable SE
+		hex_to_glow.enable_b_u_l()
+		pass
+	if direction.x > 0 and direction.z > 0:
+		#NE enable SO
+		hex_to_glow.enable_b_r()
+	if direction.x > 0 and direction.z == 0:
+		#N enable S
+		hex_to_glow.enable_b_u_r()
+		pass
 func build_poison_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom and not turn_used and not critter:
 		var new_shroom = poison_shroom.instance()

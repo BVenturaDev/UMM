@@ -1,5 +1,5 @@
 extends Spatial
-
+class_name Hex
 onready var tile = $tile
 
 var shader: Object = null
@@ -51,32 +51,35 @@ func disable_grayed_out() -> void:
 	shader.set_shader_param("is_grayed_out", false)
 
 # --- Border Functions ---
-
+# Enable N
 func enable_b_d_l() -> void:
 	shader.set_shader_param("b_b_d_l" , true)
 func disable_b_d_l() -> void:
 	shader.set_shader_param("b_b_d_l", false)
 	
+# Enable NO
 func enable_b_d_r() -> void:
 	shader.set_shader_param("b_b_d_r" , true)
 func disable_b_d_r() -> void:
 	shader.set_shader_param("b_b_d_r", false)
-	
+# Enable NE
 func enable_b_l() -> void:
 	shader.set_shader_param("b_b_l" , true)
 func disable_b_l() -> void:
 	shader.set_shader_param("b_b_l", false)
 
+# Enable SO
 func enable_b_r() -> void:
 	shader.set_shader_param("b_b_r" , true)
 func disable_b_r() -> void:
 	shader.set_shader_param("b_b_r" , false)
-
+	
+# Eable SE
 func enable_b_u_l() -> void:
 	shader.set_shader_param("b_b_u_l" , true)
 func disable_b_u_l() -> void:
 	shader.set_shader_param("b_b_u_l", false)
-
+# Enable S
 func enable_b_u_r() -> void:
 	shader.set_shader_param("b_b_u_r" , true)
 func disable_b_u_r() -> void:
