@@ -60,7 +60,7 @@ func make_build_menu(var cur_food: int, var tile: Tile) -> void:
 		attack_butt.visible = false
 		
 	tile_food = cur_food
-
+	
 	cur_food_text.text = str(tile.food_amount)
 	if tile.food_amount <= Globals.MAX_FOOD_MOVE:
 		food_slider.max_value = tile.food_amount - 1
