@@ -24,7 +24,7 @@ func enter():
 	if DEBUG:
 		print_debug("Path is: ",_point_path)
 		print_debug("Current tile is:", calculate_point_index(critter.current_tile))
-	if _point_path.size() == 2:
+	if _point_path.size() <= 2:
 		if is_mushroom_close():
 			exit("eat")
 		else:
@@ -95,8 +95,7 @@ func astar_add_walkable_tile() -> Array:
 		var point_index = calculate_point_index(tile)
 		astar_node.add_point(
 				point_index, 
-				Vector2(tile.x, tile.y), 
-				calculate_weight(tile))
+				Vector2(tile.x, tile.y))
 	# Its adding points and adding tiles walkable
 	# Those are the critter and the shroom owner tile
 	tiles_walkable_array.append(add_tile_to_astar(critter.current_tile))
@@ -105,10 +104,7 @@ func astar_add_walkable_tile() -> Array:
 		print_debug(tiles_walkable_array)
 	return tiles_walkable_array
 
-func calculate_weight(tile:Tile) -> float:
-	if is_instance_valid(tile.owner_fungus):
-		return 1.0
-	return 4.0
+
 func add_tile_to_astar(tile: Tile) -> Tile:
 	var index := calculate_point_index(tile)
 	astar_node.add_point(index, Vector2(tile.x, tile.y))
