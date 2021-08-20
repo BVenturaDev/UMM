@@ -23,6 +23,7 @@ var turn_used: bool = false
 var close_neighbors : Array
 var region_neighbors : Array
 
+# References to another objects
 var critter: Object = null setget set_critter
 var cur_shroom: Object = null setget set_cur_shroom
 var cur_resource: Object = null setget set_cur_resource
@@ -169,9 +170,9 @@ func clicked() -> void:
 			Globals.build_ui.make_build_menu(self.food_in_region, self)
 
 func build_gather_shroom() -> void:
-	if tile_food.size() < 5:
-		region_food_request(6 - tile_food.size()) 
-	if tile_food.size() > 5 and not cur_shroom and cur_resource and not turn_used and not critter:
+	if tile_food.size() <= Globals.BUILD_GATHER_COST:
+		region_food_request(Globals.BUILD_GATHER_COST - tile_food.size() + 1) 
+	if tile_food.size() > Globals.BUILD_GATHER_COST and not cur_shroom and cur_resource and not turn_used and not critter:
 		var new_shroom = gather_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
@@ -213,9 +214,9 @@ func disable_glow() -> void:
 	hex.disable_b_r()
 
 func build_poison_shroom() -> void:
-	if tile_food.size() < 5:
-		region_food_request(6 - tile_food.size()) 
-	if tile_food.size() > 5 and not cur_shroom and not turn_used and not critter:
+	if tile_food.size() <= Globals.BUILD_POISON_COST:
+		region_food_request(Globals.BUILD_POISON_COST - tile_food.size() + 1) 
+	if tile_food.size() > Globals.BUILD_POISON_COST and not cur_shroom and not turn_used and not critter:
 		var new_shroom = poison_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
@@ -225,7 +226,9 @@ func build_poison_shroom() -> void:
 		turn_complete()
 
 func build_scout_shroom() -> void:
-	if tile_food.size() > 5 and not cur_shroom and not turn_used and not critter:
+	if tile_food.size() <= Globals.BUILD_GATHER_COST:
+		region_food_request(Globals.BUILD_GATHER_COST_COST - tile_food.size() + 1) 
+	if tile_food.size() > Globals.BUILD_GATHER_COST and not cur_shroom and not turn_used and not critter:
 		var new_shroom = scout_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
@@ -365,10 +368,11 @@ func region_food_request(value: int) -> void:
 	var food_requested := 0
 	var i := 0
 	while(food_requested < value):
-		tiles_with_enough_food.shuffle()
 		if tiles_with_enough_food[i].tile_food.size() == 1:
 			tiles_with_enough_food[i].turn_complete()
 			tiles_with_enough_food.remove(i)
+		print(tiles_with_enough_food)
+		tiles_with_enough_food.shuffle()
 		tiles_with_enough_food[i].remove_num_food(1)
 		spawn_num_food(1)
 		food_requested += 1

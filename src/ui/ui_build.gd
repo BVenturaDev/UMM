@@ -29,12 +29,12 @@ func make_build_menu(var cur_food: int, var tile: Tile) -> void:
 	else:
 		kill_shroom.visible = false
 		
-	if tile.cur_resource and cur_food > 5 and not tile.cur_shroom and not tile.critter:
+	if tile.cur_resource and cur_food > Globals.BUILD_GATHER_COST and not tile.cur_shroom and not tile.critter:
 		gather_shroom.visible = true
 	else:
 		gather_shroom.visible = false
 		
-	if cur_food > 5 and not tile.cur_shroom and not tile.critter:
+	if cur_food > Globals.BUILD_POISON_COST and not tile.cur_shroom and not tile.critter:
 		poison_shroom.visible = true
 		if tile.enemies.size() > 0:
 			scout_shroom.visible = true
@@ -47,7 +47,7 @@ func make_build_menu(var cur_food: int, var tile: Tile) -> void:
 	if tile.food_amount > 1:
 		slider_cont.visible = true
 		move_food_butt.visible = true
-		if cur_food > 5 and tile.enemies.size() > 0:
+		if cur_food > Globals.BUILD_SCOUT_COST and tile.enemies.size() > 0:
 			attack_cont.visible = true
 			attack_butt.visible = true
 		else:

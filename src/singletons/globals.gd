@@ -3,6 +3,10 @@ extends Node
 # Constants
 const DEBUG: bool = false
 const DEBUG_SM: bool = false
+# Game variables
+const BUILD_GATHER_COST = 5
+const BUILD_POISON_COST = 5
+const BUILD_SCOUT_COST = 5
 # Map size - *** MUST BE EVEN ***
 const PERCENTAGE_TILES_FOR_VICTORY := 75.0
 
