@@ -40,9 +40,7 @@ func remove_tile(var id: int) -> void:
 		owned_tiles.remove(id)
 		
 func remove_tile_object(var tile: Object) -> void:
-	for i in range(0, owned_tiles.size() - 1):
-		if owned_tiles[i] == tile:
-			owned_tiles.remove(i)
+	owned_tiles.erase(tile)
 
 func do_turn() -> void:
 	# Expand the fungus

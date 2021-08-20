@@ -1,0 +1,106 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/ui/next_turn_buttons.gd" type="Script" id=1]
+
+[sub_resource type="InputEventAction" id=1]
+action = "ui_accept"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Button
+
+func _ready() -> void:
+	assert(GameSignals.connect(\"enter_player_turn\", self, \"_enable_button\") == 0)
+	assert(GameSignals.connect(\"exit_player_turn\", self, \"_disable_button\") == 0)
+
+func _enable_button():
+	self.disabled = false
+
+func _disable_button():
+	self.disabled = true
+
+func _on_pressed() -> void:
+	if Globals.moving_tile:
+		Globals.moving_tile.stop_move_food()
+	GameSignals.emit_signal(\"next_turn\")
+
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Button
+
+func _ready() -> void:
+	focus_mode = Control.FOCUS_NONE
+
+
+
+func _on_next_turn_20_button_up() -> void:
+	for i in 50:
+		GameSignals.emit_signal(\"next_turn\")
+		$Timer.start()
+		yield($Timer,\"timeout\")
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Button
+
+func _enable_button():
+	self.disabled = false
+
+func _disable_button():
+	self.disabled = true
+
+func _ready() -> void:
+	focus_mode = Control.FOCUS_NONE
+
+func _on_pressed() -> void:
+	GameSignals.emit_signal(\"spawn_critter\")
+
+"
+
+[node name="next_turn_buttons" type="VBoxContainer"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="next_turn_buttom" type="Button" parent="."]
+margin_right = 115.0
+margin_bottom = 20.0
+shortcut = SubResource( 2 )
+text = "NEXT TURN"
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="next_turn_20" type="Button" parent="."]
+margin_top = 24.0
+margin_right = 115.0
+margin_bottom = 44.0
+text = "NEXT TURN X 20"
+script = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="next_turn_20"]
+wait_time = 0.2
+one_shot = true
+
+[node name="spawn_critter" type="Button" parent="."]
+margin_top = 48.0
+margin_right = 115.0
+margin_bottom = 68.0
+text = "SPAWN CRITTER"
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="next_turn_buttom" to="next_turn_buttom" method="_on_pressed"]
+[connection signal="button_up" from="next_turn_20" to="next_turn_20" method="_on_next_turn_20_button_up"]
+[connection signal="button_up" from="spawn_critter" to="spawn_critter" method="_on_pressed"]

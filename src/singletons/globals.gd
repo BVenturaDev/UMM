@@ -6,6 +6,7 @@ const DEBUG_SM: bool = false
 # Map size - *** MUST BE EVEN ***
 const PERCENTAGE_TILES_FOR_VICTORY := 75.0
 const MAP_SIZE: int = 2
+const MAX_FOOD_MOVE: int = 10
 
 var grid: Object
 var player: Object

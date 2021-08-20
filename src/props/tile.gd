@@ -295,15 +295,13 @@ func do_attack(var other_tile: Object) -> void:
 		other_tile.remove_num_food(move_amount)
 	elif left_over_food < 0:
 		var amount: int = int(abs(float(left_over_food)))
-		print("You win:" + str(amount))
+		if Globals.DEBUG:
+			print("You win by: " + str(amount))
 		other_tile.remove_fungus()
 		owner_fungus.claim_tile(other_tile)
-		remove_num_food(amount)
 		other_tile.spawn_num_food(amount)
-		if owner_fungus.my_owner.name == "player":
-			owner_fungus.my_owner.update_glow()
-		elif Globals.player:
-			Globals.player.update_glow()
+		remove_num_food(amount)
+		Globals.player.update_glow()
 	else:
 		other_tile.remove_fungus()
 		other_tile.remove_num_food(move_amount)
@@ -321,7 +319,9 @@ func remove_fungus() -> void:
 	turn_used = false
 	enemy = false
 	enemies = []
+	revealed = false
 	remove_friendly_ui()
+	disable_glow()
 	if cur_shroom:
 		cur_shroom.kill()
 

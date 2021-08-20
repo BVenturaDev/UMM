@@ -1,7 +1,5 @@
 extends Control
 
-const MAX_FOOD_MOVE: int = 10
-
 onready var window = $build_popup
 onready var food_amount_text = $build_popup/VBoxContainer/HBoxContainer2/food_amount
 onready var cur_food_text = $build_popup/VBoxContainer/HBoxContainer/cur_food_label
@@ -63,16 +61,16 @@ func make_build_menu(var cur_food: int, var tile: Object) -> void:
 		
 	tile_food = cur_food
 	cur_food_text.text = str(cur_food)
-	if cur_food <= MAX_FOOD_MOVE:
+	if cur_food <= Globals.MAX_FOOD_MOVE:
 		food_slider.max_value = cur_food - 1
 		food_slider.value = cur_food - 1
 		attack_slider.max_value = cur_food - 1
 		attack_slider.value = cur_food - 1
 	else:
-		food_slider.max_value = MAX_FOOD_MOVE
-		food_slider.value = MAX_FOOD_MOVE
-		attack_slider.max_value = MAX_FOOD_MOVE
-		attack_slider.value = MAX_FOOD_MOVE
+		food_slider.max_value = Globals.MAX_FOOD_MOVE
+		food_slider.value = Globals.MAX_FOOD_MOVE
+		attack_slider.max_value = Globals.MAX_FOOD_MOVE
+		attack_slider.value = Globals.MAX_FOOD_MOVE
 	selected_tile = tile
 	window.popup()
 
