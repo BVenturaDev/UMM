@@ -155,26 +155,23 @@ func enable_glow(var neighbor: Tile) -> void:
 	if direction.x < 0 and direction.z == 0:
 		#S enable N
 		hex_to_glow.enable_b_d_l()
-		pass
 	if direction.x < 0 and direction.z < 0:
 		#SO enable NE
 		hex_to_glow.enable_b_l()
-		pass
 	if direction.x < 0 and direction.z > 0:
 		#SE enable NO
 		hex_to_glow.enable_b_d_r()
-		pass
-	if direction.x > 0 and direction.z < 0:
-		#NO enable SE
-		hex_to_glow.enable_b_u_l()
-		pass
-	if direction.x > 0 and direction.z > 0:
-		#NE enable SO
-		hex_to_glow.enable_b_r()
 	if direction.x > 0 and direction.z == 0:
 		#N enable S
 		hex_to_glow.enable_b_u_r()
-		pass
+	if direction.x > 0 and direction.z < 0:
+		#NO enable SE
+		hex_to_glow.enable_b_u_l()
+	if direction.x > 0 and direction.z > 0:
+		#NE enable SO
+		hex_to_glow.enable_b_r()
+
+
 func build_poison_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom and not turn_used and not critter:
 		var new_shroom = poison_shroom.instance()
@@ -195,6 +192,7 @@ func build_scout_shroom() -> void:
 		remove_num_food(5)
 		turn_complete()
 
+
 func move_food(var amount: int) -> void:
 	if tile_food.size() >= amount and not Globals.moving_tile and owner_fungus:
 		move_amount = amount
@@ -209,11 +207,13 @@ func move_food(var amount: int) -> void:
 		if region.size() < 1:
 			stop_move_food()
 
+
 func stop_move_food() -> void:
 	Globals.moving_tile = null
 	region = []
 	Globals.grid.disable_gray_all_tiles()
 	move_amount = 0
+
 
 func try_move_food(var other_tile: Object) -> void:
 	if region.size() > 0:
