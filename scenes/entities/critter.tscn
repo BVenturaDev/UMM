@@ -35,7 +35,6 @@ script = ExtResource( 5 )
 
 [node name="calculate_path" type="Node" parent="state_machine"]
 script = ExtResource( 11 )
-DEBUG = true
 
 [node name="eat" type="Node" parent="state_machine"]
 script = ExtResource( 7 )
