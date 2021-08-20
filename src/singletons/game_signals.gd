@@ -16,3 +16,5 @@ signal critter_died
 signal spawn_critter
 # warning-ignore:unused_signal
 signal tree_died
+# warning-ignore:unused_signal
+signal game_finished_with_winner(winner)

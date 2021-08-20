@@ -1,4 +1,5 @@
 extends Spatial
+
 # Constants
 const X_OFFSET: float = 1.7
 const Z_OFFSET: float = 1.5
@@ -6,10 +7,12 @@ const Z_OFFSET: float = 1.5
 # Scenes
 var Tile: Object = preload("res://scenes/props/tile.tscn")
 
+
 # Variables
 var tiles: Array = []
 # Determines if we add by half x_offset first
 var odd_row = false
+
 
 func _ready() -> void:
 	Globals.grid = self

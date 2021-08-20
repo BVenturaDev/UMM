@@ -1,4 +1,5 @@
 extends Spatial
+class_name Fungus
 
 const PLAYER_OFFSET: float = 0.25
 const AI_OFFSET: float = 0.75
@@ -64,7 +65,9 @@ func do_turn() -> void:
 				if neighbor.tile_food.size() < tile.tile_food.size():
 					tile.remove_num_food(1)
 					neighbor.spawn_food()
-					
+	Globals.check_winner(self)
+
+
 func owned_tiles_sort(var tiles: Array) -> Array:
 	var out_tiles: Array = []
 	for other_tile in tiles:
