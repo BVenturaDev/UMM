@@ -9,7 +9,7 @@ func enter():
 	if DEBUG:
 		print("Entering state", name)
 	# Do action eat?
-	if critter.is_eating:
+	if is_instance_valid(critter.eating_mushroom):
 		critter.eating_mushroom = null
 	else:
 		search_shroom_to_eat()

@@ -19,7 +19,8 @@ func exit(next_state) -> void:
 func decide_what_do() -> String:
 	if critter.is_poisoned:
 		return "die"
-	if is_mushroom_close() or critter.is_eating:
+	if (is_mushroom_close() 
+			or is_instance_valid(critter.eating_mushroom)):
 		return "eat"
 	if is_there_shroom_in_area():
 		return "calculate_path"
