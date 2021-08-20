@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/ui/next_turn_buttons.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/next_turn/button.png" type="Texture" id=2]
+[ext_resource path="res://scenes/ui/next_turn/button_pressed.png" type="Texture" id=3]
 
 [sub_resource type="InputEventAction" id=1]
 action = "ui_accept"
@@ -9,7 +11,7 @@ action = "ui_accept"
 shortcut = SubResource( 1 )
 
 [sub_resource type="GDScript" id=3]
-script/source = "extends Button
+script/source = "extends TextureButton
 
 func _ready() -> void:
 	assert(GameSignals.connect(\"enter_player_turn\", self, \"_enable_button\") == 0)
@@ -71,20 +73,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="next_turn_buttom" type="Button" parent="."]
-margin_right = 115.0
-margin_bottom = 20.0
+[node name="next_turn_buttom" type="TextureButton" parent="."]
+margin_right = 200.0
+margin_bottom = 50.0
 shortcut = SubResource( 2 )
-text = "NEXT TURN"
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
 script = SubResource( 3 )
+
+[node name="Label" type="Label" parent="next_turn_buttom"]
+margin_left = 36.8655
+margin_top = 19.6219
+margin_right = 107.865
+margin_bottom = 33.6219
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "NEXT TURN"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="next_turn_20" type="Button" parent="."]
-margin_top = 24.0
-margin_right = 115.0
-margin_bottom = 44.0
+margin_top = 54.0
+margin_right = 200.0
+margin_bottom = 74.0
 text = "NEXT TURN X 20"
 script = SubResource( 4 )
 
@@ -93,9 +104,9 @@ wait_time = 0.2
 one_shot = true
 
 [node name="spawn_critter" type="Button" parent="."]
-margin_top = 48.0
-margin_right = 115.0
-margin_bottom = 68.0
+margin_top = 78.0
+margin_right = 200.0
+margin_bottom = 98.0
 text = "SPAWN CRITTER"
 script = SubResource( 5 )
 __meta__ = {
