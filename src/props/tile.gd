@@ -368,11 +368,11 @@ func region_food_request(value: int) -> void:
 	var food_requested := 0
 	var i := 0
 	while(food_requested < value):
-		if tiles_with_enough_food[i].tile_food.size() == 1:
-			tiles_with_enough_food[i].turn_complete()
-			tiles_with_enough_food.remove(i)
 		tiles_with_enough_food.shuffle()
 		tiles_with_enough_food[i].remove_num_food(1)
+		if tiles_with_enough_food[i].tile_food.size() <= 1:
+			tiles_with_enough_food[i].turn_complete()
+			tiles_with_enough_food.remove(i)
 		spawn_num_food(1)
 		food_requested += 1
 		i += 1
