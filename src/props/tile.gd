@@ -32,6 +32,8 @@ var move_amount: int = 0
 var tile_food: Array = []
 # Array of region available to
 var region: Array = []
+# Array of neighboring enemy tiles
+var enemies: Array = []
 
 func _ready() -> void:
 	# Initialize the reference dictionary for tiles with not critters or cur_shroom
@@ -80,6 +82,7 @@ func update_entitie_state() -> void:
 
 
 func do_turn() -> void:
+	enemies = []
 	turn_used = false
 	hex.disable_turn_used()
 

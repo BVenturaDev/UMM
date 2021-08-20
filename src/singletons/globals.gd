@@ -1,11 +1,11 @@
 extends Node
 
 # Constants
-const DEBUG: bool = true
+const DEBUG: bool = false
 const DEBUG_SM: bool = false
 # Map size - *** MUST BE EVEN ***
 const PERCENTAGE_TILES_FOR_VICTORY := 75.0
-const MAP_SIZE: int = 10
+const MAP_SIZE: int = 2
 
 var grid: Object
 var build_ui: Object
