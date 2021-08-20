@@ -24,7 +24,7 @@ func enter():
 	if DEBUG:
 		print_debug("Path is: ",_point_path)
 		print_debug("Current tile is:", calculate_point_index(critter.current_tile))
-	if _point_path.size() == 0:
+	if _point_path.size() == 2:
 		if is_mushroom_close():
 			exit("eat")
 		else:
