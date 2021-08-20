@@ -9,6 +9,7 @@ const PERCENTAGE_TILES_FOR_VICTORY := 75.0
 const MAP_SIZE: int = 10
 const MAX_FOOD_MOVE: int = 10
 
+
 var grid: Object
 var player: Object
 var build_ui: Object

@@ -23,7 +23,7 @@ var selected_tile: Object = null
 func _ready() -> void:
 	Globals.build_ui = self
 
-func make_build_menu(var cur_food: int, var tile: Object) -> void:
+func make_build_menu(var cur_food: int, var tile: Tile) -> void:
 	if Globals.DEBUG and tile.cur_shroom:
 		kill_shroom.visible = true
 	else:
@@ -44,7 +44,7 @@ func make_build_menu(var cur_food: int, var tile: Object) -> void:
 		poison_shroom.visible = false
 		scout_shroom.visible = false
 		
-	if cur_food > 2:
+	if tile.food_amount > 2:
 		slider_cont.visible = true
 		move_food_butt.visible = true
 		if cur_food > 5 and tile.enemies.size() > 0:
@@ -60,12 +60,14 @@ func make_build_menu(var cur_food: int, var tile: Object) -> void:
 		attack_butt.visible = false
 		
 	tile_food = cur_food
-	cur_food_text.text = str(cur_food)
-	if cur_food <= Globals.MAX_FOOD_MOVE:
-		food_slider.max_value = cur_food - 1
-		food_slider.value = cur_food - 1
-		attack_slider.max_value = cur_food - 1
-		attack_slider.value = cur_food - 1
+
+	cur_food_text.text = str(tile.food_amount)
+	if tile.food_amount <= Globals.MAX_FOOD_MOVE:
+		food_slider.max_value = tile.food_amount - 1
+		food_slider.value = tile.food_amount - 1
+		attack_slider.max_value = tile.food_amount - 1
+		attack_slider.value = tile.food_amount - 1
+
 	else:
 		food_slider.max_value = Globals.MAX_FOOD_MOVE
 		food_slider.value = Globals.MAX_FOOD_MOVE

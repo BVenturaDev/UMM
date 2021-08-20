@@ -30,6 +30,10 @@ var move_amount: int = 0
 
 # Array of all food stored in this tile
 var tile_food: Array = []
+var food_in_region := 0 setget , get_food_in_region
+var food_amount := 0 setget , get_food_amount
+func get_food_amount() -> int:
+	return tile_food.size()
 # Array of region available to
 var region: Array = []
 # Array of neighboring enemy tiles
@@ -162,9 +166,11 @@ func clicked() -> void:
 			else:
 				Globals.moving_tile.stop_move_food()
 		elif Globals.build_ui and owner_fungus.my_owner.name == "player":
-			Globals.build_ui.make_build_menu(tile_food.size(), self)
+			Globals.build_ui.make_build_menu(self.food_in_region, self)
 
 func build_gather_shroom() -> void:
+	if tile_food.size() < 5:
+		region_food_request(6 - tile_food.size()) 
 	if tile_food.size() > 5 and not cur_shroom and cur_resource and not turn_used and not critter:
 		var new_shroom = gather_shroom.instance()
 		add_child(new_shroom)
@@ -207,6 +213,8 @@ func disable_glow() -> void:
 	hex.disable_b_r()
 
 func build_poison_shroom() -> void:
+	if tile_food.size() < 5:
+		region_food_request(6 - tile_food.size()) 
 	if tile_food.size() > 5 and not cur_shroom and not turn_used and not critter:
 		var new_shroom = poison_shroom.instance()
 		add_child(new_shroom)
@@ -338,3 +346,32 @@ func remove_friendly_ui() -> void:
 		if i.is_in_group("friendly_ui"):
 			i.queue_free()
 			has_friendly_ui = false
+
+
+func get_food_in_region() -> int:
+	var _food_in_region := 0
+	for neigbor in region_neighbors:
+		if neigbor.tile_food.size() > 1:
+			_food_in_region += neigbor.tile_food.size() - 1
+	_food_in_region += tile_food.size()
+	return _food_in_region
+
+func region_food_request(value: int) -> void:
+	var tiles_with_enough_food := []
+	for tile in region_neighbors:
+		if tile.tile_food.size() > 1:
+			tiles_with_enough_food.append(tile)
+
+	var food_requested := 0
+	var i := 0
+	while(food_requested < value):
+		tiles_with_enough_food.shuffle()
+		if tiles_with_enough_food[i].tile_food.size() == 1:
+			tiles_with_enough_food[i].turn_complete()
+			tiles_with_enough_food.remove(i)
+		tiles_with_enough_food[i].remove_num_food(1)
+		spawn_num_food(1)
+		food_requested += 1
+		i += 1
+		i = i % tiles_with_enough_food.size()
+
