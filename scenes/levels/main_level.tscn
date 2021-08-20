@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://src/entities/player.gd" type="Script" id=13]
 [ext_resource path="res://scenes/ui/next_turn_buttons.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/entities/game_over.gd" type="Script" id=15]
+[ext_resource path="res://scenes/props/beach.tscn" type="PackedScene" id=16]
 
 [node name="main_level" type="Spatial"]
 
@@ -31,6 +32,8 @@ script = ExtResource( 11 )
 script = ExtResource( 8 )
 
 [node name="grid" parent="." instance=ExtResource( 2 )]
+
+[node name="beach" parent="." instance=ExtResource( 16 )]
 
 [node name="Test_Grid" parent="." instance=ExtResource( 1 )]
 script = ExtResource( 5 )
