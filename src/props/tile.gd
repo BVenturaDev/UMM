@@ -371,7 +371,6 @@ func region_food_request(value: int) -> void:
 		if tiles_with_enough_food[i].tile_food.size() == 1:
 			tiles_with_enough_food[i].turn_complete()
 			tiles_with_enough_food.remove(i)
-		print(tiles_with_enough_food)
 		tiles_with_enough_food.shuffle()
 		tiles_with_enough_food[i].remove_num_food(1)
 		spawn_num_food(1)

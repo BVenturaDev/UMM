@@ -26,6 +26,7 @@ one_shot = true
 
 [node name="state_machine" type="Node" parent="."]
 script = ExtResource( 2 )
+autostart = false
 
 [node name="begin_turn" type="Node" parent="state_machine"]
 script = ExtResource( 6 )

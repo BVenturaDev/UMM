@@ -62,6 +62,8 @@ func _ready() -> void:
 	for state in state_machine.get_children():
 		if "critter" in state:
 			state.critter = self
+	critter_model.anim.play("idle")
+
 
 func do_turn() -> void:
 	randomize()
