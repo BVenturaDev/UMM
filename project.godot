@@ -58,6 +58,10 @@ TilesReferences="*res://src/singletons/tiles_references.gd"
 
 gdscript/warnings/treat_warnings_as_errors=true
 
+[display]
+
+mouse_cursor/custom_image="res://mouse.png"
+
 [editor]
 
 convert_text_resources_to_binary_on_export=true

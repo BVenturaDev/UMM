@@ -72,7 +72,6 @@ func _disabled_node():
 	set_process_unhandled_input(false)
 	set_block_signals(true)
 
-
 func _enabled_node():
 	set_process(true)
 	set_physics_process(true)
