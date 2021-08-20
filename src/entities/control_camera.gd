@@ -2,9 +2,17 @@ extends Camera
 
 const MAX_SPEED: float = 10.0
 const ZOOM_SPEED: float = 7.5
-const ROT_SPEED: float = 0.09
+const ROT_SPEED: float = 0.05
 const CAM_Y_MIN: float = 2.0
-const CAM_Y_MAX: float = 20.0
+const CAM_Y_MAX: float = 8.0
+const CAM_X_MIN: float = 1.0
+const CAM_Z_MIN: float = 1.0
+const ROT_AMOUNT: float = 0.035
+const MAX_ANGLE: float = -60.0
+const MIN_ANGLE: float = -40.0
+const DEF_X_ANGLE: float = -50.0
+const MAX_Y_ANGLE: float = 50.0
+const MIN_Y_ANGLE: float = -50.0
 
 var can_rot = false
 
@@ -14,14 +22,11 @@ func _process(var delta: float) -> void:
 		var in_dir: Vector2 = Vector2()
 		in_dir.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 		in_dir.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+		in_dir = in_dir.normalized()
 		
-		# Apply horizontal movement
-		var dir: Vector3 = Vector3()
-		dir += transform.basis.x * in_dir.x
-		dir += transform.basis.z * in_dir.y
-		dir = dir.normalized()
-		var h_vel: Vector3 = dir * MAX_SPEED * delta
-		transform.origin += h_vel
+		var h_vel: Vector2 = in_dir * MAX_SPEED * delta
+		transform.origin.x += h_vel.x
+		transform.origin.z += h_vel.y
 		
 		# Apply zoom
 		if Input.is_action_just_released("ui_zoom_in") or Input.is_action_pressed("ui_zoom_in"):
@@ -34,6 +39,18 @@ func _process(var delta: float) -> void:
 			transform.origin.y = CAM_Y_MIN
 		elif transform.origin.y > CAM_Y_MAX:
 			transform.origin.y = CAM_Y_MAX
+		
+		if transform.origin.x < CAM_X_MIN:
+			transform.origin.x = CAM_X_MIN	
+		if transform.origin.z < CAM_Z_MIN:
+			transform.origin.z = CAM_Z_MIN
+		if Globals.grid:
+			var max_x: float = (Globals.MAP_SIZE - 1) * Globals.grid.X_OFFSET
+			if transform.origin.x > max_x:
+				transform.origin.x = max_x
+			var max_z: float = (Globals.MAP_SIZE) * Globals.grid.Z_OFFSET
+			if transform.origin.z > max_z:
+				transform.origin.z = max_z
 			
 		# Camera Rotation
 		if Input.is_action_pressed("ui_right_click"):
@@ -42,6 +59,8 @@ func _process(var delta: float) -> void:
 			can_rot = true
 		else:
 			can_rot = false
+			rotation.y = lerp(rotation.y, 0, ROT_AMOUNT)
+			rotation.x = lerp(rotation.x, deg2rad(DEF_X_ANGLE), ROT_AMOUNT)
 			Globals.free_mouse()
 		
 func _input(var event: InputEvent) -> void:
@@ -50,6 +69,14 @@ func _input(var event: InputEvent) -> void:
 		rotate_y(deg2rad(-event.relative.x * ROT_SPEED))
 		rotate_object_local(Vector3(1.0, 0, 0),  deg2rad(-event.relative.y * ROT_SPEED))
 		# Keep camera from looking too far up or upside down
-		rotation.x = clamp(rotation.x, deg2rad(-88.0), deg2rad(45.0))
+		if rotation.x < deg2rad(MAX_ANGLE):
+			rotation.x = deg2rad(MAX_ANGLE)
+		elif rotation.x > deg2rad(MIN_ANGLE):
+			rotation.x = deg2rad(MIN_ANGLE)
+		# Keep camera from looking too far left / right
+		if rotation.y < deg2rad(MIN_Y_ANGLE):
+			rotation.y = deg2rad(MIN_Y_ANGLE)
+		elif rotation.y > deg2rad(MAX_Y_ANGLE):
+			rotation.y = deg2rad(MAX_Y_ANGLE)
 		# Stop camera tilt
 		rotation.z = 0
