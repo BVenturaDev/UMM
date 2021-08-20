@@ -13,7 +13,6 @@ export(int) var max_age := 6
 export var age := 0
 
 var is_alive := true
-var is_eating := false
 var is_poisoned := false
 
 var target_tile_with_shroom: Tile = null
@@ -43,15 +42,14 @@ func active_highlight(tiles : Array) -> void:
 func desactive_highlight(tiles : Array) -> void:
 	for tile in tiles:
 		tile.hex.disable_highlighted()
+		
 func set_eating_mushroom(new_shroom: Object) -> void:
 	if new_shroom == null:
-		is_eating = false
 		if is_instance_valid(eating_mushroom):
 			eating_mushroom.kill()
 			critter_model.anim.play("idle")
 		eating_mushroom = null
 	else:
-		is_eating = true
 		eating_mushroom = new_shroom
 		
 		if eating_mushroom.is_in_group("poison"):

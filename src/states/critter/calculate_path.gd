@@ -28,6 +28,10 @@ func enter():
 		exit("wander")
 	elif _point_path.size() > 2:
 		critter.current_tile = instance_from_id(_point_path[1])
+		if DEBUG:
+			for _point in _point_path:
+				var tile = instance_from_id(_point)
+				tile.hex.enable_highlighted()
 		exit("end_turn")
 	
 
