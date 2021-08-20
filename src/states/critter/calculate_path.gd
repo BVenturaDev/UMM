@@ -7,7 +7,7 @@ var critter: Critter
 var path_start_tile: Tile  setget set_path_start_tile
 var path_end_tile: Tile  setget set_path_end_tile
 onready var astar_node = AStar2D.new()
-var _point_path := []
+var _point_path :PoolIntArray = []
 var tiles_in_region_comun := []
 
 
@@ -135,16 +135,16 @@ func set_path_start_tile(value) -> void:
 	# if is_outside_map_boundries(value):
 	# 	return 
 	path_start_tile = value
-	if path_end_tile and path_end_tile != path_start_tile:
-		_recalculate_path()
-	pass
+#	if path_end_tile and path_end_tile != path_start_tile:
+#		_recalculate_path()
+#	pass
 
 func set_path_end_tile(value) -> void:
 	# if is_outside_map_boundries(value):
 	# 	return 
 	path_end_tile = value
-	if path_start_tile != value:
-		_recalculate_path()
+#	if path_start_tile != value:
+#		_recalculate_path()
 
 
 func intersect_array(arr1: Array, arr2: Array) -> Array:
