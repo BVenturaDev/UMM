@@ -33,7 +33,10 @@ func make_build_menu(var cur_food: int, var tile: Object) -> void:
 		
 	if cur_food > 5 and not tile.cur_shroom and not tile.critter:
 		poison_shroom.visible = true
-		scout_shroom.visible = true
+		if tile.enemies.size() > 0:
+			scout_shroom.visible = true
+		else:
+			scout_shroom.visible = false
 	else:
 		poison_shroom.visible = false
 		scout_shroom.visible = false

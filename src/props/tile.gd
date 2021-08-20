@@ -90,6 +90,13 @@ func turn_complete() -> void:
 	turn_used = true
 	hex.enable_turn_used()
 
+func find_enemies() -> void:
+	var neighbors: Array = Globals.grid.find_neighbors(x, y)
+	for neighbor in neighbors:
+		if neighbor.owner_fungus:
+			if not neighbor.owner_fungus.my_owner == owner_fungus.my_owner:
+				enemies.append(neighbor)
+
 func spawn_food() -> void:
 	var new_food = food.instance()
 	add_child(new_food)
