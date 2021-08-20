@@ -202,6 +202,8 @@ func move_food(var amount: int) -> void:
 		for i in range(region.size() - 1, -1, -1):
 			if not region[i].owner_fungus:
 				region.remove(i)
+			elif not region[i].owner_fungus.my_owner.name == "player":
+				region.remove(i)
 			else:
 				region[i].disable_grayed_out()
 		if region.size() < 1:

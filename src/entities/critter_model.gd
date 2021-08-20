@@ -5,7 +5,7 @@ const DEATH_TIME: float = 2.3
 onready var anim = $AnimationPlayer
 
 func set_target(var pos: Vector3) -> void:
-	if not global_transform.origin - pos == Vector3():
+	if not Vector3(0, 1.0, 0).cross(pos - global_transform.origin) == Vector3.ZERO:
 		look_at(pos, Vector3(0, 1.0, 0))
 		rotation.x = 0
 		rotation.z = 0
