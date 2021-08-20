@@ -49,3 +49,35 @@ func enable_grayed_out() -> void:
 	
 func disable_grayed_out() -> void:
 	shader.set_shader_param("is_grayed_out", false)
+
+# --- Border Functions ---
+
+func enable_b_d_l() -> void:
+	shader.set_shader_param("b_b_d_l" , true)
+func disable_b_d_l() -> void:
+	shader.set_shader_param("b_b_d_l", false)
+	
+func enable_b_d_r() -> void:
+	shader.set_shader_param("b_b_d_r" , true)
+func disable_b_d_r() -> void:
+	shader.set_shader_param("b_b_d_r", false)
+	
+func enable_b_l() -> void:
+	shader.set_shader_param("b_b_l" , true)
+func disable_b_l() -> void:
+	shader.set_shader_param("b_b_l", false)
+
+func enable_b_r() -> void:
+	shader.set_shader_param("b_b_r" , true)
+func disable_b_r() -> void:
+	shader.set_shader_param("b_b_r" , false)
+
+func enable_b_u_l() -> void:
+	shader.set_shader_param("b_b_u_l" , true)
+func disable_b_u_l() -> void:
+	shader.set_shader_param("b_b_u_l", false)
+
+func enable_b_u_r() -> void:
+	shader.set_shader_param("b_b_u_r" , true)
+func disable_b_u_r() -> void:
+	shader.set_shader_param("b_b_u_r", false)

@@ -1,8 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://art/blends/tile/tile_albedo.png" type="Texture" id=1]
 [ext_resource path="res://src/props/hex_tile.gd" type="Script" id=2]
 [ext_resource path="res://src/shaders/hex_tile.shader" type="Shader" id=3]
+[ext_resource path="res://art/blends/border/border_left.png" type="Texture" id=4]
+[ext_resource path="res://art/blends/border/border_down_right.png" type="Texture" id=5]
+[ext_resource path="res://art/blends/border/border_down_left.png" type="Texture" id=6]
+[ext_resource path="res://art/blends/border/border_right.png" type="Texture" id=7]
+[ext_resource path="res://art/blends/border/border_up_right.png" type="Texture" id=8]
+[ext_resource path="res://art/blends/border/border_up_left.png" type="Texture" id=9]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "tile"
@@ -22,6 +28,12 @@ surfaces/0 = {
 resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/b_b_d_l = false
+shader_param/b_b_d_r = false
+shader_param/b_b_l = false
+shader_param/b_b_r = false
+shader_param/b_b_u_l = false
+shader_param/b_b_u_r = false
 shader_param/specular = 0.5
 shader_param/metallic = 0.0
 shader_param/roughness = 1.0
@@ -33,12 +45,20 @@ shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/highlight_color = Color( 0.568627, 0.721569, 0.933333, 1 )
 shader_param/turn_used_color = Color( 0.921569, 0.392157, 0.929412, 1 )
 shader_param/undergrowth_color = Color( 0.713726, 0.905882, 0.623529, 1 )
+shader_param/enemy_undergrowth_color = Color( 0.556863, 0.576471, 0.545098, 1 )
 shader_param/grayed_out_color = Color( 0.643137, 0.643137, 0.643137, 1 )
 shader_param/mix_amount = 0.75
 shader_param/is_highlighted = false
 shader_param/is_turn_used = false
 shader_param/is_undergrowth = false
+shader_param/is_enemy_undergrowth = false
 shader_param/is_grayed_out = false
+shader_param/b_d_l = ExtResource( 6 )
+shader_param/b_d_r = ExtResource( 5 )
+shader_param/b_l = ExtResource( 4 )
+shader_param/b_r = ExtResource( 7 )
+shader_param/b_u_l = ExtResource( 9 )
+shader_param/b_u_r = ExtResource( 8 )
 shader_param/texture_albedo = ExtResource( 1 )
 
 [sub_resource type="ConcavePolygonShape" id=2]
