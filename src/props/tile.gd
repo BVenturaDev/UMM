@@ -227,7 +227,7 @@ func build_poison_shroom() -> void:
 
 func build_scout_shroom() -> void:
 	if tile_food.size() <= Globals.BUILD_GATHER_COST:
-		region_food_request(Globals.BUILD_GATHER_COST_COST - tile_food.size() + 1) 
+		region_food_request(Globals.BUILD_GATHER_COST - tile_food.size() + 1) 
 	if tile_food.size() > Globals.BUILD_GATHER_COST and not cur_shroom and not turn_used and not critter:
 		var new_shroom = scout_shroom.instance()
 		add_child(new_shroom)

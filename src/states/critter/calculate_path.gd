@@ -84,7 +84,10 @@ func astar_add_walkable_tile() -> Array:
 			continue
 		tiles_walkable_array.append(tile)
 		var point_index = calculate_point_index(tile)
-		astar_node.add_point(point_index, Vector2(tile.x, tile.y))
+		astar_node.add_point(
+				point_index, 
+				Vector2(tile.x, tile.y), 
+				calculate_weight(tile))
 	# Its adding points and adding tiles walkable
 	# Those are the critter and the shroom owner tile
 	tiles_walkable_array.append(add_tile_to_astar(critter.current_tile))
@@ -93,6 +96,10 @@ func astar_add_walkable_tile() -> Array:
 		print_debug(tiles_walkable_array)
 	return tiles_walkable_array
 
+func calculate_weight(tile:Tile) -> float:
+	if is_instance_valid(tile.owner_fungus):
+		return 1.0
+	return 4.0
 func add_tile_to_astar(tile: Tile) -> Tile:
 	var index := calculate_point_index(tile)
 	astar_node.add_point(index, Vector2(tile.x, tile.y))

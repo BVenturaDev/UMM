@@ -64,6 +64,7 @@ func _ready() -> void:
 			state.critter = self
 
 func do_turn() -> void:
+	randomize()
 	if is_alive:
 		state_machine.start_machine()
 	else:
