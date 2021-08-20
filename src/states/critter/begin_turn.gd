@@ -19,7 +19,7 @@ func exit(next_state) -> void:
 func decide_what_do() -> String:
 	if critter.is_poisoned:
 		return "die"
-	if (is_mushroom_close() 
+	if (is_poison_mushroom_close() 
 			or is_instance_valid(critter.eating_mushroom)):
 		return "eat"
 	if is_there_shroom_in_area():
@@ -27,6 +27,13 @@ func decide_what_do() -> String:
 	if is_some_nearby_tile_allows_movement():
 		return "wander"
 	return "end_turn"
+
+func is_poison_mushroom_close() -> bool:
+	for neighbor in critter.get_close_neighbors():
+		if critter.does_tile_has_mushroom(neighbor):
+			if neighbor.cur_shroom.is_in_group("poison"):
+				return true
+	return false
 
 func is_mushroom_close():
 	for neighbor in critter.get_close_neighbors():

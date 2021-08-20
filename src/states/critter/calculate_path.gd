@@ -25,7 +25,10 @@ func enter():
 		print_debug("Path is: ",_point_path)
 		print_debug("Current tile is:", calculate_point_index(critter.current_tile))
 	if _point_path.size() == 0:
-		exit("wander")
+		if is_mushroom_close():
+			exit("eat")
+		else:
+			exit("wander")
 	elif _point_path.size() > 2:
 		critter.current_tile = instance_from_id(_point_path[1])
 		if DEBUG:
@@ -39,6 +42,12 @@ func exit(next_state):
 	if DEBUG:
 		print("Exiting state: ", name)
 	state_machine.change_to(next_state)
+
+func is_mushroom_close():
+	for neighbor in critter.get_close_neighbors():
+		if critter.does_tile_has_mushroom(neighbor):
+			return true
+	return false
 
 func is_path_blocked(tile: Tile) -> bool:
 	return tile.critter or tile.cur_resource
