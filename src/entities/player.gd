@@ -3,9 +3,13 @@ extends Spatial
 onready var fungus = $fungus
 var num_turns: int = 1
 
+func _ready() -> void:
+	Globals.player = self
+
 func do_turn() -> void:
 	if not num_turns == 1:
 		for tile in fungus.owned_tiles:
+			tile.disable_glow()
 			tile.find_enemies()
 			for enemy in tile.enemies:
 				enemy.enable_glow(tile)
@@ -15,9 +19,16 @@ func do_turn() -> void:
 					var enemy_neighbors: bool = false
 					for neighbor in neighbors:
 						if neighbor.owner_fungus:
-							if not neighbor.owner_fungus == self:
+							if not neighbor.owner_fungus.my_owner == self:
 								neighbor.revealed = true
 								enemy_neighbors = true
 					if not enemy_neighbors:
 						tile.cur_shroom.kill()
 	num_turns += 1
+
+func update_glow() -> void:
+	for tile in fungus.owned_tiles:
+		tile.disable_glow()
+		tile.find_enemies()
+		for enemy in tile.enemies:
+			enemy.enable_glow(tile)

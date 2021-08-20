@@ -8,6 +8,7 @@ const PERCENTAGE_TILES_FOR_VICTORY := 75.0
 const MAP_SIZE: int = 2
 
 var grid: Object
+var player: Object
 var build_ui: Object
 var rng = RandomNumberGenerator.new()
 var moving_tile: Object = null

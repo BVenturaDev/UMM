@@ -37,6 +37,7 @@ var enemies: Array = []
 var enemy: bool = false
 var revealed: bool = false
 var has_friendly_ui: bool = false
+var attacking: bool = false
 
 func _ready() -> void:
 	# Initialize the reference dictionary for tiles with not critters or cur_shroom
@@ -46,6 +47,7 @@ func _process(_delta) -> void:
 	if owner_fungus and not Globals.moving_tile:
 		if owner_fungus.my_owner.name == "player":
 			hex.enable_undergrowth()
+			generate_friendly_ui()
 		elif enemy and revealed:
 			hex.enable_enemy_undergrowth()
 			generate_friendly_ui()
@@ -56,7 +58,7 @@ func _process(_delta) -> void:
 	else:
 		hex.disable_undergrowth()
 		hex.disable_enemy_undergrowth()
-		remove_friendly_ui()
+		#remove_friendly_ui()
 
 func initialize_references():
 	$InitTimer.start()
@@ -88,7 +90,6 @@ func update_entitie_state() -> void:
 	else:
 		TilesReferences.tile_without_entitie(self)
 
-
 func do_turn() -> void:
 	enemy = false
 	enemies = []
@@ -100,6 +101,7 @@ func turn_complete() -> void:
 	hex.enable_turn_used()
 
 func find_enemies() -> void:
+	enemies = []
 	var neighbors: Array = Globals.grid.find_neighbors(x, y)
 	for neighbor in neighbors:
 		if neighbor.owner_fungus:
@@ -150,13 +152,17 @@ func spawn_log() -> void:
 # Called when the tile was clicked
 func clicked() -> void:
 	if owner_fungus and not turn_used:
-		if owner_fungus.my_owner.name == "player":
-			if Globals.DEBUG:
-				print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
-			if Globals.moving_tile:
+		if Globals.DEBUG:
+			print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
+		if Globals.moving_tile:
+			if Globals.moving_tile.attacking:
+				Globals.moving_tile.try_attack(self)
+			elif owner_fungus.my_owner.name == "player":
 				Globals.moving_tile.try_move_food(self)
-			elif Globals.build_ui:
-				Globals.build_ui.make_build_menu(tile_food.size(), self)
+			else:
+				Globals.moving_tile.stop_move_food()
+		elif Globals.build_ui and owner_fungus.my_owner.name == "player":
+			Globals.build_ui.make_build_menu(tile_food.size(), self)
 
 func build_gather_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom and cur_resource and not turn_used and not critter:
@@ -192,6 +198,13 @@ func enable_glow(var neighbor: Tile) -> void:
 		#NE enable SO
 		hex_to_glow.enable_b_r()
 
+func disable_glow() -> void:
+	hex.disable_b_d_l()
+	hex.disable_b_l()
+	hex.disable_b_d_r()
+	hex.disable_b_u_r()
+	hex.disable_b_u_l()
+	hex.disable_b_r()
 
 func build_poison_shroom() -> void:
 	if tile_food.size() > 5 and not cur_shroom and not turn_used and not critter:
@@ -213,7 +226,6 @@ func build_scout_shroom() -> void:
 		remove_num_food(5)
 		turn_complete()
 
-
 func move_food(var amount: int) -> void:
 	if tile_food.size() >= amount and not Globals.moving_tile and owner_fungus:
 		move_amount = amount
@@ -230,13 +242,12 @@ func move_food(var amount: int) -> void:
 		if region.size() < 1:
 			stop_move_food()
 
-
 func stop_move_food() -> void:
 	Globals.moving_tile = null
 	region = []
 	Globals.grid.disable_gray_all_tiles()
 	move_amount = 0
-
+	attacking = false
 
 func try_move_food(var other_tile: Object) -> void:
 	if region.size() > 0:
@@ -251,11 +262,68 @@ func do_move_food(var other_tile: Object, var amount: int) -> void:
 	remove_num_food(amount)
 	turn_complete()
 
+func attack(var amount: int) -> void:
+	if tile_food.size() >= amount and not Globals.moving_tile and owner_fungus:
+		move_amount = amount
+		attacking = true
+		Globals.moving_tile = self
+		region = Globals.grid.find_neighbors(x, y)
+		Globals.grid.gray_all_tiles()
+		for i in range(region.size() - 1, -1, -1):
+			if not region[i].owner_fungus:
+				region.remove(i)
+			elif not region[i].owner_fungus.my_owner.name == "ai":
+				region.remove(i)
+			else:
+				region[i].disable_grayed_out()
+		if region.size() < 1:
+			stop_move_food()
+
+func try_attack(var other_tile: Object) -> void:
+	if region.size() > 0:
+		for i in region:
+			if other_tile == i:
+				if not other_tile.owner_fungus == owner_fungus:
+					do_attack(other_tile)
+	stop_move_food()
+
+func do_attack(var other_tile: Object) -> void:
+	turn_complete()
+	var left_over_food: int = other_tile.tile_food.size() - move_amount
+	if left_over_food > 0:
+		remove_num_food(move_amount)
+		other_tile.remove_num_food(move_amount)
+	elif left_over_food < 0:
+		var amount: int = int(abs(float(left_over_food)))
+		print("You win:" + str(amount))
+		other_tile.remove_fungus()
+		owner_fungus.claim_tile(other_tile)
+		remove_num_food(amount)
+		other_tile.spawn_num_food(amount)
+		if owner_fungus.my_owner.name == "player":
+			owner_fungus.my_owner.update_glow()
+		elif Globals.player:
+			Globals.player.update_glow()
+	else:
+		other_tile.remove_fungus()
+		other_tile.remove_num_food(move_amount)
+
 func enable_grayed_out() -> void:
 	hex.enable_grayed_out()
 
 func disable_grayed_out() -> void:
 	hex.disable_grayed_out()
+
+func remove_fungus() -> void:
+	owner_fungus.remove_tile_object(self)
+	owner_fungus = null
+	tile_food = []
+	turn_used = false
+	enemy = false
+	enemies = []
+	remove_friendly_ui()
+	if cur_shroom:
+		cur_shroom.kill()
 
 func generate_friendly_ui() -> void:
 	if not has_friendly_ui:
@@ -264,7 +332,8 @@ func generate_friendly_ui() -> void:
 		add_child(new_ui)
 	
 func remove_friendly_ui() -> void:
-	var ui_node: Node = find_node("friendly_ui")
-	if ui_node:
-		has_friendly_ui = false
-		ui_node.queue_free()
+	var nodes: Array = get_children()
+	for i in nodes:
+		if i.is_in_group("friendly_ui"):
+			i.queue_free()
+			has_friendly_ui = false

@@ -19,11 +19,11 @@ func _ready() -> void:
 		y = int(Globals.MAP_SIZE * AI_OFFSET)
 	var tile: Object = Globals.grid.find_tile(x, y)
 	if tile:
-		_claim_tile(tile)
+		claim_tile(tile)
 		tile.spawn_num_food(20)
 		tile.call_deferred("spawn_log")
 		
-func _claim_tile(var tile: Object) -> void:
+func claim_tile(var tile: Object) -> void:
 	tile.owner_fungus = self
 	owned_tiles.append(tile)
 	if my_owner.name == "player":
@@ -38,6 +38,11 @@ func remove_tile(var id: int) -> void:
 	if id > -1 and id < owned_tiles.size():
 		owned_tiles[id].owner_fungus = null
 		owned_tiles.remove(id)
+		
+func remove_tile_object(var tile: Object) -> void:
+	for i in range(0, owned_tiles.size() - 1):
+		if owned_tiles[i] == tile:
+			owned_tiles.remove(i)
 
 func do_turn() -> void:
 	# Expand the fungus
@@ -56,7 +61,7 @@ func do_turn() -> void:
 					# Remove 5 food from this tile
 					var chosen_tile: Object = clean_neighbors[Globals.rng.randi_range(0, clean_neighbors.size() - 1)]
 					tile.remove_num_food(5)
-					_claim_tile(chosen_tile)
+					claim_tile(chosen_tile)
 					chosen_tile.spawn_food()
 		var neighbors = Globals.grid.find_neighbors(tile.x, tile.y)
 		# Equalize food to neighboring owned tiles

@@ -4,7 +4,9 @@
 [ext_resource path="res://assets/textures/f6.png" type="Texture" id=2]
 [ext_resource path="res://src/tools/viewport.gd" type="Script" id=3]
 
-[node name="friendly_ui" type="Spatial"]
+[node name="friendly_ui" type="Spatial" groups=[
+"friendly_ui",
+]]
 
 [node name="roots" type="Sprite3D" parent="."]
 transform = Transform( 0.219203, -0.219203, -3.09086e-08, 0, -1.35505e-08, 1, -0.219203, -0.219203, -3.09086e-08, 0, 0.28, 0 )
