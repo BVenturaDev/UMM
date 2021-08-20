@@ -34,6 +34,9 @@ var tile_food: Array = []
 var region: Array = []
 # Array of neighboring enemy tiles
 var enemies: Array = []
+var enemy: bool = false
+var revealed: bool = false
+var has_friendly_ui: bool = false
 
 func _ready() -> void:
 	# Initialize the reference dictionary for tiles with not critters or cur_shroom
@@ -43,12 +46,17 @@ func _process(_delta) -> void:
 	if owner_fungus and not Globals.moving_tile:
 		if owner_fungus.my_owner.name == "player":
 			hex.enable_undergrowth()
-		elif Globals.DEBUG and owner_fungus.my_owner.name == "ai":
-			hex.enable_undergrowth()
+		elif enemy and revealed:
+			hex.enable_enemy_undergrowth()
+			generate_friendly_ui()
 		else:
 			hex.disable_undergrowth()
+			hex.disable_enemy_undergrowth()
+			remove_friendly_ui()
 	else:
 		hex.disable_undergrowth()
+		hex.disable_enemy_undergrowth()
+		remove_friendly_ui()
 
 func initialize_references():
 	$InitTimer.start()
@@ -82,6 +90,7 @@ func update_entitie_state() -> void:
 
 
 func do_turn() -> void:
+	enemy = false
 	enemies = []
 	turn_used = false
 	hex.disable_turn_used()
@@ -96,6 +105,8 @@ func find_enemies() -> void:
 		if neighbor.owner_fungus:
 			if not neighbor.owner_fungus.my_owner == owner_fungus.my_owner:
 				enemies.append(neighbor)
+				if owner_fungus.my_owner.name == "player":
+					neighbor.enemy = true
 
 func spawn_food() -> void:
 	var new_food = food.instance()
@@ -240,7 +251,6 @@ func do_move_food(var other_tile: Object, var amount: int) -> void:
 	remove_num_food(amount)
 	turn_complete()
 
-
 func enable_grayed_out() -> void:
 	hex.enable_grayed_out()
 
@@ -248,5 +258,13 @@ func disable_grayed_out() -> void:
 	hex.disable_grayed_out()
 
 func generate_friendly_ui() -> void:
-	var new_ui = friendly_ui.instance()
-	add_child(new_ui)
+	if not has_friendly_ui:
+		has_friendly_ui = true
+		var new_ui = friendly_ui.instance()
+		add_child(new_ui)
+	
+func remove_friendly_ui() -> void:
+	var ui_node: Node = find_node("friendly_ui")
+	if ui_node:
+		has_friendly_ui = false
+		ui_node.queue_free()
