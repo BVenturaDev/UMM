@@ -5,7 +5,7 @@ const DEBUG: bool = false
 const DEBUG_SM: bool = false
 # Map size - *** MUST BE EVEN ***
 const PERCENTAGE_TILES_FOR_VICTORY := 75.0
-const MAP_SIZE: int = 2
+const MAP_SIZE: int = 10
 const MAX_FOOD_MOVE: int = 10
 
 var grid: Object
@@ -13,6 +13,7 @@ var player: Object
 var build_ui: Object
 var rng = RandomNumberGenerator.new()
 var moving_tile: Object = null
+var game_over: bool = false
 
 onready var victory_condition: int= (PERCENTAGE_TILES_FOR_VICTORY / 100) * pow(Globals.MAP_SIZE, 2)
 

@@ -302,6 +302,7 @@ func do_attack(var other_tile: Object) -> void:
 		other_tile.spawn_num_food(amount)
 		remove_num_food(amount)
 		Globals.player.update_glow()
+		other_tile.turn_complete()
 	else:
 		other_tile.remove_fungus()
 		other_tile.remove_num_food(move_amount)

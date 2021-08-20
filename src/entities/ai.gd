@@ -43,7 +43,7 @@ func do_turn():
 							if neighbor.cur_shroom:
 								if neighbor.cur_shroom.is_in_group("scout"):
 									has_scout = true
-						else:
+						elif neighbor.owner_fungus.my_owner.name == "player":
 							need_scout = true
 				if not has_scout and need_scout:
 					if tile.tile_food.size() > 5:
@@ -58,7 +58,7 @@ func do_turn():
 				var neighbors: Array = Globals.grid.find_neighbors(tile.x, tile.y)
 				var enemy_neighbors: bool = false
 				for neighbor in neighbors:
-					if neighbor.owner_fungus:
+					if neighbor.owner_fungus and not tile.turn_used:
 						if not neighbor.owner_fungus.my_owner == self:
 							# Enemy revealed (maybe attack here)
 							var my_food: int = tile.tile_food.size()

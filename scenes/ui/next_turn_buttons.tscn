@@ -22,9 +22,10 @@ func _disable_button():
 	self.disabled = true
 
 func _on_pressed() -> void:
-	if Globals.moving_tile:
-		Globals.moving_tile.stop_move_food()
-	GameSignals.emit_signal(\"next_turn\")
+	if not Globals.game_over:
+		if Globals.moving_tile:
+			Globals.moving_tile.stop_move_food()
+		GameSignals.emit_signal(\"next_turn\")
 
 "
 
