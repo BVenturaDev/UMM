@@ -47,7 +47,7 @@ func make_build_menu(var cur_food: int, var tile: Object) -> void:
 		
 	tile_food = cur_food
 	cur_food_text.text = str(cur_food)
-	if cur_food < MAX_FOOD_MOVE:
+	if cur_food <= MAX_FOOD_MOVE:
 		food_slider.max_value = cur_food - 1
 		food_slider.value = cur_food - 1
 	else:
