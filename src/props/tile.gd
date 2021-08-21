@@ -171,7 +171,7 @@ func clicked() -> void:
 
 func build_gather_shroom() -> void:
 	if tile_food.size() <= Globals.BUILD_GATHER_COST:
-		region_food_request(Globals.BUILD_GATHER_COST - tile_food.size() + 1) 
+		region_food_request(region_neighbors, Globals.BUILD_GATHER_COST - tile_food.size() + 1) 
 	if tile_food.size() > Globals.BUILD_GATHER_COST and not cur_shroom and cur_resource and not turn_used and not critter:
 		var new_shroom = gather_shroom.instance()
 		add_child(new_shroom)
@@ -215,7 +215,7 @@ func disable_glow() -> void:
 
 func build_poison_shroom() -> void:
 	if tile_food.size() <= Globals.BUILD_POISON_COST:
-		region_food_request(Globals.BUILD_POISON_COST - tile_food.size() + 1) 
+		region_food_request(region_neighbors, Globals.BUILD_POISON_COST - tile_food.size() + 1) 
 	if tile_food.size() > Globals.BUILD_POISON_COST and not cur_shroom and not turn_used and not critter:
 		var new_shroom = poison_shroom.instance()
 		add_child(new_shroom)
@@ -227,7 +227,7 @@ func build_poison_shroom() -> void:
 
 func build_scout_shroom() -> void:
 	if tile_food.size() <= Globals.BUILD_GATHER_COST:
-		region_food_request(Globals.BUILD_GATHER_COST - tile_food.size() + 1) 
+		region_food_request(region_neighbors, Globals.BUILD_GATHER_COST - tile_food.size() + 1) 
 	if tile_food.size() > Globals.BUILD_GATHER_COST and not cur_shroom and not turn_used and not critter:
 		var new_shroom = scout_shroom.instance()
 		add_child(new_shroom)
@@ -359,9 +359,9 @@ func get_food_in_region() -> int:
 	_food_in_region += tile_food.size()
 	return _food_in_region
 
-func region_food_request(value: int) -> void:
+func region_food_request(_region: Array, value: int) -> void:
 	var tiles_with_enough_food := []
-	for tile in region_neighbors:
+	for tile in _region:
 		if tile.tile_food.size() > 1:
 			tiles_with_enough_food.append(tile)
 
@@ -369,12 +369,13 @@ func region_food_request(value: int) -> void:
 	var i := 0
 	while(food_requested < value):
 		tiles_with_enough_food.shuffle()
-		tiles_with_enough_food[i].remove_num_food(1)
-		if tiles_with_enough_food[i].tile_food.size() <= 1:
-			tiles_with_enough_food[i].turn_complete()
-			tiles_with_enough_food.remove(i)
-		spawn_num_food(1)
+		if tiles_with_enough_food.size() == 0:
+				break
+		else:
+			tiles_with_enough_food[0].remove_num_food(1)
+			if tiles_with_enough_food[0].tile_food.size() <= 1:
+				tiles_with_enough_food[0].turn_complete()
+				tiles_with_enough_food.remove(i)
+			spawn_num_food(1)
 		food_requested += 1
-		i += 1
-		i = i % tiles_with_enough_food.size()
 
