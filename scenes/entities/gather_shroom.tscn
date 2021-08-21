@@ -268,7 +268,7 @@ bones/2/name = "Bone.002"
 bones/2/parent = 1
 bones/2/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52217, 0 )
 bones/2/enabled = true
-bones/2/bound_children = [  ]
+bones/2/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="shroom" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
@@ -283,7 +283,36 @@ bone_name = "Bone.002"
 transform = Transform( -1.31134e-08, 0, 0.3, -4.65661e-10, 0.3, -2.77556e-17, -0.3, -4.65661e-10, -1.31134e-08, 1.0139, 0.914307, -4.82966e-08 )
 alpha_cut = 1
 frames = SubResource( 3 )
-frame = 2
+
+[node name="mini_me" type="Spatial" parent="."]
+transform = Transform( -1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 0.554749, 0, 0.674623 )
+visible = false
+
+[node name="Skeleton" type="Skeleton" parent="mini_me"]
+bones/0/name = "Bone"
+bones/0/parent = -1
+bones/0/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+bones/0/enabled = true
+bones/0/bound_children = [  ]
+bones/1/name = "Bone.001"
+bones/1/parent = 0
+bones/1/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.172306, 0 )
+bones/1/enabled = true
+bones/1/bound_children = [  ]
+bones/2/name = "Bone.002"
+bones/2/parent = 1
+bones/2/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52217, 0 )
+bones/2/enabled = true
+bones/2/bound_children = [ NodePath("BoneAttachment") ]
+
+[node name="shroom" type="MeshInstance" parent="mini_me/Skeleton"]
+mesh = SubResource( 1 )
+skin = SubResource( 2 )
+material/0 = null
+
+[node name="BoneAttachment" type="BoneAttachment" parent="mini_me/Skeleton"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.694476, 0 )
+bone_name = "Bone.002"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/death = SubResource( 4 )

@@ -20,8 +20,9 @@ func _ready() -> void:
 	var tile: Object = Globals.grid.find_tile(x, y)
 	if tile:
 		claim_tile(tile)
-		tile.spawn_num_food(20)
+		tile.spawn_num_food(25)
 		tile.call_deferred("spawn_log")
+		tile.call_deferred("build_gather_shroom")
 		
 func claim_tile(var tile: Object) -> void:
 	tile.owner_fungus = self
@@ -70,6 +71,19 @@ func do_turn() -> void:
 					neighbor.spawn_food()
 	Globals.check_winner(self)
 
+func find_nearest_tile(var dest_tile: Object) -> Object:
+	if not dest_tile:
+		return null
+	var nearest_tile: Object = null
+	for tile in owned_tiles:
+			if tile.owner_fungus:
+				if tile.owner_fungus == self:
+					if nearest_tile:
+						if Globals.grid.get_distance(dest_tile, tile) < Globals.grid.get_distance(dest_tile, nearest_tile):
+							nearest_tile = tile
+					else:
+						nearest_tile = tile
+	return nearest_tile
 
 func owned_tiles_sort(var tiles: Array) -> Array:
 	var out_tiles: Array = []

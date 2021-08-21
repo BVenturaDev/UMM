@@ -5,6 +5,7 @@
 
 [node name="resource_tree" type="Spatial" groups=[
 "nature",
+"trees",
 ]]
 script = ExtResource( 1 )
 

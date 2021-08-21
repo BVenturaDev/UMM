@@ -1,6 +1,8 @@
 extends Spatial
 
 onready var anim = $AnimationPlayer
+onready var base = $Armature
+onready var mini_me = $mini_me
 onready var kill_timer = $kill_timer
 
 var food_amount: int = 0
@@ -9,6 +11,15 @@ var idle_anims: Array = ["idle", "left_and_right", "look_back", "look_up"]
 var owner_tile: Object = null
 
 func _process(_delta) -> void:
+	if not owner_tile.cur_resource:
+		kill()
+	else:
+		if owner_tile.cur_resource.is_in_group("trees"):
+			mini_me.visible = true
+			base.visible = false
+		else:
+			mini_me.visible = false
+			base.visible = true
 	if owner_tile:
 		if not owner_tile.cur_shroom == self:
 			queue_free()

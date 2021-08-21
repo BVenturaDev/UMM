@@ -70,6 +70,13 @@ func do_turn():
 							enemy_neighbors = true
 				if not enemy_neighbors:
 					tile.cur_shroom.kill()
+	if fungus.owned_tiles.size() > 0:
+		# Move food towards nearest unclaimed resource
+		var new_resource = Globals.grid.find_nearest_resource(fungus.owned_tiles[0])
+		if new_resource:
+			var nearest_tile = fungus.find_nearest_tile(new_resource)
+			if nearest_tile:
+				var _a = _try_gather_food(nearest_tile, 5)
 					
 func get_attack_amount(var tile: Object) -> int:
 	var amount: int = 0

@@ -13,7 +13,6 @@ var tiles: Array = []
 # Determines if we add by half x_offset first
 var odd_row = false
 
-
 func _ready() -> void:
 	Globals.grid = self
 	# Generate the grid
@@ -103,6 +102,30 @@ func find_region(var x: int, var y: int) -> Array:
 						if distance_to_tile < max_distance_hexagon_3:
 							region.append(neighbor)
 	return region
+	
+# Finds the nearest unowned resource to a tile
+func find_nearest_resource(var tile: Object) -> Object:
+	if not tile:
+		return null
+	
+	var nearest_tile: Object = null
+	for i_x in range(0, tiles.size()):
+		for i_y in range(0, tiles[i_x].size()):
+			if not tiles[i_x][i_y].owner_fungus:
+				if tiles[i_x][i_y].cur_resource:
+					if nearest_tile:
+						if get_distance(tile, tiles[i_x][i_y]) < get_distance(tile, nearest_tile):
+							nearest_tile = tiles[i_x][i_y]
+					else:
+						nearest_tile = tiles[i_x][i_y]
+	return nearest_tile
+
+func get_distance(var tile_a: Object, var tile_b: Object) -> Vector2:
+	var dist: Vector2 = Vector2()
+	if tile_a and tile_b:
+		dist.x = abs(float(tile_a.x - tile_b.x))
+		dist.y = abs(float(tile_a.x - tile_b.x))
+	return dist
 	
 func gray_all_tiles() -> void:
 	for x in range(0, tiles.size()):
