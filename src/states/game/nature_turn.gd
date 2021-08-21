@@ -63,9 +63,9 @@ func _spawn_critter() -> void:
 	var random_tile: Spatial = TilesReferences.get_random_tile_without_entitie()
 	if not is_instance_valid(random_tile):
 		return
+	get_tree().current_scene.add_child(critter)
 	critter.global_transform.origin = random_tile.resource_pos.global_transform.origin
 	critter.current_tile = random_tile
-	get_tree().current_scene.add_child(critter)
 	turns_from_last_critter_spawn = 0
 	critters_alive += 1
 

@@ -354,6 +354,8 @@ func remove_friendly_ui() -> void:
 func get_food_in_region() -> int:
 	var _food_in_region := 0
 	for neigbor in region_neighbors:
+		if neigbor.owner_fungus != owner_fungus:
+			continue
 		if neigbor.tile_food.size() > 1:
 			_food_in_region += neigbor.tile_food.size() - 1
 	_food_in_region += tile_food.size()
@@ -362,6 +364,8 @@ func get_food_in_region() -> int:
 func region_food_request(_region: Array, value: int) -> void:
 	var tiles_with_enough_food := []
 	for tile in _region:
+		if tile.owner_fungus != owner_fungus:
+			continue
 		if tile.tile_food.size() > 1:
 			tiles_with_enough_food.append(tile)
 
