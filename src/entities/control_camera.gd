@@ -13,16 +13,27 @@ const MIN_ANGLE: float = -40.0
 const DEF_X_ANGLE: float = -50.0
 const MAX_Y_ANGLE: float = 50.0
 const MIN_Y_ANGLE: float = -50.0
+const STICK_MOVE_SPEED: float = 300.0
 
 var can_rot = false
+
+var stick_dir: Vector2 = Vector2()
 
 func _process(var delta: float) -> void:
 	if not Globals.game_over:
 		# Get movement inputs
 		var in_dir: Vector2 = Vector2()
-		in_dir.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-		in_dir.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+		in_dir.x = Input.get_action_strength("cam_right") - Input.get_action_strength("cam_left")
+		in_dir.y = Input.get_action_strength("cam_backward") - Input.get_action_strength("cam_forward")
 		in_dir = in_dir.normalized()
+		
+		stick_dir = Vector2()
+		stick_dir.x = Input.get_action_strength("stick_right") - Input.get_action_strength("stick_left")
+		stick_dir.y = Input.get_action_strength("stick_back") - Input.get_action_strength("stick_forward")
+		stick_dir = stick_dir.normalized()
+		var stick_mouse_move = STICK_MOVE_SPEED * stick_dir * delta
+		if stick_mouse_move:
+			get_viewport().warp_mouse(get_tree().get_global_mouse_position() + stick_mouse_move)
 		
 		var h_vel: Vector2 = in_dir * MAX_SPEED * delta
 		transform.origin.x += h_vel.x
