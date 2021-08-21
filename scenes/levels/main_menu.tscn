@@ -139,6 +139,7 @@ wait_time = 3.0
 autostart = true
 
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/play_button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/zen_button" to="." method="_on_zen_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/options_button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

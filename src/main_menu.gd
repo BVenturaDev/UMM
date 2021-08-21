@@ -4,6 +4,7 @@ onready var light = $WorldEnvironment/DirectionalLight
 onready var options = $CanvasLayer/options_menu
 
 var main_level = preload("res://scenes/levels/main_level.tscn")
+var zen_level = preload("res://scenes/levels/zen_level.tscn")
 
 func _ready():
 	if Globals.BUILD_MOBILE:
@@ -24,3 +25,7 @@ func _on_quit_button_pressed():
 
 func _on_play_button_pressed():
 	var _a = get_tree().change_scene_to(main_level)
+
+
+func _on_zen_button_pressed():
+	var _a = get_tree().change_scene_to(zen_level)
