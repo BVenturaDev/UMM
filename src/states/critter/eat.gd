@@ -11,6 +11,7 @@ func enter():
 	# Do action eat?
 	if is_instance_valid(critter.eating_mushroom):
 		critter.eating_mushroom = null
+		critter.critter_model.snd_eat.play()
 	else:
 		search_shroom_to_eat()
 	exit("end_turn")

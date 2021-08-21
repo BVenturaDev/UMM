@@ -110,6 +110,7 @@ func move_to_tile(tile) -> void:
 		var anim: AnimationPlayer = critter_model.anim
 		critter_model.set_target(tile.global_transform.origin)
 		anim.play("walk")
+		critter_model.snd_move.play()
 
 		tween.interpolate_property(
 				self, 'translation:x', 
@@ -125,6 +126,7 @@ func move_to_tile(tile) -> void:
 		yield(tween,"tween_all_completed")
 		if is_alive:
 			anim.stop()
+			critter_model.snd_move.stop()
 			$Timer.wait_time = randf()
 			$Timer.start()
 			yield($Timer,"timeout")

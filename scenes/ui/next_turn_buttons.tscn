@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/ui/next_turn_buttons.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/next_turn/button.png" type="Texture" id=2]
 [ext_resource path="res://scenes/ui/next_turn/button_pressed.png" type="Texture" id=3]
 [ext_resource path="res://src/ui/next_turn_button.gd" type="Script" id=4]
+[ext_resource path="res://assets/sound/sfx/End_turn.mp3" type="AudioStream" id=5]
 
 [sub_resource type="InputEventAction" id=1]
 action = "ui_accept"
@@ -55,7 +56,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="next_turn_buttom" type="TextureButton" parent="."]
+[node name="next_turn_button" type="TextureButton" parent="."]
 margin_right = 200.0
 margin_bottom = 50.0
 shortcut_in_tooltip = false
@@ -64,7 +65,7 @@ texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 script = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="next_turn_buttom"]
+[node name="Label" type="Label" parent="next_turn_button"]
 margin_left = 36.8655
 margin_top = 19.6219
 margin_right = 107.865
@@ -74,6 +75,10 @@ text = "NEXT TURN"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="next_turn" type="AudioStreamPlayer" parent="next_turn_button"]
+stream = ExtResource( 5 )
+volume_db = -5.0
 
 [node name="next_turn_20" type="Button" parent="."]
 margin_top = 54.0
@@ -96,6 +101,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="next_turn_buttom" to="next_turn_buttom" method="_on_next_turn_buttom_pressed"]
+[connection signal="pressed" from="next_turn_button" to="next_turn_button" method="_on_next_turn_buttom_pressed"]
 [connection signal="button_up" from="next_turn_20" to="next_turn_20" method="_on_next_turn_20_button_up"]
 [connection signal="button_up" from="spawn_critter" to="spawn_critter" method="_on_pressed"]

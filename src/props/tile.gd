@@ -12,6 +12,9 @@ var friendly_ui = preload("res://scenes/ui/friendly_ui.tscn")
 onready var hex = $hex_tile
 onready var stack = $food_stack
 onready var resource_pos = $resource_point
+onready var snd_click = $click_sound
+onready var snd_food = $food_sound
+onready var snd_combat = $combat_sound
 
 # Variables
 # Grid Location
@@ -158,6 +161,7 @@ func spawn_log() -> void:
 # Called when the tile was clicked
 func clicked() -> void:
 	if owner_fungus and not turn_used:
+		snd_click.play()
 		if Globals.DEBUG:
 			print("Tile: (" + str(x) + ", " + str(y) + ") was clicked.")
 		if Globals.moving_tile:
@@ -272,6 +276,7 @@ func try_move_food(var other_tile: Object) -> void:
 func do_move_food(var other_tile: Object, var amount: int) -> void:
 	other_tile.spawn_num_food(amount)
 	remove_num_food(amount)
+	snd_food.play()
 	turn_complete()
 
 func attack(var amount: int) -> void:
@@ -301,6 +306,7 @@ func try_attack(var other_tile: Object) -> void:
 
 func do_attack(var other_tile: Object) -> void:
 	turn_complete()
+	snd_combat.play()
 	var left_over_food: int = other_tile.tile_food.size() - move_amount
 	if left_over_food > 0:
 		remove_num_food(move_amount)
