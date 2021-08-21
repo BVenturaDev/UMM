@@ -3,7 +3,7 @@ extends Camera
 const MAX_SPEED: float = 10.0
 const ZOOM_SPEED: float = 7.5
 const ROT_SPEED: float = 0.05
-const CAM_Y_MIN: float = 2.0
+const CAM_Y_MIN: float = 3.0
 const CAM_Y_MAX: float = 8.0
 const CAM_X_MIN: float = 1.0
 const CAM_Z_MIN: float = 1.0

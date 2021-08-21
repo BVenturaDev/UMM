@@ -274,9 +274,11 @@ func try_move_food(var other_tile: Object) -> void:
 	stop_move_food()
 
 func do_move_food(var other_tile: Object, var amount: int) -> void:
+	if owner_fungus:
+		if owner_fungus.my_owner.name == "player":
+			snd_food.play()
 	other_tile.spawn_num_food(amount)
 	remove_num_food(amount)
-	snd_food.play()
 	turn_complete()
 
 func attack(var amount: int) -> void:
