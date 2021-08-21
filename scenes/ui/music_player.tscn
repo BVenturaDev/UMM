@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/sound/music/Fun_Guy.mp3" type="AudioStream" id=1]
+[ext_resource path="res://assets/sound/music/Sunny_Hills_Loop.mp3" type="AudioStream" id=2]
+[ext_resource path="res://assets/sound/music/Ambient_birdsong_loop.mp3" type="AudioStream" id=3]
+[ext_resource path="res://src/ui/music_player.gd" type="Script" id=4]
+
+[node name="music_player" type="Node"]
+script = ExtResource( 4 )
+
+[node name="fun_guy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -10.0
+
+[node name="sunny_hills" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -10.0
+
+[node name="ambient_birds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+autoplay = true

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/UI_switch_click.mp3-3d99dc51b5a0c879f62556604b427d93.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/UI_switch_click.mp3"
+dest_files=[ "res://.import/UI_switch_click.mp3-3d99dc51b5a0c879f62556604b427d93.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

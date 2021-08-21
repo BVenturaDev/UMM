@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mushroom_death.mp3-f90955120021418bac63984250a7a672.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Mushroom_death.mp3"
+dest_files=[ "res://.import/Mushroom_death.mp3-f90955120021418bac63984250a7a672.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
