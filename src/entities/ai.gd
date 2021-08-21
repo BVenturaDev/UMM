@@ -2,6 +2,10 @@ extends Spatial
 
 onready var fungus = $fungus
 
+func _ready():
+	if name == "player":
+		Globals.player = self
+
 func do_turn():
 	for tile in fungus.owned_tiles:
 		tile.disable_glow()
@@ -43,7 +47,7 @@ func do_turn():
 							if neighbor.cur_shroom:
 								if neighbor.cur_shroom.is_in_group("scout"):
 									has_scout = true
-						elif neighbor.owner_fungus.my_owner.name == "player":
+						elif not neighbor.owner_fungus.my_owner == self:
 							need_scout = true
 				if not has_scout and need_scout:
 					if tile.tile_food.size() > 5:
@@ -101,3 +105,10 @@ func _try_gather_food(var tile: Object, var amount: int) -> bool:
 			if tile.tile_food.size() > amount:
 				return true
 	return false
+
+func update_glow() -> void:
+	for tile in fungus.owned_tiles:
+		tile.disable_glow()
+		tile.find_enemies()
+		for enemy in tile.enemies:
+			enemy.enable_glow(tile)

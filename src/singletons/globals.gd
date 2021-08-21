@@ -4,6 +4,7 @@ extends Node
 const DEBUG: bool = false
 const DEBUG_SM: bool = false
 # Game variables
+const BUILD_MOBILE: bool = false
 const BUILD_GATHER_COST = 5
 const BUILD_POISON_COST = 5
 const BUILD_SCOUT_COST = 5
@@ -13,7 +14,7 @@ const PERCENTAGE_TILES_FOR_VICTORY := 75.0
 const MAP_SIZE: int = 10
 const MAX_FOOD_MOVE: int = 10
 
-
+var main_menu: bool = false
 var grid: Object
 var player: Object
 var build_ui: Object
