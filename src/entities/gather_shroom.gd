@@ -8,6 +8,7 @@ onready var snd_death = $shroom_death
 onready var snd_growth = $shroom_growth
 
 var food_amount: int = 0
+var dying: bool = false
 
 var idle_anims: Array = ["idle", "left_and_right", "look_back", "look_up"]
 var owner_tile: Object = null
@@ -16,9 +17,10 @@ func _ready() -> void:
 	snd_growth.play()
 
 func _process(_delta) -> void:
-	if not owner_tile.cur_resource:
-		kill()
-	else:
+	if owner_tile:
+		if not owner_tile.cur_shroom == self and not dying:
+			kill()
+	elif not dying:
 		if owner_tile.cur_resource.is_in_group("trees"):
 			mini_me.visible = true
 			base.visible = false
@@ -39,9 +41,11 @@ func do_turn() -> void:
 
 func kill() -> void:
 	snd_death.play()
+	dying = true
 	anim.stop()
 	anim.play("death")
 	kill_timer.start()
+	owner_tile.cur_shroom = null
 
 func _on_kill_timer_timeout():
 	if owner_tile:
