@@ -3,6 +3,7 @@
 [ext_resource path="res://src/ui/next_turn_buttons.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/next_turn/button.png" type="Texture" id=2]
 [ext_resource path="res://scenes/ui/next_turn/button_pressed.png" type="Texture" id=3]
+[ext_resource path="res://src/ui/next_turn_buttom.gd" type="Script" id=4]
 
 [sub_resource type="InputEventAction" id=1]
 action = "ui_accept"
@@ -10,12 +11,8 @@ action = "ui_accept"
 [sub_resource type="ShortCut" id=2]
 shortcut = SubResource( 1 )
 
-[sub_resource type="GDScript" id=3]
-script/source = "extends TextureButton
-
-func _ready() -> void:
-	assert(GameSignals.connect(\"enter_player_turn\", self, \"_enable_button\") == 0)
-	assert(GameSignals.connect(\"exit_player_turn\", self, \"_disable_button\") == 0)
+[sub_resource type="GDScript" id=4]
+script/source = "extends Button
 
 func _enable_button():
 	self.disabled = false
@@ -23,27 +20,12 @@ func _enable_button():
 func _disable_button():
 	self.disabled = true
 
-func _on_pressed() -> void:
-	if not Globals.game_over:
-		if Globals.moving_tile:
-			Globals.moving_tile.stop_move_food()
-		GameSignals.emit_signal(\"next_turn\")
-
-"
-
-[sub_resource type="GDScript" id=4]
-script/source = "extends Button
-
 func _ready() -> void:
 	focus_mode = Control.FOCUS_NONE
 
+func _on_pressed() -> void:
+	GameSignals.emit_signal(\"spawn_critter\")
 
-
-func _on_next_turn_20_button_up() -> void:
-	for i in 50:
-		GameSignals.emit_signal(\"next_turn\")
-		$Timer.start()
-		yield($Timer,\"timeout\")
 "
 
 [sub_resource type="GDScript" id=5]
@@ -80,7 +62,7 @@ shortcut_in_tooltip = false
 shortcut = SubResource( 2 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
-script = SubResource( 3 )
+script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="next_turn_buttom"]
 margin_left = 36.8655
@@ -114,6 +96,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="button_up" from="next_turn_buttom" to="next_turn_buttom" method="_on_pressed"]
+[connection signal="pressed" from="next_turn_buttom" to="next_turn_buttom" method="_on_next_turn_buttom_pressed"]
 [connection signal="button_up" from="next_turn_20" to="next_turn_20" method="_on_next_turn_20_button_up"]
 [connection signal="button_up" from="spawn_critter" to="spawn_critter" method="_on_pressed"]
