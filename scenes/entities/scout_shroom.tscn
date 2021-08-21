@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/models/scout_shroom/scout.material" type="Material" id=1]
 [ext_resource path="res://art/blends/shroom_scout/face_base.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://art/blends/shroom_scout/face_suspition.png" type="Texture" id=5]
 [ext_resource path="res://art/blends/shroom_scout/face_death.png" type="Texture" id=6]
 [ext_resource path="res://src/entities/scout_shroom.gd" type="Script" id=7]
+[ext_resource path="res://assets/sound/sfx/Mushroom_death.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/sfx/Mushroom_growth.mp3" type="AudioStream" id=9]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "scout"
@@ -270,5 +272,13 @@ anims/left_and_right = SubResource( 6 )
 anims/look_around = SubResource( 7 )
 
 [node name="kill_timer" type="Timer" parent="."]
+
+[node name="shroom_death" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 8 )
+unit_db = 10.0
+
+[node name="shroom_growth" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 9 )
+unit_db = 10.0
 
 [connection signal="timeout" from="kill_timer" to="." method="_on_kill_timer_timeout"]

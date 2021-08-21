@@ -24,7 +24,7 @@ func _ready() -> void:
 	Globals.build_ui = self
 
 func make_build_menu(var cur_food: int, var tile: Tile) -> void:
-	if Globals.DEBUG and tile.cur_shroom:
+	if tile.cur_shroom:
 		kill_shroom.visible = true
 	else:
 		kill_shroom.visible = false
@@ -100,6 +100,7 @@ func _on_gather_shroom_button_pressed():
 
 func _on_move_food_button_pressed():
 	if selected_tile:
+		selected_tile.snd_food.play()
 		var amount: int = int(food_slider.value)
 		selected_tile.move_food(amount)
 	_close_menu()
@@ -129,5 +130,6 @@ func _on_kill_shroom_pressed():
 
 func _on_RequestFood_pressed() -> void:
 	if selected_tile:
+		selected_tile.snd_food.play()
 		selected_tile.region_food_request(selected_tile.region_neighbors, 5)
 	_close_menu()

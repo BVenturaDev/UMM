@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Squirrel_Eating_1.mp3-2dd806bde2345f4bcc4299df96509d
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
