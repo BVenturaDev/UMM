@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://src/entities/game_over.gd" type="Script" id=15]
 [ext_resource path="res://scenes/props/beach.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/props/water.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/sound/music/Fun_Guy.mp3" type="AudioStream" id=18]
 
 [node name="main_level" type="Spatial"]
 
@@ -57,6 +58,7 @@ environment = ExtResource( 9 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 0.34202, -0.538986, 0.769751, 7.16125e-08, 0.819152, 0.573577, -0.939693, -0.196175, 0.280166, 228.275, 154.801, 48.0567 )
+visible = false
 light_energy = 2.0
 shadow_enabled = true
 
@@ -73,5 +75,10 @@ script = ExtResource( 13 )
 script = ExtResource( 6 )
 
 [node name="fungus" parent="ai" instance=ExtResource( 3 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+volume_db = -10.0
+autoplay = true
 
 [editable path="Test_Grid"]

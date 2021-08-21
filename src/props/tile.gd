@@ -53,7 +53,7 @@ func _process(_delta) -> void:
 		if owner_fungus.my_owner.name == "player":
 			hex.enable_undergrowth()
 			generate_friendly_ui()
-		elif enemy and revealed:
+		elif enemy and revealed or Globals.DEBUG:
 			hex.enable_enemy_undergrowth()
 			generate_friendly_ui()
 		else:
