@@ -108,6 +108,7 @@ func _on_attack_button_pressed():
 	if selected_tile:
 		var amount: int = int(attack_slider.value)
 		selected_tile.attack(amount)
+	_close_menu()
 
 func _on_poison_shroom_pressed():
 	if selected_tile:
@@ -128,6 +129,5 @@ func _on_kill_shroom_pressed():
 
 func _on_RequestFood_pressed() -> void:
 	if selected_tile:
-		selected_tile.region_food_request(
-			selected_tile.region_neighbors,
-			5)
+		selected_tile.region_food_request(selected_tile.region_neighbors, 5)
+	_close_menu()
