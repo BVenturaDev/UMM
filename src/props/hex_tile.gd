@@ -3,6 +3,7 @@ class_name Hex
 onready var tile = $tile
 
 var shader: Object = null
+var highlighted: bool = false
 
 func _ready() -> void:
 	shader = tile.get_active_material(0)
@@ -14,12 +15,18 @@ func _on_Area_input_event(_camera, var event: InputEvent, _click_position, _clic
 		if event.is_pressed() and event.button_index == 1:
 			get_parent().clicked()
 
+func _input(var event: InputEvent) -> void:
+	if event.is_action_pressed("ui_click") and highlighted:
+		get_parent().clicked()
+
 func _on_Area_mouse_entered():
 	if not Globals.moving_tile:
+		highlighted = true
 		enable_highlighted()
 
 func _on_Area_mouse_exited():
 	if not Globals.moving_tile:
+		highlighted = false
 		disable_highlighted()
 		
 func enable_highlighted() -> void:
