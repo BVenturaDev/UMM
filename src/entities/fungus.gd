@@ -20,8 +20,9 @@ func _ready() -> void:
 	var tile: Object = Globals.grid.find_tile(x, y)
 	if tile:
 		claim_tile(tile)
-		tile.spawn_num_food(20)
+		tile.spawn_num_food(25)
 		tile.call_deferred("spawn_log")
+		tile.call_deferred("build_gather_shroom")
 		
 func claim_tile(var tile: Object) -> void:
 	tile.owner_fungus = self

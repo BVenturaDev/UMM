@@ -59,6 +59,7 @@ func _process(_delta) -> void:
 		else:
 			hex.disable_undergrowth()
 			hex.disable_enemy_undergrowth()
+			hex.disable_turn_used()
 			remove_friendly_ui()
 	else:
 		hex.disable_undergrowth()
