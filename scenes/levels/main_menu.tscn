@@ -99,16 +99,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Options"
 
-[node name="quit_button" type="Button" parent="CanvasLayer/Menu_Options/VBoxContainer"]
-margin_top = 132.0
-margin_right = 80.0
-margin_bottom = 152.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Quit"
-
 [node name="options_menu" parent="CanvasLayer" instance=ExtResource( 13 )]
 visible = false
 
@@ -141,7 +131,6 @@ autostart = true
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/zen_button" to="." method="_on_zen_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/options_button" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [editable path="Test_Grid"]
