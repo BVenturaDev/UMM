@@ -76,6 +76,7 @@ __meta__ = {
 [node name="next_turn_buttom" type="TextureButton" parent="."]
 margin_right = 200.0
 margin_bottom = 50.0
+shortcut_in_tooltip = false
 shortcut = SubResource( 2 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
