@@ -51,10 +51,14 @@ script = ExtResource( 15 )
 [node name="ui_build" parent="CanvasLayer" instance=ExtResource( 12 )]
 
 [node name="next_turn_buttons" parent="CanvasLayer" instance=ExtResource( 14 )]
-anchor_left = 0.75
-anchor_top = 0.8
+anchor_left = 0.7
+anchor_top = 0.7
 anchor_right = 0.8
 anchor_bottom = 0.8
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )

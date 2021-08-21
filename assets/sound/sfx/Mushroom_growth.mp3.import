@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Mushroom_growth.mp3-8ab9dd0ef868f227b567e47ed4ead53f
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

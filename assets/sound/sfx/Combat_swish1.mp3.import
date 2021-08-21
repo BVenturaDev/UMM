@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Combat_swish1.mp3-5e3c31dae0db6820f382ed4c38bc76ef.m
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

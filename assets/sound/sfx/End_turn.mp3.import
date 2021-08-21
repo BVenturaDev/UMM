@@ -11,5 +11,5 @@ dest_files=[ "res://.import/End_turn.mp3-71c00600afbb8980a164b7f953b83606.mp3str
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

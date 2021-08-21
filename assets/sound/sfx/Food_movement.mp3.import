@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Food_movement.mp3-7c88b1c525bf564aecbab58ab6f62ffe.m
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

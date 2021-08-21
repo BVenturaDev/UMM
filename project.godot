@@ -67,6 +67,13 @@ mouse_cursor/custom_image="res://mouse.png"
 
 convert_text_resources_to_binary_on_export=true
 
+[importer_defaults]
+
+mp3={
+"loop": false,
+"loop_offset": 0
+}
+
 [input]
 
 ui_left={

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Mushroom_death.mp3-f90955120021418bac63984250a7a672.
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
