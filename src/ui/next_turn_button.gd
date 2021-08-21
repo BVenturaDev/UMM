@@ -13,7 +13,7 @@ func _disable_button():
 	self.disabled = true
 
 func _on_next_turn_buttom_pressed() -> void:
-	GameSignals.emit_signal("next_turn")
 	if not Globals.game_over:
+		GameSignals.emit_signal("next_turn")
 		if Globals.moving_tile:
 			Globals.moving_tile.stop_move_food()

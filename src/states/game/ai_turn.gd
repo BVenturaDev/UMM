@@ -5,8 +5,8 @@ var state_machine
 func enter():
 	if Globals.DEBUG_SM:
 		print("Exiting state: ", name)
-	assert(GameSignals.connect("next_turn", self, "_next_turn") == 0)
-	
+	var _a = GameSignals.connect("next_turn", self, "_next_turn")
+	#_a = GameSignals.connect("next_turn", self, "_next_turn")
 	_do_ai_group_turn()
 	_next_turn()
 

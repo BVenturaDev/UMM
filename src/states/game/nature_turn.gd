@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 func enter():
-	assert(GameSignals.connect("next_turn", self, "_next_turn") == 0)
+	var _a = GameSignals.connect("next_turn", self, "_next_turn")
 	# Events on enter
 	GameSignals.emit_signal("enter_nature_turn")
 	_do_group_nature_turn()

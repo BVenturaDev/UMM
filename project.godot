@@ -119,6 +119,16 @@ ui_zoom_out={
  ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[logging]
+
+file_logging/enable_file_logging=true
+file_logging/log_path="B:/logs/godot-UMM.log"
+file_logging/max_log_files=30
+
 [physics]
 
 common/enable_pause_aware_picking=true
