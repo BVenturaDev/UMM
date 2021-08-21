@@ -76,7 +76,8 @@ func do_turn():
 		if new_resource:
 			var nearest_tile = fungus.find_nearest_tile(new_resource)
 			if nearest_tile:
-				var _a = _try_gather_food(nearest_tile, 5)
+				if nearest_tile.tile_food.size() < 6:
+					var _a = _try_gather_food(nearest_tile, 5)
 					
 func get_attack_amount(var tile: Object) -> int:
 	var amount: int = 0
