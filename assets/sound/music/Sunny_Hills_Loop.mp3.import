@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Sunny_Hills_Loop.mp3-3f0f29b0d409ab9d703dfe16905ca864.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/music/Sunny_Hills_Loop.mp3"
+dest_files=[ "res://.import/Sunny_Hills_Loop.mp3-3f0f29b0d409ab9d703dfe16905ca864.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

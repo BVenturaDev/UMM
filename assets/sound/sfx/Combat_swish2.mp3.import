@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Combat_swish2.mp3-145c9727c7d9422b79fd45b97db20e3f.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Combat_swish2.mp3"
+dest_files=[ "res://.import/Combat_swish2.mp3-145c9727c7d9422b79fd45b97db20e3f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

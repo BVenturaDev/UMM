@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Food_movement.mp3-7c88b1c525bf564aecbab58ab6f62ffe.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sfx/Food_movement.mp3"
+dest_files=[ "res://.import/Food_movement.mp3-7c88b1c525bf564aecbab58ab6f62ffe.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
