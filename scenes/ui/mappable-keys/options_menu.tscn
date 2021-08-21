@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/options/volume_slider.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/options/rebindable_action.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/feedback_sound.wav" type="AudioStream" id=3]
+[ext_resource path="res://scenes/ui/mappable-keys/rebindable_action.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/ui/mappable-keys/volume_slider.tscn" type="PackedScene" id=2]
 
 [node name="MarginContainer" type="MarginContainer"]
 anchor_right = 1.0
@@ -16,6 +15,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Panel" type="Panel" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="HotkeysContainer" type="HBoxContainer" parent="."]
 margin_left = 20.0
 margin_top = 20.0
@@ -24,7 +33,7 @@ margin_bottom = 580.0
 custom_constants/separation = 80
 
 [node name="GridContainer" type="GridContainer" parent="HotkeysContainer"]
-margin_right = 241.0
+margin_right = 242.0
 margin_bottom = 560.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 10
@@ -48,14 +57,11 @@ text = "UI Up:"
 
 [node name="RebindableAction" parent="HotkeysContainer/GridContainer/UiUp" instance=ExtResource( 2 )]
 margin_left = 45.0
-margin_right = 75.0
-keep_pressed_outside = true
-text = "Up"
-action = "ui_up"
+margin_right = 61.0
 
 [node name="UiDown" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
 margin_left = 130.0
-margin_right = 241.0
+margin_right = 242.0
 margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -67,11 +73,9 @@ margin_right = 59.0
 margin_bottom = 17.0
 text = "UI Down:"
 
-[node name="RebindableAction" parent="HotkeysContainer/GridContainer/UiDown" instance=ExtResource( 2 )]
+[node name="Button" parent="HotkeysContainer/GridContainer/UiDown" instance=ExtResource( 1 )]
 margin_left = 63.0
-margin_right = 111.0
-text = "Down"
-action = "ui_down"
+margin_right = 112.0
 
 [node name="UILeft" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
 margin_top = 30.0
@@ -87,16 +91,14 @@ margin_right = 47.0
 margin_bottom = 17.0
 text = "UI Left:"
 
-[node name="RebindableAction" parent="HotkeysContainer/GridContainer/UILeft" instance=ExtResource( 2 )]
+[node name="Button" parent="HotkeysContainer/GridContainer/UILeft" instance=ExtResource( 1 )]
 margin_left = 51.0
-margin_right = 87.0
-text = "Left"
-action = "ui_left"
+margin_right = 100.0
 
 [node name="UIRight" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
 margin_left = 130.0
 margin_top = 30.0
-margin_right = 241.0
+margin_right = 242.0
 margin_bottom = 50.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -108,11 +110,9 @@ margin_right = 55.0
 margin_bottom = 17.0
 text = "UI Right:"
 
-[node name="RebindableAction" parent="HotkeysContainer/GridContainer/UIRight" instance=ExtResource( 2 )]
+[node name="Button" parent="HotkeysContainer/GridContainer/UIRight" instance=ExtResource( 1 )]
 margin_left = 59.0
-margin_right = 103.0
-text = "Right"
-action = "ui_right"
+margin_right = 108.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
 margin_top = 60.0
@@ -128,14 +128,24 @@ margin_right = 67.0
 margin_bottom = 17.0
 text = "UI Accept:"
 
-[node name="RebindableAction" parent="HotkeysContainer/GridContainer/HBoxContainer" instance=ExtResource( 2 )]
+[node name="Button" parent="HotkeysContainer/GridContainer/HBoxContainer" instance=ExtResource( 1 )]
 margin_left = 71.0
 margin_right = 120.0
-action = "ui_accept"
+
+[node name="Back Button" type="Button" parent="HotkeysContainer"]
+margin_left = 322.0
+margin_right = 376.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Return"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VolumeContainer" type="VBoxContainer" parent="HotkeysContainer"]
-margin_left = 321.0
-margin_right = 418.0
+margin_left = 456.0
+margin_right = 553.0
 margin_bottom = 560.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -146,14 +156,10 @@ margin_right = 97.0
 margin_bottom = 14.0
 text = "Master Volume"
 
-[node name="VolumeSlider" parent="HotkeysContainer/VolumeContainer" instance=ExtResource( 1 )]
+[node name="VolumeSlider" parent="HotkeysContainer/VolumeContainer" instance=ExtResource( 2 )]
 margin_top = 18.0
 margin_right = 97.0
 margin_bottom = 34.0
 value = 1.0
-feedback_sound_path = NodePath("AudioStreamPlayer")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HotkeysContainer/VolumeContainer/VolumeSlider"]
-stream = ExtResource( 3 )
-
-[editable path="HotkeysContainer/GridContainer/HBoxContainer/RebindableAction"]
