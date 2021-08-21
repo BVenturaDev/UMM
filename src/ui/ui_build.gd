@@ -18,7 +18,7 @@ onready var attack_butt = $build_popup/VBoxContainer/attack_button
 var food_move_amount: int = 0
 var food_attack_amount: int = 0
 var tile_food: int = 0
-var selected_tile: Object = null
+var selected_tile: Tile = null
 
 func _ready() -> void:
 	Globals.build_ui = self
@@ -124,3 +124,10 @@ func _on_kill_shroom_pressed():
 		if selected_tile.cur_shroom:
 			selected_tile.cur_shroom.kill()
 	_close_menu()
+
+
+func _on_RequestFood_pressed() -> void:
+	if selected_tile:
+		selected_tile.region_food_request(
+			selected_tile.region_neighbors,
+			5)
