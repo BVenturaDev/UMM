@@ -1,0 +1,345 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/ui/ui_build.gd" type="Script" id=1]
+[ext_resource path="res://src/ui/new_ui.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/dibujo.svg" type="Texture" id=3]
+[ext_resource path="res://scenes/ui/normal.svg" type="Texture" id=4]
+
+[node name="tactical_ui" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="build_popup" type="PopupPanel" parent="."]
+visible = true
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -124.0
+margin_right = -392.0
+margin_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="build_popup"]
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.7
+anchor_bottom = 0.7
+margin_left = 3.2
+margin_top = 3.2
+margin_right = -1.6
+margin_bottom = -1.6
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="build_popup/VBoxContainer"]
+visible = false
+margin_top = 93.0
+margin_right = 204.0
+margin_bottom = 107.0
+
+[node name="Label" type="Label" parent="build_popup/VBoxContainer/HBoxContainer"]
+visible = false
+margin_right = 141.0
+margin_bottom = 14.0
+text = "Current Food Amount:"
+align = 1
+valign = 1
+
+[node name="cur_food_label" type="Label" parent="build_popup/VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 145.0
+margin_right = 153.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="build_popup/VBoxContainer"]
+visible = false
+margin_top = 102.0
+margin_right = 204.0
+margin_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="build_popup/VBoxContainer/HBoxContainer2"]
+visible = false
+margin_right = 192.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 10.0
+
+[node name="food_amount" type="Label" parent="build_popup/VBoxContainer/HBoxContainer2"]
+visible = false
+margin_left = 196.0
+margin_top = 1.0
+margin_right = 204.0
+margin_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+align = 1
+valign = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="build_popup/VBoxContainer"]
+visible = false
+margin_top = 112.0
+margin_right = 204.0
+margin_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HSlider2" type="HSlider" parent="build_popup/VBoxContainer/HBoxContainer3"]
+visible = false
+margin_right = 192.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 10.0
+
+[node name="attack_food_amount" type="Label" parent="build_popup/VBoxContainer/HBoxContainer3"]
+visible = false
+margin_left = 196.0
+margin_top = 1.0
+margin_right = 204.0
+margin_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+align = 1
+valign = 1
+
+[node name="next_ui" type="Control" parent="."]
+visible = false
+mouse_filter = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+buttons = NodePath("buttons")
+build_popup = NodePath("../build_popup")
+
+[node name="buttons" type="Control" parent="next_ui"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="close_button" type="TextureButton" parent="next_ui/buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 4 )
+texture_focused = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="next_ui/buttons/close_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "CLOSE"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RequestFood" type="TextureButton" parent="next_ui/buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 4 )
+texture_focused = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="next_ui/buttons/RequestFood"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "REQUEST
+FOOD"
+align = 1
+valign = 1
+
+[node name="attack_button" type="TextureButton" parent="next_ui/buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 4 )
+texture_focused = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="next_ui/buttons/attack_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "ATTACK"
+align = 1
+valign = 1
+
+[node name="move_food_button" type="TextureButton" parent="next_ui/buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 4 )
+texture_focused = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="next_ui/buttons/move_food_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "MOVE
+FOOD"
+align = 1
+valign = 1
+
+[node name="kill_shroom" type="TextureButton" parent="next_ui/buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 4 )
+texture_focused = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="next_ui/buttons/kill_shroom"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "KILL"
+align = 1
+valign = 1
+
+[node name="poison_shroom" type="TextureButton" parent="next_ui/buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 4 )
+texture_focused = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="next_ui/buttons/poison_shroom"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "POISON
+FOOD"
+align = 1
+valign = 1
+
+[node name="scout_shroom" type="TextureButton" parent="next_ui/buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 4 )
+texture_focused = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="next_ui/buttons/scout_shroom"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "SCOUT
+SHROOM"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gather_shroom_button" type="TextureButton" parent="next_ui/buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 4 )
+texture_focused = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="next_ui/buttons/gather_shroom_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "GATHER
+SHROOM"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="next_ui"]
+
+[connection signal="value_changed" from="build_popup/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="build_popup/VBoxContainer/HBoxContainer3/HSlider2" to="." method="_on_HSlider2_value_changed"]
+[connection signal="pressed" from="next_ui/buttons/close_button" to="next_ui" method="_on_close_button_pressed"]
+[connection signal="pressed" from="next_ui/buttons/RequestFood" to="next_ui" method="_on_RequestFood_pressed"]
+[connection signal="pressed" from="next_ui/buttons/attack_button" to="next_ui" method="_on_attack_button_pressed"]
+[connection signal="pressed" from="next_ui/buttons/move_food_button" to="next_ui" method="_on_move_food_button_pressed"]
+[connection signal="pressed" from="next_ui/buttons/kill_shroom" to="next_ui" method="_on_kill_shroom_pressed"]
+[connection signal="pressed" from="next_ui/buttons/poison_shroom" to="next_ui" method="_on_poison_shroom_pressed"]
+[connection signal="pressed" from="next_ui/buttons/scout_shroom" to="next_ui" method="_on_scout_shroom_pressed"]
+[connection signal="pressed" from="next_ui/buttons/gather_shroom_button" to="next_ui" method="_on_gather_shroom_button_pressed"]
