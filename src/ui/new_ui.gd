@@ -6,15 +6,30 @@ export var speed = 0.25
 var num := 0
 var active := false
 export(NodePath) onready var buttons = get_node(buttons) as Control
+export(NodePath) onready var build_popup
 var comeback_position := Vector2.ZERO
+var max_time_without_popup := 0.2
+var time_without_popup := 0.0
+
 func _ready():
 	num = buttons.get_child_count()
 
+func _process(delta: float) -> void:
+	if get_node(build_popup).visible == false:
+		time_without_popup += delta
+		if time_without_popup > max_time_without_popup:
+			if active:
+				hide_menu()
+				
+			else:
+				time_without_popup = 0.0
+	else:
+		time_without_popup = 0.0
 
 func display() -> void:
 	rect_global_position = get_global_mouse_position()
 	for button in buttons.get_children():
-		comeback_position = rect_global_position
+		comeback_position = rect_global_position 
 		button.rect_global_position = rect_global_position
 	show_menu()
 
@@ -44,7 +59,6 @@ func show_menu():
 	tween.start()
 
 func hide_menu():
-	active = false
 	for button in buttons.get_children():
 		button.disabled = true
 	for b in buttons.get_children():
@@ -54,6 +68,9 @@ func hide_menu():
 					Vector2(0.5, 0.5), speed, Tween.TRANS_LINEAR)
 		b.disabled = true
 	$Tween.start()
+	active = false
+	yield($Tween,"tween_all_completed")
+	hide()
 
 func _on_close_button_pressed() -> void:
 	if Globals.build_ui:
@@ -93,8 +110,3 @@ func _on_kill_shroom_pressed() -> void:
 func _on_scout_shroom_pressed() -> void:
 	if Globals.build_ui:
 		Globals.build_ui._on_scout_shroom_pressed()
-
-
-func _on_build_popup_popup_hide() -> void:
-	yield(get_tree().create_timer(0.2),"timeout")
-	hide_menu()

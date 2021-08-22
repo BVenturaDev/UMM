@@ -29,6 +29,8 @@ func _ready() -> void:
 	Globals.build_ui = self
 
 func make_build_menu(var cur_food: int, var tile: Tile) -> void:
+	if next_ui.visible == true:
+		return
 	if tile.cur_shroom:
 		kill_shroom.visible = true
 	else:
@@ -95,6 +97,7 @@ func _on_close_button_pressed():
 	_close_menu()
 
 func _close_menu() -> void:
+	next_ui.hide_menu()
 	window.visible = false
 	selected_tile = null
 	food_move_amount = 0
