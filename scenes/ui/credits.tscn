@@ -99,6 +99,13 @@ margin_bottom = 140.0
 text = "aokay - Audio Producer / Composer - FunGuy"
 align = 1
 
+[node name="GMJin" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 150.0
+margin_right = 441.0
+margin_bottom = 170.0
+text = "GMJin - Game Design, Shader Dev"
+align = 1
+
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 363.924, 434.541 )
 scale = Vector2( 0.177902, 0.177902 )
