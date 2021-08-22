@@ -51,6 +51,7 @@ show_tiles_in_editor = true
 
 [node name="Control_Camera" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 5, 5, 10 )
+current = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource( 15 )
