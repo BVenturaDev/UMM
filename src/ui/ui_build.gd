@@ -2,6 +2,8 @@ extends Control
 class_name build_ui
 
 const DEBUG_VIEW: bool = true
+signal tactical_menu_showed
+signal tactical_menu_hided
 
 onready var window = $build_popup
 export(NodePath) onready var food_amount_text = get_node(food_amount_text)
@@ -156,3 +158,11 @@ func _on_RequestFood_pressed() -> void:
 		selected_tile.region_food_request(selected_tile.region_neighbors, 5)
 	_close_menu()
 
+
+
+func _on_next_ui_hide() -> void:
+	emit_signal("tactical_menu_hided")
+
+
+func _on_next_ui_draw() -> void:
+	emit_signal("tactical_menu_showed")

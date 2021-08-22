@@ -97,4 +97,7 @@ script = ExtResource( 13 )
 
 [node name="fungus" parent="player" instance=ExtResource( 3 )]
 
+[connection signal="tactical_menu_hided" from="CanvasLayer/tactical_ui" to="CanvasLayer" method="_on_tactical_ui_tactical_menu_hided"]
+[connection signal="tactical_menu_showed" from="CanvasLayer/tactical_ui" to="CanvasLayer" method="_on_tactical_ui_tactical_menu_showed"]
+
 [editable path="Test_Grid"]
