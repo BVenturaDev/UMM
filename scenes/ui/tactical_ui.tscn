@@ -28,6 +28,7 @@ slider_cont = NodePath("build_popup/VBoxContainer/HBoxContainer2")
 move_food_butt = NodePath("next_ui/buttons/move_food_button")
 attack_cont = NodePath("build_popup/VBoxContainer/HBoxContainer3")
 attack_butt = NodePath("next_ui/buttons/attack_button")
+request_food = NodePath("next_ui/buttons/RequestFood")
 next_ui = NodePath("next_ui")
 
 [node name="build_popup" type="PopupPanel" parent="."]

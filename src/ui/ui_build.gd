@@ -20,6 +20,7 @@ export(NodePath) onready var move_food_butt = get_node(move_food_butt)
 
 export(NodePath) onready var attack_cont = get_node(attack_cont)
 export(NodePath) onready var attack_butt = get_node(attack_butt)
+export(NodePath) onready var request_food = get_node(request_food)
 export(NodePath) onready var next_ui = get_node(next_ui) as RadialButtons
 
 onready var close_butt = $next_ui/buttons/close_button
@@ -71,6 +72,11 @@ func make_build_menu(var cur_food: int, var tile: Tile) -> void:
 		attack_cont.visible = false
 		attack_butt.visible = false
 		
+	if abs(tile.food_amount - tile.food_in_region) > 0:
+		request_food.show()
+	else:
+		request_food.hide()
+	
 	tile_food = cur_food
 	
 	cur_food_text.text = str(tile.food_amount)

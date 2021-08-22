@@ -368,8 +368,9 @@ func get_food_in_region() -> int:
 	for neigbor in region_neighbors:
 		if neigbor.owner_fungus != owner_fungus:
 			continue
-		if neigbor.tile_food.size() > 1:
+		if neigbor.tile_food.size() > 1 and not neigbor.turn_used:
 			_food_in_region += neigbor.tile_food.size() - 1
+			print(_food_in_region)
 	_food_in_region += tile_food.size()
 	return _food_in_region
 
