@@ -24,6 +24,12 @@ var moving_tile: Object = null
 var game_over: bool = false
 var options: bool = false
 
+# Settings variables
+var rot_speed: float = 0.05
+var stick_speed: float = 600.0
+var lights: bool = !BUILD_MOBILE
+var shadows: bool = !BUILD_MOBILE
+
 onready var victory_condition: int= (PERCENTAGE_TILES_FOR_VICTORY / 100) * pow(Globals.MAP_SIZE, 2)
 
 func _ready() -> void:
