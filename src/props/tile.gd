@@ -328,7 +328,7 @@ func do_attack(var other_tile: Object) -> void:
 		other_tile.turn_complete()
 	else:
 		other_tile.remove_fungus()
-		other_tile.remove_num_food(move_amount)
+		remove_num_food(move_amount)
 
 func enable_grayed_out() -> void:
 	hex.enable_grayed_out()
