@@ -43,6 +43,7 @@ func display() -> void:
 		comeback_position = rect_global_position 
 		
 		button.rect_global_position = rect_global_position
+	$buttons/poison_shroom.grab_focus()
 	show_menu()
 
 

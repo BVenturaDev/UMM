@@ -1,13 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="49.537 28.939 100.046 86.643" xmlns="http://www.w3.org/2000/svg">
-  <g id="layer1">
-    <g id="g565" transform="translate(8.0136622,0.67379618)">
-      <g id="g559">
-        <path style="fill:#28170b" id="path413" d="m 440.53369,434.2963 -189.06367,-10e-6 -94.53183,-163.73395 94.53184,-163.73394 189.06368,1e-5 94.53183,163.73395 z" transform="scale(0.26458333)"/>
-      </g>
-      <g id="g556">
-        <path style="fill:#502d16" id="path415" d="M 266.29046,274.72835 110.81011,274.72834 33.069946,140.07841 110.81013,5.4284811 l 155.48034,7.6e-6 77.74017,134.6499313 z" transform="matrix(0.26458333,0,0,0.26458333,41.257597,35.204236)"/>
-      </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="49.537 28.939 100.046 86.643"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="dibujo.svg"
+   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="4.6192127"
+     inkscape:cx="42.106742"
+     inkscape:cy="42.106742"
+     inkscape:window-width="1368"
+     inkscape:window-height="739"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <g
+     id="g123">
+    <g
+       id="g559"
+       transform="translate(8.0136622,0.67379618)">
+      <path
+         style="fill:#28170b"
+         id="path413"
+         d="m 440.53369,434.2963 -189.06367,-10e-6 -94.53183,-163.73395 94.53184,-163.73394 189.06368,1e-5 94.53183,163.73395 z"
+         transform="scale(0.26458333)" />
     </g>
+    <path
+       style="fill:#483e37;stroke-width:0.264583"
+       id="path415"
+       d="M 119.72728,108.56657 H 78.589767 L 58.021015,72.940444 78.589772,37.314318 l 41.137508,2e-6 20.56875,35.626127 z" />
   </g>
 </svg>
