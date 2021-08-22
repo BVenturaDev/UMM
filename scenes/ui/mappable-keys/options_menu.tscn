@@ -305,28 +305,107 @@ action = "cam_backward"
 
 [node name="VolumeContainer" type="VBoxContainer" parent="HotkeysContainer"]
 margin_left = 442.0
-margin_right = 539.0
+margin_right = 543.0
 margin_bottom = 560.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="HotkeysContainer/VolumeContainer"]
-margin_right = 97.0
+margin_right = 101.0
 margin_bottom = 14.0
-text = "Master Volume"
+text = "Master Volume:"
 
 [node name="VolumeSlider" parent="HotkeysContainer/VolumeContainer" instance=ExtResource( 2 )]
 margin_top = 18.0
-margin_right = 97.0
+margin_right = 101.0
 margin_bottom = 34.0
 value = 1.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HotkeysContainer/VolumeContainer/VolumeSlider"]
+[node name="SettingsContainer" type="VBoxContainer" parent="HotkeysContainer"]
+margin_left = 623.0
+margin_right = 846.0
+margin_bottom = 560.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CamRotContainer" type="VBoxContainer" parent="HotkeysContainer/SettingsContainer"]
+margin_right = 223.0
+margin_bottom = 34.0
+
+[node name="Label" type="Label" parent="HotkeysContainer/SettingsContainer/CamRotContainer"]
+margin_right = 223.0
+margin_bottom = 14.0
+text = "Camera Turn Speed:"
+
+[node name="CamSlider" parent="HotkeysContainer/SettingsContainer/CamRotContainer" instance=ExtResource( 2 )]
+margin_top = 18.0
+margin_right = 223.0
+margin_bottom = 34.0
+min_value = 0.01
+step = 0.01
+value = 1.0
+script = null
+
+[node name="StickContainer" type="VBoxContainer" parent="HotkeysContainer/SettingsContainer"]
+margin_top = 38.0
+margin_right = 223.0
+margin_bottom = 72.0
+
+[node name="Label" type="Label" parent="HotkeysContainer/SettingsContainer/StickContainer"]
+margin_right = 223.0
+margin_bottom = 14.0
+text = "Controller Right Stick Speed:"
+
+[node name="StickSlider" parent="HotkeysContainer/SettingsContainer/StickContainer" instance=ExtResource( 2 )]
+margin_top = 18.0
+margin_right = 223.0
+margin_bottom = 34.0
+min_value = 1.0
+max_value = 1000.0
+step = 1.0
+value = 1.0
+script = null
+
+[node name="LightChecksContainer" type="HBoxContainer" parent="HotkeysContainer/SettingsContainer"]
+margin_top = 76.0
+margin_right = 223.0
+margin_bottom = 118.0
+custom_constants/separation = 30
+
+[node name="LightsContainer" type="VBoxContainer" parent="HotkeysContainer/SettingsContainer/LightChecksContainer"]
+margin_right = 88.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="HotkeysContainer/SettingsContainer/LightChecksContainer/LightsContainer"]
+margin_right = 88.0
+margin_bottom = 14.0
+text = "Enable Lights:"
+
+[node name="LightsCheckBox" type="CheckBox" parent="HotkeysContainer/SettingsContainer/LightChecksContainer/LightsContainer"]
+margin_top = 18.0
+margin_right = 88.0
+margin_bottom = 42.0
+
+[node name="ShadowContainer" type="VBoxContainer" parent="HotkeysContainer/SettingsContainer/LightChecksContainer"]
+margin_left = 118.0
+margin_right = 223.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="HotkeysContainer/SettingsContainer/LightChecksContainer/ShadowContainer"]
+margin_right = 105.0
+margin_bottom = 14.0
+text = "Enable Shadows:"
+
+[node name="ShadowsCheckBox" type="CheckBox" parent="HotkeysContainer/SettingsContainer/LightChecksContainer/ShadowContainer"]
+margin_top = 18.0
+margin_right = 105.0
+margin_bottom = 42.0
 
 [node name="Back Button" type="Button" parent="HotkeysContainer"]
-margin_left = 619.0
-margin_right = 673.0
+margin_left = 926.0
+margin_right = 980.0
 margin_bottom = 20.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -335,4 +414,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="value_changed" from="HotkeysContainer/SettingsContainer/CamRotContainer/CamSlider" to="." method="_on_CamSlider_value_changed"]
+[connection signal="value_changed" from="HotkeysContainer/SettingsContainer/StickContainer/StickSlider" to="." method="_on_StickSlider_value_changed"]
+[connection signal="toggled" from="HotkeysContainer/SettingsContainer/LightChecksContainer/LightsContainer/LightsCheckBox" to="." method="_on_LightsCheckBox_toggled"]
+[connection signal="toggled" from="HotkeysContainer/SettingsContainer/LightChecksContainer/ShadowContainer/ShadowsCheckBox" to="." method="_on_ShadowsCheckBox_toggled"]
 [connection signal="pressed" from="HotkeysContainer/Back Button" to="." method="_on_Back_Button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://src/states/game/ai_turn.gd" type="Script" id=11]
 [ext_resource path="res://src/main_menu.gd" type="Script" id=12]
 [ext_resource path="res://scenes/ui/mappable-keys/options_menu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/entities/DirectionalLight.gd" type="Script" id=14]
+[ext_resource path="res://src/WorldEnvironment.gd" type="Script" id=15]
 [ext_resource path="res://scenes/props/beach.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/props/water.tscn" type="PackedScene" id=17]
 
@@ -114,11 +116,13 @@ visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
+script = ExtResource( 15 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 0.34202, -0.538986, 0.769751, 7.16125e-08, 0.819152, 0.573577, -0.939693, -0.196175, 0.280166, 228.275, 154.801, 48.0567 )
 light_energy = 2.0
 shadow_enabled = true
+script = ExtResource( 14 )
 
 [node name="player" type="Spatial" parent="." groups=[
 "player",
@@ -135,7 +139,7 @@ script = ExtResource( 6 )
 [node name="fungus" parent="ai" instance=ExtResource( 3 )]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 autostart = true
 
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/play_button" to="." method="_on_play_button_pressed"]
