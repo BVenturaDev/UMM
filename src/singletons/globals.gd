@@ -4,7 +4,7 @@ extends Node
 const DEBUG: bool = false
 const DEBUG_SM: bool = false
 # Game variables
-const BUILD_MOBILE: bool = true
+const BUILD_MOBILE: bool = false
 const BUILD_GATHER_COST = 5
 const BUILD_POISON_COST = 5
 const BUILD_SCOUT_COST = 5
