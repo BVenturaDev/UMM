@@ -174,7 +174,8 @@ func clicked() -> void:
 		elif Globals.build_ui and owner_fungus.my_owner.name == "player":
 			Globals.build_ui.make_build_menu(self.food_in_region, self)
 	else:
-		Globals.moving_tile.stop_move_food()
+		if is_instance_valid(Globals.moving_tile):
+			Globals.moving_tile.stop_move_food()
 
 func build_gather_shroom() -> void:
 	if tile_food.size() <= Globals.BUILD_GATHER_COST:
