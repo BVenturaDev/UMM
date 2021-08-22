@@ -28,6 +28,7 @@ func _on_quit_button_pressed():
 
 func _on_resume_button_pressed():
 	visible = false
+	Globals.options = false
 
 func _on_main_menu_button_pressed():
 	var _a = get_tree().change_scene_to(main_menu)

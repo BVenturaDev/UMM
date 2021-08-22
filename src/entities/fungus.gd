@@ -74,7 +74,26 @@ func do_turn() -> void:
 				if neighbor.tile_food.size() < tile.tile_food.size():
 					tile.remove_num_food(1)
 					neighbor.spawn_food()
+	if not _check_if_survivable():
+		if my_owner.name == "player":
+			GameSignals.emit_signal("game_finished_with_winner", Globals.ai)
+		else:
+			GameSignals.emit_signal("game_finished_with_winner", Globals.player)
 	Globals.check_winner(self)
+
+func _check_if_survivable() -> bool:
+	var has_shroom: bool = false
+	var cur_food: int = 0
+	for i in owned_tiles:
+		if i.cur_shroom:
+			has_shroom = true
+		if i.tile_food.size() > 1:
+			#print(str(self) + " owner: " + str(my_owner.name) + " cur_food: " + str(cur_food - 1) + " , shroom: " + str(has_shroom))
+			cur_food += i.tile_food.size() - 1
+	if has_shroom or cur_food > 5:
+		return true
+	else:
+		return false
 
 func find_nearest_tile(var dest_tile: Object) -> Object:
 	if not dest_tile:

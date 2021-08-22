@@ -16,9 +16,12 @@ const MIN_Y_ANGLE: float = -50.0
 const STICK_MOVE_SPEED: float = 600.0
 
 var can_rot = false
+var last_mouse: Vector2 = Vector2()
 
 func _process(var delta: float) -> void:
 	if not Globals.game_over and not Globals.options:
+		if not can_rot:
+			last_mouse = get_viewport().get_mouse_position()
 		# Get movement inputs
 		var in_dir: Vector2 = Vector2()
 		in_dir.x = Input.get_action_strength("cam_right") - Input.get_action_strength("cam_left")
@@ -73,6 +76,8 @@ func _process(var delta: float) -> void:
 			rotation.y = lerp(rotation.y, 0, ROT_AMOUNT)
 			rotation.x = lerp(rotation.x, deg2rad(DEF_X_ANGLE), ROT_AMOUNT)
 			Globals.free_mouse()
+		if Input.is_action_just_released("ui_right_click"):
+			get_viewport().warp_mouse(last_mouse)# - get_viewport().get_mouse_position())
 		
 func _input(var event: InputEvent) -> void:
 	if event is InputEventMouseMotion and can_rot and not Globals.game_over:
