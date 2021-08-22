@@ -22,3 +22,11 @@ func _game_over(var winner) -> void:
 		snd_lose.play()
 		new_ui = lose.instance()
 	add_child(new_ui)
+
+
+func _on_tactical_ui_tactical_menu_hided() -> void:
+	$next_turn_buttons.show()
+
+
+func _on_tactical_ui_tactical_menu_showed() -> void:
+	$next_turn_buttons.hide()

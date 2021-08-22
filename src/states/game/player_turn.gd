@@ -29,4 +29,34 @@ func _do_player_group_turn():
 			player.do_turn()
 
 func _next_turn() -> void:
+	do_scout_shroom_auto_attacks()
 	exit("ai_turn")
+
+func do_scout_shroom_auto_attacks():
+	var players = get_tree().get_nodes_in_group("player")
+	for player in players:
+		var fungus: Fungus = player.fungus
+		for tile in fungus.owned_tiles:
+			tile = tile as Tile
+			if is_scout_shroom_and_turn_is_not_used(tile):
+				attack_neighbor_with_scout(tile)
+
+func is_scout_shroom_and_turn_is_not_used(tile: Tile) -> bool:
+	if not is_instance_valid(tile.cur_shroom):
+		return false
+	return (
+			tile.cur_shroom.is_in_group("scout") 
+			and not tile.turn_used
+		)
+
+func attack_neighbor_with_scout(tile: Tile):
+	for neighbor in tile.close_neighbors:
+		if not is_instance_valid(neighbor.cur_shroom):
+			continue
+		if neighbor.owner_fungus.my_owner == tile:
+			continue
+		if neighbor.cur_shroom.is_in_group("scout"):
+			# warning-ignore:narrowing_conversion
+			tile.attack(clamp(tile.tile_food.size() -1, 0, 5))
+			Globals.moving_tile = tile
+			tile.do_attack(neighbor)

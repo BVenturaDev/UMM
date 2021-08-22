@@ -29,12 +29,22 @@ var rot_speed: float = 0.05
 var stick_speed: float = 600.0
 var lights: bool = !BUILD_MOBILE
 var shadows: bool = !BUILD_MOBILE
+var _bus_index: int = 0
+var bus_name = "Master"
+var volume: float = 1.0
 
 onready var victory_condition: int= (PERCENTAGE_TILES_FOR_VICTORY / 100) * pow(Globals.MAP_SIZE, 2)
 
 func _ready() -> void:
 	rng.seed = randi()
 	rng.randomize()
+	_bus_index = AudioServer.get_bus_index(bus_name)
+	
+func _process(_delta):
+	_set_volume(volume)
+	
+func _set_volume(value: float) -> void:
+	AudioServer.set_bus_volume_db(_bus_index, linear2db(value))
 
 func capture_mouse() -> void:
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:

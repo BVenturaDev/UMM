@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
@@ -18,6 +18,16 @@
 [ext_resource path="res://scenes/props/beach.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/props/water.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/ui/theme.tres" type="Theme" id=18]
+[ext_resource path="res://scenes/ui/how_to.tscn" type="PackedScene" id=19]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/fonts/Alphakind.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 44
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 1 )
 
 [node name="main_menu" type="Spatial"]
 script = ExtResource( 12 )
@@ -61,6 +71,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="CanvasLayer/Menu_Options"]
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 2 )
+text = "Uncontrollable Mushroom Madness"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu_Options"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -76,7 +101,7 @@ __meta__ = {
 }
 
 [node name="play_button" type="Button" parent="CanvasLayer/Menu_Options/VBoxContainer"]
-margin_right = 91.0
+margin_right = 103.0
 margin_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -86,7 +111,7 @@ text = "Play Game"
 
 [node name="zen_button" type="Button" parent="CanvasLayer/Menu_Options/VBoxContainer"]
 margin_top = 54.0
-margin_right = 91.0
+margin_right = 103.0
 margin_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -96,7 +121,7 @@ text = "Zen Mode"
 
 [node name="options_button" type="Button" parent="CanvasLayer/Menu_Options/VBoxContainer"]
 margin_top = 108.0
-margin_right = 91.0
+margin_right = 103.0
 margin_bottom = 138.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -104,10 +129,30 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Options"
 
-[node name="quit_button" type="Button" parent="CanvasLayer/Menu_Options/VBoxContainer"]
+[node name="how_to_button" type="Button" parent="CanvasLayer/Menu_Options/VBoxContainer"]
 margin_top = 162.0
-margin_right = 91.0
+margin_right = 103.0
 margin_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "How To Play"
+
+[node name="credits_button" type="Button" parent="CanvasLayer/Menu_Options/VBoxContainer"]
+margin_top = 216.0
+margin_right = 103.0
+margin_bottom = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Credits"
+
+[node name="quit_button" type="Button" parent="CanvasLayer/Menu_Options/VBoxContainer"]
+margin_top = 270.0
+margin_right = 103.0
+margin_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -115,6 +160,9 @@ size_flags_vertical = 3
 text = "Quit"
 
 [node name="options_menu" parent="CanvasLayer" instance=ExtResource( 13 )]
+visible = false
+
+[node name="how_to" parent="CanvasLayer" instance=ExtResource( 19 )]
 visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -148,6 +196,8 @@ autostart = true
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/zen_button" to="." method="_on_zen_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/options_button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/how_to_button" to="." method="_on_how_to_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/credits_button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
