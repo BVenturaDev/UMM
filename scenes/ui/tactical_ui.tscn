@@ -394,6 +394,8 @@ valign = 1
 
 [connection signal="value_changed" from="build_popup/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="build_popup/VBoxContainer/HBoxContainer3/HSlider2" to="." method="_on_HSlider2_value_changed"]
+[connection signal="draw" from="next_ui" to="." method="_on_next_ui_draw"]
+[connection signal="hide" from="next_ui" to="." method="_on_next_ui_hide"]
 [connection signal="pressed" from="next_ui/buttons/close_button" to="next_ui" method="_on_close_button_pressed"]
 [connection signal="pressed" from="next_ui/buttons/RequestFood" to="next_ui" method="_on_RequestFood_pressed"]
 [connection signal="pressed" from="next_ui/buttons/attack_button" to="next_ui" method="_on_attack_button_pressed"]
