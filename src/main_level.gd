@@ -13,3 +13,4 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		pause_menu.visible = true
+		Globals.options = true

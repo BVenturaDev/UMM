@@ -171,10 +171,6 @@ stick_back={
  ]
 }
 
-[input_devices]
-
-pointing/emulate_touch_from_mouse=true
-
 [logging]
 
 file_logging/enable_file_logging.pc=false
