@@ -15,6 +15,15 @@ func _ready():
 	Globals.options = false
 	Globals.game_over = false
 	Globals.moving_tile = null
+	
+func _process(delta):
+	var stick_dir: Vector2 = Vector2()
+	stick_dir.x = Input.get_action_strength("stick_right") - Input.get_action_strength("stick_left")
+	stick_dir.y = Input.get_action_strength("stick_back") - Input.get_action_strength("stick_forward")
+	stick_dir = stick_dir.normalized()
+	var stick_mouse_move = Globals.stick_speed * stick_dir * delta
+	if stick_mouse_move:
+		get_viewport().warp_mouse(get_viewport().get_mouse_position() + stick_mouse_move)
 
 func _on_Timer_timeout():
 	GameSignals.emit_signal("next_turn")
