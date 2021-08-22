@@ -4,7 +4,7 @@
    version="1.1"
    id="svg8"
    sodipodi:docname="dibujo.svg"
-   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -21,27 +21,27 @@
      inkscape:pagecheckerboard="0"
      showgrid="false"
      inkscape:zoom="4.6192127"
-     inkscape:cx="42.106742"
-     inkscape:cy="42.106742"
-     inkscape:window-width="1368"
-     inkscape:window-height="739"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:cx="42.106743"
+     inkscape:cy="42.106743"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg8" />
+     inkscape:current-layer="g123" />
   <g
      id="g123">
     <g
        id="g559"
        transform="translate(8.0136622,0.67379618)">
       <path
-         style="fill:#28170b"
+         style="fill:#ffffff;fill-opacity:1"
          id="path413"
          d="m 440.53369,434.2963 -189.06367,-10e-6 -94.53183,-163.73395 94.53184,-163.73394 189.06368,1e-5 94.53183,163.73395 z"
          transform="scale(0.26458333)" />
     </g>
     <path
-       style="fill:#483e37;stroke-width:0.264583"
+       style="fill:#7e6757;stroke-width:0.264583;fill-opacity:1"
        id="path415"
        d="M 119.72728,108.56657 H 78.589767 L 58.021015,72.940444 78.589772,37.314318 l 41.137508,2e-6 20.56875,35.626127 z" />
   </g>

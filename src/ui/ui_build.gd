@@ -1,6 +1,8 @@
 extends Control
 class_name build_ui
 
+const DEBUG_VIEW: bool = true
+
 onready var window = $build_popup
 export(NodePath) onready var food_amount_text = get_node(food_amount_text)
 export(NodePath) onready var cur_food_text = get_node(cur_food_text)
@@ -19,6 +21,8 @@ export(NodePath) onready var move_food_butt = get_node(move_food_butt)
 export(NodePath) onready var attack_cont = get_node(attack_cont)
 export(NodePath) onready var attack_butt = get_node(attack_butt)
 export(NodePath) onready var next_ui = get_node(next_ui) as RadialButtons
+
+onready var close_butt = $next_ui/buttons/close_button
 
 var food_move_amount: int = 0
 var food_attack_amount: int = 0
@@ -85,6 +89,7 @@ func make_build_menu(var cur_food: int, var tile: Tile) -> void:
 	if next_ui:
 		next_ui.display()
 	window.popup()
+	close_butt.grab_focus()
 
 func _on_HSlider_value_changed(value):
 	food_move_amount = int(value)

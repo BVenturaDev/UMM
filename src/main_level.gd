@@ -7,6 +7,8 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if pause_menu.visible == false:
 			pause_menu.visible = true
+			pause_menu.options.visible = false
+			pause_menu.menu.visible = true
 			Globals.options = true
 		else:
 			pause_menu.visible = false
