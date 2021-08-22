@@ -2,6 +2,7 @@ extends Control
 
 onready var options = $options_menu
 onready var options_button = $Menu_Options/VBoxContainer/options_button
+onready var main_menu_butt = $Menu_Options/VBoxContainer/main_menu_button
 onready var menu = $Menu_Options
 onready var quit = $Menu_Options/VBoxContainer/quit_button
 onready var resume = $Menu_Options/VBoxContainer/resume_button
@@ -13,8 +14,14 @@ func _ready():
 		quit.hide()
 	else:
 		quit.show()
-
+var not_visible = true
 func _process(_delta):
+	if not_visible and visible:
+		main_menu_butt.grab_focus()
+		not_visible = false
+	if visible == false:
+		not_visible = true
+	
 	if Globals.game_over:
 		resume.hide()
 		options_button.hide()
