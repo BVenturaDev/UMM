@@ -6,6 +6,7 @@ onready var quit = $CanvasLayer/Menu_Options/VBoxContainer/quit_button
 onready var credits = $CanvasLayer/Menu_Options/VBoxContainer/credits_button
 onready var how_to = $CanvasLayer/Menu_Options/VBoxContainer/how_to_button
 onready var how_to_panel = $CanvasLayer/how_to
+onready var play_button = $CanvasLayer/Menu_Options/VBoxContainer/play_button
 
 var main_level = load("res://scenes/levels/main_level.tscn")
 var zen_level = load("res://scenes/levels/zen_level.tscn")
@@ -15,6 +16,7 @@ func _ready():
 	Globals.options = false
 	Globals.game_over = false
 	Globals.moving_tile = null
+	play_button.grab_focus()
 	
 func _process(delta):
 	var stick_dir: Vector2 = Vector2()
