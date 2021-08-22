@@ -5,6 +5,7 @@ onready var options = $CanvasLayer/options_menu
 onready var quit = $CanvasLayer/Menu_Options/VBoxContainer/quit_button
 onready var credits = $CanvasLayer/Menu_Options/VBoxContainer/credits_button
 onready var how_to = $CanvasLayer/Menu_Options/VBoxContainer/how_to_button
+onready var how_to_panel = $CanvasLayer/how_to
 
 var main_level = load("res://scenes/levels/main_level.tscn")
 var zen_level = load("res://scenes/levels/zen_level.tscn")
@@ -31,3 +32,7 @@ func _on_zen_button_pressed():
 
 func _on_credits_button_pressed():
 	var _a = get_tree().change_scene_to(credits_level)
+
+
+func _on_how_to_button_pressed():
+	how_to_panel.visible = true

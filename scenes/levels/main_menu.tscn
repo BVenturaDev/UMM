@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://scenes/props/beach.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/props/water.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/ui/theme.tres" type="Theme" id=18]
+[ext_resource path="res://scenes/ui/how_to.tscn" type="PackedScene" id=19]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/fonts/Alphakind.ttf"
@@ -161,6 +162,9 @@ text = "Quit"
 [node name="options_menu" parent="CanvasLayer" instance=ExtResource( 13 )]
 visible = false
 
+[node name="how_to" parent="CanvasLayer" instance=ExtResource( 19 )]
+visible = false
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
 script = ExtResource( 15 )
@@ -192,6 +196,7 @@ autostart = true
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/zen_button" to="." method="_on_zen_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/options_button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/how_to_button" to="." method="_on_how_to_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/credits_button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu_Options/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/ui/theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/ui/how_to.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/fonts/Alphakind.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+font_data = SubResource( 1 )
+
+[node name="how_to" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.05
+anchor_top = 0.01
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.400024
+margin_bottom = 365.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 400
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 912.0
+margin_bottom = 529.0
+custom_fonts/font = SubResource( 2 )
+text = "The game is played in two modes, normal, and zen.  In both modes you expand and gather resources the same way.  Every turn a hex tile with 6+ food and empty neighbor tiles will randomly attempt to expand to one of its neighbors.  After this food is equalized with neighboring tiles by 1.  Your Fungus and it's food are represented through the mold undergrowth texture on tiles your Fungus owns, along with a counter representing that tile's food.
+
+
+You can interact with a tile controlled by your Fungus, by clicking on it while highlighted.  This opens up a context sensitive radial menu that allows you to choose an option such as moving food to another tile you control, requesting food from nearby tiles you control, or building a needed mushroom for 5 food siphoned from nearby owned tiles.  Tiles who's turn is complete change color, you can not interact with these tiles until the next turn.
+
+
+Your goal as a Fungus is to expand towards new sources of food.  Food comes in 3 sources, a tree +1 food per turn, a log +5 food per turn, a corpse +10 food per turn.  You can gather a resource with a Gather Shroom.  These brown mushrooms gather the expected food income every turn they are alive. 
+
+
+Gather Shrooms are a favorite food of the Badgers roaming the map.   You need to use poison shrooms to protect them.  Poison shrooms attract nearby Badgers, poisoning them after they eat it.  If the Badger dies on a tile owned by your Fungus, you can gather their corpse for a large amount of food.  Corpses spoil in just 10 turns so reach them quickly.
+
+
+Combat is only available in normal mode.  In this mode you start in opposite corners and go head to head with a rival Fungus who works the same as you and has a turn after you.  Your goal in normal mode is to prevent the enemy from controlling 75% of the map, avoid running out of food,  and avoid losing all your tiles.  You win if you can do any of these things to the enemy.  You can see tiles owned by a rival fungus marked by a red border line along your own tiles, you can also see their mushrooms on the surface.  You can not however see the enemies undergrowth or food. 
+
+
+In order to gain intelligence about a rival Fungus' tile, you must build a Scout Shroom on the border.   A Scout Shroom will reveal the enemy undergrowth and food amounts in neighbor tiles.  With this intelligence you can decide where to attack.  An attack can be done without knowing the enemy food.  You attack by sending up to 10 food to a neighboring rival Fungus' tile.  If the amount of food you send is greater than the enemy tile's food you claim the tile.  If not you either draw and both lose the tile, or you lose the fight but subtract the amount of food you sent from the enemy tile's food."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Panel"]
+anchor_left = 0.9
+anchor_top = 0.95
+anchor_right = 0.99
+anchor_bottom = 0.99
+margin_left = 4.0
+margin_top = -5.5
+margin_right = 4.0
+margin_bottom = 1.94
+text = "Return"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_Button_pressed"]
