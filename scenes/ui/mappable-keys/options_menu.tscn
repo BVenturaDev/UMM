@@ -23,7 +23,7 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="."]
 margin_left = 40.0
 margin_top = 40.0
-margin_right = 1028.0
+margin_right = 1022.0
 margin_bottom = 560.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -33,7 +33,7 @@ size_flags_vertical = 3
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 40.0
 margin_top = 40.0
-margin_right = 1028.0
+margin_right = 1022.0
 margin_bottom = 560.0
 custom_constants/margin_right = 40
 custom_constants/margin_top = 40
@@ -43,12 +43,12 @@ custom_constants/margin_bottom = 40
 [node name="HotkeysContainer" type="HBoxContainer" parent="MarginContainer"]
 margin_left = 40.0
 margin_top = 40.0
-margin_right = 948.0
+margin_right = 942.0
 margin_bottom = 480.0
 custom_constants/separation = 80
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/HotkeysContainer"]
-margin_right = 427.0
+margin_right = 423.0
 margin_bottom = 440.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 10
@@ -58,280 +58,280 @@ __meta__ = {
 }
 
 [node name="UiUp" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_right = 206.0
-margin_bottom = 26.0
+margin_right = 204.0
+margin_bottom = 30.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/UiUp"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 43.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "UI Up:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/UiUp" instance=ExtResource( 1 )]
 margin_left = 47.0
-margin_right = 78.0
-margin_bottom = 26.0
+margin_right = 76.0
+margin_bottom = 30.0
 text = "Up"
 action = "ui_up"
 
 [node name="UiDown" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_left = 216.0
-margin_right = 427.0
-margin_bottom = 26.0
+margin_left = 214.0
+margin_right = 423.0
+margin_bottom = 30.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/UiDown"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 65.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "UI Down:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/UiDown" instance=ExtResource( 1 )]
 margin_left = 69.0
-margin_right = 122.0
-margin_bottom = 26.0
+margin_right = 120.0
+margin_bottom = 30.0
 text = "Down"
 action = "ui_down"
 
 [node name="UILeft" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_top = 36.0
-margin_right = 206.0
-margin_bottom = 62.0
+margin_top = 40.0
+margin_right = 204.0
+margin_bottom = 70.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/UILeft"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 53.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "UI Left:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/UILeft" instance=ExtResource( 1 )]
 margin_left = 57.0
-margin_right = 98.0
-margin_bottom = 26.0
+margin_right = 96.0
+margin_bottom = 30.0
 text = "Left"
 action = "ui_left"
 
 [node name="UIRight" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_left = 216.0
-margin_top = 36.0
-margin_right = 427.0
-margin_bottom = 62.0
+margin_left = 214.0
+margin_top = 40.0
+margin_right = 423.0
+margin_bottom = 70.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/UIRight"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 62.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "UI Right:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/UIRight" instance=ExtResource( 1 )]
 margin_left = 66.0
-margin_right = 116.0
-margin_bottom = 26.0
+margin_right = 114.0
+margin_bottom = 30.0
 text = "Right"
 action = "ui_right"
 
 [node name="UIAccept" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_top = 72.0
-margin_right = 206.0
-margin_bottom = 98.0
+margin_top = 80.0
+margin_right = 204.0
+margin_bottom = 110.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/UIAccept"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 140.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "Accept / End Turn:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/UIAccept" instance=ExtResource( 1 )]
 margin_left = 144.0
-margin_right = 197.0
-margin_bottom = 26.0
+margin_right = 195.0
+margin_bottom = 30.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Enter"
 action = "ui_accept"
 
 [node name="UICancel" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_left = 216.0
-margin_top = 72.0
-margin_right = 427.0
-margin_bottom = 98.0
+margin_left = 214.0
+margin_top = 80.0
+margin_right = 423.0
+margin_bottom = 110.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/UICancel"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 95.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "Pause Menu:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/UICancel" instance=ExtResource( 1 )]
 margin_left = 99.0
-margin_right = 163.0
-margin_bottom = 26.0
+margin_right = 161.0
+margin_bottom = 30.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Escape"
 action = "ui_cancel"
 
 [node name="UIClick" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_top = 108.0
-margin_right = 206.0
-margin_bottom = 134.0
+margin_top = 120.0
+margin_right = 204.0
+margin_bottom = 150.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/UIClick"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 107.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "Click / Select:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/UIClick" instance=ExtResource( 1 )]
 margin_left = 111.0
-margin_right = 206.0
-margin_bottom = 26.0
+margin_right = 204.0
+margin_bottom = 30.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Mouse Left"
 action = "ui_click"
 
 [node name="UIRightClick" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_left = 216.0
-margin_top = 108.0
-margin_right = 427.0
-margin_bottom = 134.0
+margin_left = 214.0
+margin_top = 120.0
+margin_right = 423.0
+margin_bottom = 150.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/UIRightClick"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 103.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "Turn Camera:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/UIRightClick" instance=ExtResource( 1 )]
 margin_left = 107.0
-margin_right = 211.0
-margin_bottom = 26.0
+margin_right = 209.0
+margin_bottom = 30.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Mouse Right"
 action = "ui_right_click"
 
 [node name="CamLeft" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_top = 144.0
-margin_right = 206.0
-margin_bottom = 170.0
+margin_top = 160.0
+margin_right = 204.0
+margin_bottom = 190.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/CamLeft"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 98.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "Camera Left:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/CamLeft" instance=ExtResource( 1 )]
 margin_left = 102.0
-margin_right = 124.0
-margin_bottom = 26.0
+margin_right = 122.0
+margin_bottom = 30.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "A"
 action = "cam_left"
 
 [node name="CamRight" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_left = 216.0
-margin_top = 144.0
-margin_right = 427.0
-margin_bottom = 170.0
+margin_left = 214.0
+margin_top = 160.0
+margin_right = 423.0
+margin_bottom = 190.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/CamRight"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 107.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "Camera Right:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/CamRight" instance=ExtResource( 1 )]
 margin_left = 111.0
-margin_right = 133.0
-margin_bottom = 26.0
+margin_right = 131.0
+margin_bottom = 30.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "D"
 action = "cam_right"
 
 [node name="CamForward" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_top = 180.0
-margin_right = 206.0
-margin_bottom = 206.0
+margin_top = 200.0
+margin_right = 204.0
+margin_bottom = 230.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/CamForward"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 132.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "Camera Forward:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/CamForward" instance=ExtResource( 1 )]
 margin_left = 136.0
-margin_right = 158.0
-margin_bottom = 26.0
+margin_right = 156.0
+margin_bottom = 30.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "A"
 action = "cam_forward"
 
 [node name="CamBackward" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/GridContainer"]
-margin_left = 216.0
-margin_top = 180.0
-margin_right = 427.0
-margin_bottom = 206.0
+margin_left = 214.0
+margin_top = 200.0
+margin_right = 423.0
+margin_bottom = 230.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/GridContainer/CamBackward"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 143.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 text = "Camera Backward:"
 
 [node name="Button" parent="MarginContainer/HotkeysContainer/GridContainer/CamBackward" instance=ExtResource( 1 )]
 margin_left = 147.0
-margin_right = 168.0
-margin_bottom = 26.0
+margin_right = 166.0
+margin_bottom = 30.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "S"
 action = "cam_backward"
 
 [node name="SettingsContainer" type="VBoxContainer" parent="MarginContainer/HotkeysContainer"]
-margin_left = 507.0
-margin_right = 765.0
+margin_left = 503.0
+margin_right = 761.0
 margin_bottom = 440.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -400,12 +400,12 @@ value = 1.0
 [node name="LightChecksContainer" type="HBoxContainer" parent="MarginContainer/HotkeysContainer/SettingsContainer"]
 margin_top = 136.0
 margin_right = 258.0
-margin_bottom = 188.0
+margin_bottom = 190.0
 custom_constants/separation = 30
 
 [node name="LightsContainer" type="VBoxContainer" parent="MarginContainer/HotkeysContainer/SettingsContainer/LightChecksContainer"]
 margin_right = 103.0
-margin_bottom = 52.0
+margin_bottom = 54.0
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/SettingsContainer/LightChecksContainer/LightsContainer"]
 margin_right = 103.0
@@ -415,12 +415,12 @@ text = "Enable Lights:"
 [node name="LightsCheckBox" type="CheckBox" parent="MarginContainer/HotkeysContainer/SettingsContainer/LightChecksContainer/LightsContainer"]
 margin_top = 24.0
 margin_right = 103.0
-margin_bottom = 52.0
+margin_bottom = 54.0
 
 [node name="ShadowContainer" type="VBoxContainer" parent="MarginContainer/HotkeysContainer/SettingsContainer/LightChecksContainer"]
 margin_left = 133.0
 margin_right = 258.0
-margin_bottom = 52.0
+margin_bottom = 54.0
 
 [node name="Label" type="Label" parent="MarginContainer/HotkeysContainer/SettingsContainer/LightChecksContainer/ShadowContainer"]
 margin_right = 125.0
@@ -430,12 +430,12 @@ text = "Enable Shadows:"
 [node name="ShadowsCheckBox" type="CheckBox" parent="MarginContainer/HotkeysContainer/SettingsContainer/LightChecksContainer/ShadowContainer"]
 margin_top = 24.0
 margin_right = 125.0
-margin_bottom = 52.0
+margin_bottom = 54.0
 
 [node name="Back Button" type="Button" parent="MarginContainer/HotkeysContainer"]
-margin_left = 845.0
-margin_right = 908.0
-margin_bottom = 26.0
+margin_left = 841.0
+margin_right = 902.0
+margin_bottom = 30.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Return"
