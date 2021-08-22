@@ -13,20 +13,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-food_amount_text = NodePath("build_popup/VBoxContainer/HBoxContainer2/food_amount")
-cur_food_text = NodePath("build_popup/VBoxContainer/HBoxContainer/cur_food_label")
-cur_attack_food_text = NodePath("build_popup/VBoxContainer/HBoxContainer3/attack_food_amount")
-food_slider = NodePath("build_popup/VBoxContainer/HBoxContainer2/HSlider")
-attack_slider = NodePath("build_popup/VBoxContainer/HBoxContainer3/HSlider2")
-kill_shroom = NodePath("next_ui/buttons/kill_shroom")
-gather_shroom = NodePath("next_ui/buttons/gather_shroom_button")
-poison_shroom = NodePath("next_ui/buttons/poison_shroom")
-scout_shroom = NodePath("next_ui/buttons/scout_shroom")
-slider_cont = NodePath("build_popup/VBoxContainer/HBoxContainer2")
-move_food_butt = NodePath("next_ui/buttons/move_food_button")
-attack_cont = NodePath("build_popup/VBoxContainer/HBoxContainer3")
-attack_butt = NodePath("next_ui/buttons/attack_button")
-next_ui = NodePath("next_ui")
 
 [node name="build_popup" type="PopupPanel" parent="."]
 visible = true
