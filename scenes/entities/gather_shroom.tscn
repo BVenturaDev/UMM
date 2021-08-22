@@ -247,6 +247,7 @@ tracks/3/keys = {
 }
 
 [node name="gather_shroom" type="Spatial" groups=[
+"gather",
 "nature",
 ]]
 transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
