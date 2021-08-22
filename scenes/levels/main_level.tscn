@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://scenes/ui/pause_menu.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/WorldEnvironment.gd" type="Script" id=20]
 [ext_resource path="res://src/entities/DirectionalLight.gd" type="Script" id=21]
+[ext_resource path="res://assets/sound/sfx/game_win.mp3" type="AudioStream" id=22]
+[ext_resource path="res://assets/sound/sfx/game_lose.mp3" type="AudioStream" id=23]
 
 [node name="main_level" type="Spatial"]
 script = ExtResource( 18 )
@@ -67,6 +69,13 @@ margin_bottom = 0.0
 
 [node name="pause_menu" parent="CanvasLayer" instance=ExtResource( 19 )]
 visible = false
+
+[node name="win_sound" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource( 22 )
+volume_db = -5.0
+
+[node name="lose_sound" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource( 23 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )

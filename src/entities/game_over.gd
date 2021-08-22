@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 onready var pause = $pause_menu
+onready var snd_win = $win_sound
+onready var snd_lose = $lose_sound
 
 var win = preload("res://scenes/ui/win_screen.tscn")
 var lose = preload("res://scenes/ui/lose_screen.tscn")
@@ -14,7 +16,9 @@ func _game_over(var winner) -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	var new_ui
 	if winner.name == "player":
+		snd_win.play()
 		new_ui = win.instance()
 	else:
+		snd_lose.play()
 		new_ui = lose.instance()
 	add_child(new_ui)
