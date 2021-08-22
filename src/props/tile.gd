@@ -173,6 +173,8 @@ func clicked() -> void:
 				Globals.moving_tile.stop_move_food()
 		elif Globals.build_ui and owner_fungus.my_owner.name == "player":
 			Globals.build_ui.make_build_menu(self.food_in_region, self)
+	else:
+		Globals.moving_tile.stop_move_food()
 
 func build_gather_shroom() -> void:
 	if tile_food.size() <= Globals.BUILD_GATHER_COST:
@@ -321,7 +323,7 @@ func do_attack(var other_tile: Object) -> void:
 		owner_fungus.claim_tile(other_tile)
 		other_tile.spawn_num_food(amount)
 		remove_num_food(amount)
-		Globals.player.update_glow()
+		Globals.pldayer.update_glow()
 		other_tile.turn_complete()
 	else:
 		other_tile.remove_fungus()
