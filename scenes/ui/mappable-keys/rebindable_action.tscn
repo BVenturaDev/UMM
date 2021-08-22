@@ -6,6 +6,7 @@
 margin_right = 21.0
 margin_bottom = 20.0
 toggle_mode = true
+shortcut_in_tooltip = false
 text = "Space"
 script = ExtResource( 1 )
 __meta__ = {

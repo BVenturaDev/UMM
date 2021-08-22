@@ -7,7 +7,6 @@
 [node name="options_menu" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -35,7 +34,7 @@ margin_bottom = 580.0
 custom_constants/separation = 80
 
 [node name="GridContainer" type="GridContainer" parent="HotkeysContainer"]
-margin_right = 242.0
+margin_right = 362.0
 margin_bottom = 560.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 10
@@ -45,7 +44,7 @@ __meta__ = {
 }
 
 [node name="UiUp" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
-margin_right = 120.0
+margin_right = 173.0
 margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -57,13 +56,15 @@ margin_right = 41.0
 margin_bottom = 17.0
 text = "UI Up:"
 
-[node name="RebindableAction" parent="HotkeysContainer/GridContainer/UiUp" instance=ExtResource( 2 )]
+[node name="Button" parent="HotkeysContainer/GridContainer/UiUp" instance=ExtResource( 1 )]
 margin_left = 45.0
-margin_right = 61.0
+margin_right = 75.0
+text = "Up"
+action = "ui_up"
 
 [node name="UiDown" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
-margin_left = 130.0
-margin_right = 242.0
+margin_left = 183.0
+margin_right = 362.0
 margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -77,11 +78,13 @@ text = "UI Down:"
 
 [node name="Button" parent="HotkeysContainer/GridContainer/UiDown" instance=ExtResource( 1 )]
 margin_left = 63.0
-margin_right = 112.0
+margin_right = 111.0
+text = "Down"
+action = "ui_down"
 
 [node name="UILeft" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
 margin_top = 30.0
-margin_right = 120.0
+margin_right = 173.0
 margin_bottom = 50.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -95,12 +98,14 @@ text = "UI Left:"
 
 [node name="Button" parent="HotkeysContainer/GridContainer/UILeft" instance=ExtResource( 1 )]
 margin_left = 51.0
-margin_right = 100.0
+margin_right = 87.0
+text = "Left"
+action = "ui_left"
 
 [node name="UIRight" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
-margin_left = 130.0
+margin_left = 183.0
 margin_top = 30.0
-margin_right = 242.0
+margin_right = 362.0
 margin_bottom = 50.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -114,29 +119,193 @@ text = "UI Right:"
 
 [node name="Button" parent="HotkeysContainer/GridContainer/UIRight" instance=ExtResource( 1 )]
 margin_left = 59.0
-margin_right = 108.0
+margin_right = 103.0
+text = "Right"
+action = "ui_right"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
+[node name="UIAccept" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
 margin_top = 60.0
-margin_right = 120.0
+margin_right = 173.0
 margin_bottom = 80.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HotkeysContainer/GridContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="HotkeysContainer/GridContainer/UIAccept"]
 margin_top = 3.0
-margin_right = 67.0
+margin_right = 116.0
 margin_bottom = 17.0
-text = "UI Accept:"
+text = "Accept / End Turn:"
 
-[node name="Button" parent="HotkeysContainer/GridContainer/HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 71.0
-margin_right = 120.0
+[node name="Button" parent="HotkeysContainer/GridContainer/UIAccept" instance=ExtResource( 1 )]
+margin_left = 120.0
+margin_right = 165.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Enter"
+action = "ui_accept"
+
+[node name="UICancel" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
+margin_left = 183.0
+margin_top = 60.0
+margin_right = 362.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HotkeysContainer/GridContainer/UICancel"]
+margin_top = 3.0
+margin_right = 82.0
+margin_bottom = 17.0
+text = "Pause Menu:"
+
+[node name="Button" parent="HotkeysContainer/GridContainer/UICancel" instance=ExtResource( 1 )]
+margin_left = 86.0
+margin_right = 142.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Escape"
+action = "ui_cancel"
+
+[node name="UIClick" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
+margin_top = 90.0
+margin_right = 173.0
+margin_bottom = 110.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HotkeysContainer/GridContainer/UIClick"]
+margin_top = 3.0
+margin_right = 86.0
+margin_bottom = 17.0
+text = "Click / Select:"
+
+[node name="Button" parent="HotkeysContainer/GridContainer/UIClick" instance=ExtResource( 1 )]
+margin_left = 90.0
+margin_right = 173.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Mouse Left"
+action = "ui_click"
+
+[node name="UIRightClick" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
+margin_left = 183.0
+margin_top = 90.0
+margin_right = 362.0
+margin_bottom = 110.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HotkeysContainer/GridContainer/UIRightClick"]
+margin_top = 3.0
+margin_right = 84.0
+margin_bottom = 17.0
+text = "Turn Camera:"
+
+[node name="Button" parent="HotkeysContainer/GridContainer/UIRightClick" instance=ExtResource( 1 )]
+margin_left = 88.0
+margin_right = 179.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Mouse Right"
+action = "ui_right_click"
+
+[node name="CamLeft" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
+margin_top = 120.0
+margin_right = 173.0
+margin_bottom = 140.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HotkeysContainer/GridContainer/CamLeft"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+text = "Camera Left:"
+
+[node name="Button" parent="HotkeysContainer/GridContainer/CamLeft" instance=ExtResource( 1 )]
+margin_left = 84.0
+margin_right = 105.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "A"
+action = "cam_left"
+
+[node name="CamRight" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
+margin_left = 183.0
+margin_top = 120.0
+margin_right = 362.0
+margin_bottom = 140.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HotkeysContainer/GridContainer/CamRight"]
+margin_top = 3.0
+margin_right = 88.0
+margin_bottom = 17.0
+text = "Camera Right:"
+
+[node name="Button" parent="HotkeysContainer/GridContainer/CamRight" instance=ExtResource( 1 )]
+margin_left = 92.0
+margin_right = 114.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "D"
+action = "cam_right"
+
+[node name="CamForward" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
+margin_top = 150.0
+margin_right = 173.0
+margin_bottom = 170.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HotkeysContainer/GridContainer/CamForward"]
+margin_top = 3.0
+margin_right = 106.0
+margin_bottom = 17.0
+text = "Camera Forward:"
+
+[node name="Button" parent="HotkeysContainer/GridContainer/CamForward" instance=ExtResource( 1 )]
+margin_left = 110.0
+margin_right = 131.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "A"
+action = "cam_forward"
+
+[node name="CamBackward" type="HBoxContainer" parent="HotkeysContainer/GridContainer"]
+margin_left = 183.0
+margin_top = 150.0
+margin_right = 362.0
+margin_bottom = 170.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HotkeysContainer/GridContainer/CamBackward"]
+margin_top = 3.0
+margin_right = 116.0
+margin_bottom = 17.0
+text = "Camera Backward:"
+
+[node name="Button" parent="HotkeysContainer/GridContainer/CamBackward" instance=ExtResource( 1 )]
+margin_left = 120.0
+margin_right = 139.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "S"
+action = "cam_backward"
 
 [node name="VolumeContainer" type="VBoxContainer" parent="HotkeysContainer"]
-margin_left = 322.0
-margin_right = 419.0
+margin_left = 442.0
+margin_right = 539.0
 margin_bottom = 560.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -156,8 +325,8 @@ value = 1.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HotkeysContainer/VolumeContainer/VolumeSlider"]
 
 [node name="Back Button" type="Button" parent="HotkeysContainer"]
-margin_left = 499.0
-margin_right = 553.0
+margin_left = 619.0
+margin_right = 673.0
 margin_bottom = 20.0
 size_flags_horizontal = 0
 size_flags_vertical = 0

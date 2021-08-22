@@ -18,7 +18,7 @@ const STICK_MOVE_SPEED: float = 600.0
 var can_rot = false
 
 func _process(var delta: float) -> void:
-	if not Globals.game_over:
+	if not Globals.game_over and not Globals.options:
 		# Get movement inputs
 		var in_dir: Vector2 = Vector2()
 		in_dir.x = Input.get_action_strength("cam_right") - Input.get_action_strength("cam_left")
