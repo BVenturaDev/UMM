@@ -28,6 +28,7 @@ slider_cont = NodePath("build_popup/VBoxContainer/HBoxContainer2")
 move_food_butt = NodePath("next_ui/buttons/move_food_button")
 attack_cont = NodePath("build_popup/VBoxContainer/HBoxContainer3")
 attack_butt = NodePath("next_ui/buttons/attack_button")
+request_food = NodePath("next_ui/buttons/RequestFood")
 next_ui = NodePath("next_ui")
 
 [node name="build_popup" type="PopupPanel" parent="."]
@@ -174,6 +175,10 @@ margin_top = -43.0
 margin_right = 50.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 100, 86 )
+focus_neighbour_left = NodePath("../gather_shroom_button")
+focus_neighbour_right = NodePath("../RequestFood")
+focus_next = NodePath("../RequestFood")
+focus_previous = NodePath("../gather_shroom_button")
 texture_normal = ExtResource( 4 )
 texture_focused = ExtResource( 3 )
 __meta__ = {
@@ -200,6 +205,10 @@ margin_top = -43.0
 margin_right = 50.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 100, 86 )
+focus_neighbour_left = NodePath("../close_button")
+focus_neighbour_right = NodePath("../attack_button")
+focus_next = NodePath("../attack_button")
+focus_previous = NodePath("../close_button")
 texture_normal = ExtResource( 4 )
 texture_focused = ExtResource( 3 )
 __meta__ = {
@@ -225,6 +234,10 @@ margin_top = -43.0
 margin_right = 50.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 100, 86 )
+focus_neighbour_left = NodePath("../RequestFood")
+focus_neighbour_right = NodePath("../move_food_button")
+focus_next = NodePath("../move_food_button")
+focus_previous = NodePath("../RequestFood")
 texture_normal = ExtResource( 4 )
 texture_focused = ExtResource( 3 )
 
@@ -245,6 +258,10 @@ margin_top = -43.0
 margin_right = 50.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 100, 86 )
+focus_neighbour_left = NodePath("../attack_button")
+focus_neighbour_right = NodePath("../kill_shroom")
+focus_next = NodePath("../kill_shroom")
+focus_previous = NodePath("../attack_button")
 texture_normal = ExtResource( 4 )
 texture_focused = ExtResource( 3 )
 __meta__ = {
@@ -270,6 +287,10 @@ margin_top = -43.0
 margin_right = 50.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 100, 86 )
+focus_neighbour_left = NodePath("../move_food_button")
+focus_neighbour_right = NodePath("../poison_shroom")
+focus_next = NodePath("../poison_shroom")
+focus_previous = NodePath("../move_food_button")
 texture_normal = ExtResource( 4 )
 texture_focused = ExtResource( 3 )
 
@@ -290,6 +311,10 @@ margin_top = -43.0
 margin_right = 50.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 100, 86 )
+focus_neighbour_left = NodePath("../kill_shroom")
+focus_neighbour_right = NodePath("../scout_shroom")
+focus_next = NodePath("../scout_shroom")
+focus_previous = NodePath("../kill_shroom")
 texture_normal = ExtResource( 4 )
 texture_focused = ExtResource( 3 )
 
@@ -311,6 +336,10 @@ margin_top = -43.0
 margin_right = 50.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 100, 86 )
+focus_neighbour_left = NodePath("../poison_shroom")
+focus_neighbour_right = NodePath("../gather_shroom_button")
+focus_next = NodePath("../gather_shroom_button")
+focus_previous = NodePath("../poison_shroom")
 texture_normal = ExtResource( 4 )
 texture_focused = ExtResource( 3 )
 __meta__ = {
@@ -338,6 +367,10 @@ margin_top = -43.0
 margin_right = 50.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 100, 86 )
+focus_neighbour_left = NodePath("../scout_shroom")
+focus_neighbour_right = NodePath("../close_button")
+focus_next = NodePath("../close_button")
+focus_previous = NodePath("../scout_shroom")
 texture_normal = ExtResource( 4 )
 texture_focused = ExtResource( 3 )
 
@@ -361,6 +394,8 @@ valign = 1
 
 [connection signal="value_changed" from="build_popup/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="build_popup/VBoxContainer/HBoxContainer3/HSlider2" to="." method="_on_HSlider2_value_changed"]
+[connection signal="draw" from="next_ui" to="." method="_on_next_ui_draw"]
+[connection signal="hide" from="next_ui" to="." method="_on_next_ui_hide"]
 [connection signal="pressed" from="next_ui/buttons/close_button" to="next_ui" method="_on_close_button_pressed"]
 [connection signal="pressed" from="next_ui/buttons/RequestFood" to="next_ui" method="_on_RequestFood_pressed"]
 [connection signal="pressed" from="next_ui/buttons/attack_button" to="next_ui" method="_on_attack_button_pressed"]

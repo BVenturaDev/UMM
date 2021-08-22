@@ -3,8 +3,8 @@
    viewBox="49.537 28.939 100.046 86.643"
    version="1.1"
    id="svg8"
-   sodipodi:docname="dibujo.svg"
-   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   sodipodi:docname="normal.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,18 +23,18 @@
      inkscape:zoom="4.6192127"
      inkscape:cx="43.189178"
      inkscape:cy="43.405665"
-     inkscape:window-width="1368"
-     inkscape:window-height="739"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg8" />
   <path
-     style="fill:#28170b;stroke-width:0.264583"
+     style="fill:#ffffff;stroke-width:0.264583;fill-opacity:1"
      id="path413"
      d="m 124.57153,115.58136 -50.023093,-1e-5 L 49.536891,72.260081 74.54844,28.93881 l 50.0231,3e-6 25.01154,43.321273 z" />
   <path
-     style="fill:#784421;stroke-width:0.264583"
+     style="fill:#bb8a69;stroke-width:0.264583;fill-opacity:1"
      id="path415"
      d="M 119.72728,108.56657 H 78.589767 L 58.021015,72.940444 78.589772,37.314318 l 41.137508,2e-6 20.56875,35.626127 z" />
 </svg>
