@@ -22,6 +22,7 @@ var build_ui: Object
 var rng = RandomNumberGenerator.new()
 var moving_tile: Object = null
 var game_over: bool = false
+var options: bool = false
 
 onready var victory_condition: int= (PERCENTAGE_TILES_FOR_VICTORY / 100) * pow(Globals.MAP_SIZE, 2)
 
