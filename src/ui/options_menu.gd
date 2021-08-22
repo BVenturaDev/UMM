@@ -1,9 +1,9 @@
 extends MarginContainer
 
-onready var cam_slider = $HotkeysContainer/SettingsContainer/CamRotContainer/CamSlider
-onready var stick_slider = $HotkeysContainer/SettingsContainer/StickContainer/StickSlider
-onready var lights_check = $HotkeysContainer/SettingsContainer/LightChecksContainer/LightsContainer/LightsCheckBox
-onready var shadows_check = $HotkeysContainer/SettingsContainer/LightChecksContainer/ShadowContainer/ShadowsCheckBox
+onready var cam_slider = $MarginContainer/HotkeysContainer/SettingsContainer/CamRotContainer/CamSlider
+onready var stick_slider = $MarginContainer/HotkeysContainer/SettingsContainer/StickContainer/StickSlider
+onready var lights_check = $MarginContainer/HotkeysContainer/SettingsContainer/LightChecksContainer/LightsContainer/LightsCheckBox
+onready var shadows_check = $MarginContainer/HotkeysContainer/SettingsContainer/LightChecksContainer/ShadowContainer/ShadowsCheckBox
 
 func _ready():
 	cam_slider.value = Globals.rot_speed
