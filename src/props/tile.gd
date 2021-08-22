@@ -378,7 +378,7 @@ func region_food_request(_region: Array, value: int) -> void:
 	for tile in _region:
 		if tile.owner_fungus != owner_fungus:
 			continue
-		if tile.tile_food.size() > 1:
+		if tile.tile_food.size() > 1 and not tile.turn_used:
 			tiles_with_enough_food.append(tile)
 
 	var food_requested := 0
