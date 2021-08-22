@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/ui/ui_build.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/new_ui.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/dibujo.svg" type="Texture" id=3]
 [ext_resource path="res://scenes/ui/normal.svg" type="Texture" id=4]
+[ext_resource path="res://scenes/ui/theme.tres" type="Theme" id=5]
 
 [node name="tactical_ui" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+theme = ExtResource( 5 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -181,7 +183,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="next_ui/buttons/close_button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "CLOSE"
+text = "Close"
 align = 1
 valign = 1
 __meta__ = {
@@ -207,8 +209,9 @@ __meta__ = {
 [node name="Label" type="Label" parent="next_ui/buttons/RequestFood"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "REQUEST
-FOOD"
+margin_top = 10.0
+text = "Request
+Food"
 align = 1
 valign = 1
 
@@ -228,7 +231,7 @@ texture_focused = ExtResource( 3 )
 [node name="Label" type="Label" parent="next_ui/buttons/attack_button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "ATTACK"
+text = "Attack"
 align = 1
 valign = 1
 
@@ -251,8 +254,9 @@ __meta__ = {
 [node name="Label" type="Label" parent="next_ui/buttons/move_food_button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "MOVE
-FOOD"
+margin_top = 5.0
+text = "Move
+Food"
 align = 1
 valign = 1
 
@@ -272,7 +276,7 @@ texture_focused = ExtResource( 3 )
 [node name="Label" type="Label" parent="next_ui/buttons/kill_shroom"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "KILL"
+text = "Kill"
 align = 1
 valign = 1
 
@@ -292,8 +296,8 @@ texture_focused = ExtResource( 3 )
 [node name="Label" type="Label" parent="next_ui/buttons/poison_shroom"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "POISON
-FOOD"
+text = "Poison
+Shroom"
 align = 1
 valign = 1
 
@@ -316,8 +320,8 @@ __meta__ = {
 [node name="Label" type="Label" parent="next_ui/buttons/scout_shroom"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "SCOUT
-SHROOM"
+text = "Scout
+Shroom"
 align = 1
 valign = 1
 __meta__ = {
@@ -340,8 +344,16 @@ texture_focused = ExtResource( 3 )
 [node name="Label" type="Label" parent="next_ui/buttons/gather_shroom_button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "GATHER
-SHROOM"
+text = "Gather
+Shroom"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="next_ui/buttons/gather_shroom_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Gather
+Shroom"
 align = 1
 valign = 1
 
