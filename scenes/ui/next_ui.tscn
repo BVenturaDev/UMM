@@ -1,0 +1,211 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/ui/new_ui.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/dibujo.svg" type="Texture" id=2]
+
+[node name="next_ui" type="Control"]
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+buttons = NodePath("buttons")
+
+[node name="buttons" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="close_button" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="buttons/close_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "CLOSE"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RequestFood" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="buttons/RequestFood"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "REQUEST
+FOOD"
+align = 1
+valign = 1
+
+[node name="attack_button" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="buttons/attack_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "ATTACK"
+align = 1
+valign = 1
+
+[node name="move_food_button" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="buttons/move_food_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "MOVE
+FOOD"
+align = 1
+valign = 1
+
+[node name="kill_shroom" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="buttons/kill_shroom"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "KILL"
+align = 1
+valign = 1
+
+[node name="poison_shroom" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="buttons/poison_shroom"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "POISON
+FOOD"
+align = 1
+valign = 1
+
+[node name="scout_shroom" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="buttons/scout_shroom"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "SCOUT
+SHROOM"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gather_shroom_button" type="TextureButton" parent="buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 86 )
+texture_normal = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="buttons/gather_shroom_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "GATHER
+SHROOM"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="buttons/close_button" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="buttons/RequestFood" to="." method="_on_RequestFood_pressed"]
+[connection signal="pressed" from="buttons/attack_button" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="buttons/move_food_button" to="." method="_on_move_food_button_pressed"]
+[connection signal="pressed" from="buttons/kill_shroom" to="." method="_on_kill_shroom_pressed"]
+[connection signal="pressed" from="buttons/poison_shroom" to="." method="_on_poison_shroom_pressed"]
+[connection signal="pressed" from="buttons/scout_shroom" to="." method="_on_scout_shroom_pressed"]
+[connection signal="pressed" from="buttons/gather_shroom_button" to="." method="_on_gather_shroom_button_pressed"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
