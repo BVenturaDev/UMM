@@ -17,10 +17,18 @@ const MAX_FOOD_MOVE: int = 10
 var main_menu: bool = false
 var grid: Object
 var player: Object
+var ai: Object
 var build_ui: Object
 var rng = RandomNumberGenerator.new()
 var moving_tile: Object = null
 var game_over: bool = false
+var options: bool = false
+
+# Settings variables
+var rot_speed: float = 0.05
+var stick_speed: float = 600.0
+var lights: bool = !BUILD_MOBILE
+var shadows: bool = !BUILD_MOBILE
 
 onready var victory_condition: int= (PERCENTAGE_TILES_FOR_VICTORY / 100) * pow(Globals.MAP_SIZE, 2)
 

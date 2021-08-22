@@ -2,7 +2,6 @@ extends Camera
 
 const MAX_SPEED: float = 10.0
 const ZOOM_SPEED: float = 7.5
-const ROT_SPEED: float = 0.05
 const CAM_Y_MIN: float = 3.0
 const CAM_Y_MAX: float = 8.0
 const CAM_X_MIN: float = 1.0
@@ -13,12 +12,14 @@ const MIN_ANGLE: float = -40.0
 const DEF_X_ANGLE: float = -50.0
 const MAX_Y_ANGLE: float = 50.0
 const MIN_Y_ANGLE: float = -50.0
-const STICK_MOVE_SPEED: float = 600.0
 
 var can_rot = false
+var last_mouse: Vector2 = Vector2()
 
 func _process(var delta: float) -> void:
-	if not Globals.game_over:
+	if not Globals.game_over and not Globals.options:
+		if not can_rot:
+			last_mouse = get_viewport().get_mouse_position()
 		# Get movement inputs
 		var in_dir: Vector2 = Vector2()
 		in_dir.x = Input.get_action_strength("cam_right") - Input.get_action_strength("cam_left")
@@ -29,7 +30,7 @@ func _process(var delta: float) -> void:
 		stick_dir.x = Input.get_action_strength("stick_right") - Input.get_action_strength("stick_left")
 		stick_dir.y = Input.get_action_strength("stick_back") - Input.get_action_strength("stick_forward")
 		stick_dir = stick_dir.normalized()
-		var stick_mouse_move = STICK_MOVE_SPEED * stick_dir * delta
+		var stick_mouse_move = Globals.stick_speed * stick_dir * delta
 		if stick_mouse_move:
 			get_viewport().warp_mouse(get_viewport().get_mouse_position() + stick_mouse_move)
 		
@@ -73,6 +74,8 @@ func _process(var delta: float) -> void:
 			rotation.y = lerp(rotation.y, 0, ROT_AMOUNT)
 			rotation.x = lerp(rotation.x, deg2rad(DEF_X_ANGLE), ROT_AMOUNT)
 			Globals.free_mouse()
+		if Input.is_action_just_released("ui_right_click"):
+			get_viewport().warp_mouse(last_mouse)# - get_viewport().get_mouse_position())
 		
 func _input(var event: InputEvent) -> void:
 	if event is InputEventMouseMotion and can_rot and not Globals.game_over:
@@ -80,8 +83,8 @@ func _input(var event: InputEvent) -> void:
 
 func _do_cam_rot(var vec: Vector2) -> void:
 	# Calculate camera rotation
-	rotate_y(deg2rad(vec.x * ROT_SPEED))
-	rotate_object_local(Vector3(1.0, 0, 0),  deg2rad(vec.y * ROT_SPEED))
+	rotate_y(deg2rad(vec.x * Globals.rot_speed))
+	rotate_object_local(Vector3(1.0, 0, 0),  deg2rad(vec.y * Globals.rot_speed))
 	# Keep camera from looking too far up or upside down
 	if rotation.x < deg2rad(MAX_ANGLE):
 		rotation.x = deg2rad(MAX_ANGLE)

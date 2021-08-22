@@ -264,6 +264,41 @@ transform = Transform( -1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08
 frames = SubResource( 3 )
 frame = 3
 
+[node name="mini_me" type="Spatial" parent="."]
+transform = Transform( -2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0.555, -0.156, 0.675 )
+visible = false
+
+[node name="Skeleton" type="Skeleton" parent="mini_me"]
+bones/0/name = "Bone"
+bones/0/parent = -1
+bones/0/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+bones/0/enabled = true
+bones/0/bound_children = [  ]
+bones/1/name = "Bone.001"
+bones/1/parent = 0
+bones/1/rest = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425984, 0 )
+bones/1/enabled = true
+bones/1/bound_children = [  ]
+bones/2/name = "Bone.002"
+bones/2/parent = 1
+bones/2/rest = Transform( 1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, 1, 0, 0.287008, 0 )
+bones/2/enabled = true
+bones/2/bound_children = [  ]
+bones/3/name = "Bone.003"
+bones/3/parent = 2
+bones/3/rest = Transform( 1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, 0, 0.82862, 0 )
+bones/3/enabled = true
+bones/3/bound_children = [  ]
+
+[node name="poison" type="MeshInstance" parent="mini_me/Skeleton"]
+mesh = SubResource( 1 )
+skin = SubResource( 2 )
+material/0 = null
+
+[node name="BoneAttachment" type="BoneAttachment" parent="mini_me/Skeleton"]
+transform = Transform( 1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, 1, 0, 0.712992, 0 )
+bone_name = "Bone.002"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/death = SubResource( 4 )
 anims/left_and_right = SubResource( 5 )

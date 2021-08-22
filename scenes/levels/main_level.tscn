@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://scenes/props/water.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main_level.gd" type="Script" id=18]
 [ext_resource path="res://scenes/ui/pause_menu.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/WorldEnvironment.gd" type="Script" id=20]
+[ext_resource path="res://src/entities/DirectionalLight.gd" type="Script" id=21]
 
 [node name="main_level" type="Spatial"]
 script = ExtResource( 18 )
@@ -68,11 +70,13 @@ visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
+script = ExtResource( 20 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 0.34202, -0.538986, 0.769751, 7.16125e-08, 0.819152, 0.573577, -0.939693, -0.196175, 0.280166, 228.275, 154.801, 48.0567 )
 light_energy = 2.0
 shadow_enabled = true
+script = ExtResource( 21 )
 
 [node name="ai" parent="." instance=ExtResource( 12 )]
 

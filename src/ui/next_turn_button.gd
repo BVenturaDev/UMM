@@ -15,7 +15,7 @@ func _disable_button():
 	self.disabled = true
 
 func _on_next_turn_buttom_pressed() -> void:
-	if not Globals.game_over:
+	if not Globals.game_over and not Globals.options:
 		snd_turn.play()
 		GameSignals.emit_signal("next_turn")
 		if Globals.moving_tile:
