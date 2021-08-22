@@ -28,8 +28,20 @@ func _process(delta: float) -> void:
 
 func display() -> void:
 	rect_global_position = get_global_mouse_position()
+	var offset := 100
+	var screen_height = get_viewport_rect().size.y
+	if rect_global_position.y <= offset:
+		rect_global_position.y += offset
+	if rect_global_position.y > (screen_height - offset):
+		rect_global_position.y -= offset
+	var screen_width = get_viewport_rect().size.x
+	if rect_global_position.x < offset:
+		rect_global_position.x += offset
+	if rect_global_position.y > (screen_width - offset):
+		rect_global_position.x -= offset
 	for button in buttons.get_children():
 		comeback_position = rect_global_position 
+		
 		button.rect_global_position = rect_global_position
 	show_menu()
 
