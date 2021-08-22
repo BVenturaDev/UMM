@@ -11,6 +11,11 @@ var main_level = load("res://scenes/levels/main_level.tscn")
 var zen_level = load("res://scenes/levels/zen_level.tscn")
 var credits_level = load("res://scenes/ui/credits.tscn")
 
+func _ready():
+	Globals.options = false
+	Globals.game_over = false
+	Globals.moving_tile = null
+
 func _on_Timer_timeout():
 	GameSignals.emit_signal("next_turn")
 
