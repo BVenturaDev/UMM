@@ -4,6 +4,8 @@ onready var kill_timer = $kill_timer
 onready var anim = $AnimationPlayer
 onready var snd_death = $shroom_death
 onready var snd_growth = $shroom_growth
+onready var mini_me = $mini_me
+onready var base = $Armature
 
 const FOOD_AMOUNT: int = 5
 
@@ -15,9 +17,15 @@ func _ready() -> void:
 	snd_growth.play()
 
 func _process(_delta):
+	mini_me.visible = false
+	base.visible = true
 	if owner_tile:
 		if not owner_tile.cur_shroom == self and not dying:
 			queue_free()
+		if owner_tile.cur_resource:
+			if owner_tile.cur_resource.is_in_group("trees"):
+				mini_me.visible = true
+				base.visible = false
 	if anim:
 		if not anim.is_playing():
 			var i = Globals.rng.randi_range(0, idle_anims.size() - 1)

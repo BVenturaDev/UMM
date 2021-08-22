@@ -20,16 +20,15 @@ func _process(_delta) -> void:
 	if owner_tile:
 		if not owner_tile.cur_shroom == self and not dying:
 			kill()
-	elif not dying:
 		if owner_tile.cur_resource.is_in_group("trees"):
 			mini_me.visible = true
 			base.visible = false
 		else:
 			mini_me.visible = false
 			base.visible = true
-	if owner_tile:
-		if not owner_tile.cur_shroom == self:
+		if not owner_tile.cur_shroom == self and not dying:
 			queue_free()
+			
 	if anim:
 		if not anim.is_playing():
 			var i = Globals.rng.randi_range(0, idle_anims.size() - 1)
