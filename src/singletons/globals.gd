@@ -17,6 +17,7 @@ const MAX_FOOD_MOVE: int = 10
 var main_menu: bool = false
 var grid: Object
 var player: Object
+var ai: Object
 var build_ui: Object
 var rng = RandomNumberGenerator.new()
 var moving_tile: Object = null

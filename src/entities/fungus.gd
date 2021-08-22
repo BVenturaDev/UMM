@@ -44,6 +44,11 @@ func remove_tile_object(var tile: Object) -> void:
 	owned_tiles.erase(tile)
 
 func do_turn() -> void:
+	if owned_tiles.size() == 0:
+		if my_owner.name == "player":
+			GameSignals.emit_signal("game_finished_with_winner", Globals.ai)
+		else:
+			GameSignals.emit_signal("game_finished_with_winner", Globals.player)
 	# Expand the fungus
 	for tile in owned_tiles:
 		# Try to expand

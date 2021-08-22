@@ -5,6 +5,8 @@ onready var fungus = $fungus
 func _ready():
 	if name == "player":
 		Globals.player = self
+	else:
+		Globals.ai = self
 
 func do_turn():
 	for tile in fungus.owned_tiles:
