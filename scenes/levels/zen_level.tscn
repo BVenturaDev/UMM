@@ -5,12 +5,12 @@
 [ext_resource path="res://scenes/entities/fungus.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/entities/control_camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/props/grid_editor.gd" type="Script" id=5]
+[ext_resource path="res://scenes/ui/tactical_ui.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/states/game/player_turn.gd" type="Script" id=7]
 [ext_resource path="res://src/states/game/nature_turn.gd" type="Script" id=8]
 [ext_resource path="res://scenes/world_env.tres" type="Environment" id=9]
 [ext_resource path="res://src/states/state_machine.gd" type="Script" id=10]
 [ext_resource path="res://src/states/game/ai_turn.gd" type="Script" id=11]
-[ext_resource path="res://scenes/ui/ui_build.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/entities/player.gd" type="Script" id=13]
 [ext_resource path="res://scenes/ui/next_turn_buttons.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/props/beach.tscn" type="PackedScene" id=16]
@@ -48,7 +48,7 @@ transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 9
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ui_build" parent="CanvasLayer" instance=ExtResource( 12 )]
+[node name="tactical_ui" parent="CanvasLayer" instance=ExtResource( 6 )]
 
 [node name="next_turn_buttons" parent="CanvasLayer" instance=ExtResource( 14 )]
 anchor_left = 0.7
