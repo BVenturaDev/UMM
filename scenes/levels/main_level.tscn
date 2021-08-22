@@ -5,13 +5,13 @@
 [ext_resource path="res://scenes/entities/fungus.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/entities/control_camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/props/grid_editor.gd" type="Script" id=5]
-[ext_resource path="res://src/entities/ai.gd" type="Script" id=6]
+[ext_resource path="res://scenes/ui/ui_build.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/states/game/player_turn.gd" type="Script" id=7]
 [ext_resource path="res://src/states/game/nature_turn.gd" type="Script" id=8]
 [ext_resource path="res://scenes/world_env.tres" type="Environment" id=9]
 [ext_resource path="res://src/states/state_machine.gd" type="Script" id=10]
 [ext_resource path="res://src/states/game/ai_turn.gd" type="Script" id=11]
-[ext_resource path="res://scenes/ui/ui_build.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/ui/next_ui.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/entities/player.gd" type="Script" id=13]
 [ext_resource path="res://scenes/ui/next_turn_buttons.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/entities/game_over.gd" type="Script" id=15]
@@ -51,8 +51,6 @@ transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 5
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource( 15 )
 
-[node name="ui_build" parent="CanvasLayer" instance=ExtResource( 12 )]
-
 [node name="next_turn_buttons" parent="CanvasLayer" instance=ExtResource( 14 )]
 anchor_left = 0.7
 anchor_top = 0.7
@@ -65,6 +63,17 @@ margin_bottom = 0.0
 
 [node name="pause_menu" parent="CanvasLayer" instance=ExtResource( 19 )]
 visible = false
+
+[node name="ui_build" parent="CanvasLayer" instance=ExtResource( 6 )]
+kill_shroom = NodePath("next_ui/buttons/kill_shroom")
+gather_shroom = NodePath("next_ui/buttons/gather_shroom_button")
+poison_shroom = NodePath("next_ui/buttons/poison_shroom")
+scout_shroom = NodePath("next_ui/buttons/scout_shroom")
+move_food_butt = NodePath("next_ui/buttons/move_food_button")
+attack_butt = NodePath("next_ui/buttons/attack_button")
+next_ui = NodePath("next_ui")
+
+[node name="next_ui" parent="CanvasLayer/ui_build" instance=ExtResource( 12 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
@@ -81,11 +90,8 @@ script = ExtResource( 13 )
 
 [node name="fungus" parent="player" instance=ExtResource( 3 )]
 
-[node name="ai" type="Spatial" parent="." groups=[
-"ai",
-]]
-script = ExtResource( 6 )
-
-[node name="fungus" parent="ai" instance=ExtResource( 3 )]
+[connection signal="popup_hide" from="CanvasLayer/ui_build/build_popup" to="CanvasLayer/ui_build/next_ui" method="_on_build_popup_popup_hide"]
 
 [editable path="Test_Grid"]
+[editable path="CanvasLayer/ui_build"]
+[editable path="CanvasLayer/ui_build/next_ui"]

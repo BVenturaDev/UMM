@@ -1,19 +1,24 @@
 extends Control
+class_name build_ui
 
 onready var window = $build_popup
-onready var food_amount_text = $build_popup/VBoxContainer/HBoxContainer2/food_amount
-onready var cur_food_text = $build_popup/VBoxContainer/HBoxContainer/cur_food_label
-onready var cur_attack_food_text = $build_popup/VBoxContainer/HBoxContainer3/attack_food_amount
-onready var food_slider = $build_popup/VBoxContainer/HBoxContainer2/HSlider
-onready var attack_slider = $build_popup/VBoxContainer/HBoxContainer3/HSlider2
-onready var kill_shroom = $build_popup/VBoxContainer/kill_shroom
-onready var gather_shroom = $build_popup/VBoxContainer/gather_shroom_button
-onready var poison_shroom = $build_popup/VBoxContainer/poison_shroom
-onready var scout_shroom = $build_popup/VBoxContainer/scout_shroom
-onready var slider_cont = $build_popup/VBoxContainer/HBoxContainer2
-onready var move_food_butt = $build_popup/VBoxContainer/move_food_button
-onready var attack_cont = $build_popup/VBoxContainer/HBoxContainer3
-onready var attack_butt = $build_popup/VBoxContainer/attack_button
+export(NodePath) onready var food_amount_text = get_node(food_amount_text)
+export(NodePath) onready var cur_food_text = get_node(cur_food_text)
+export(NodePath) onready var cur_attack_food_text = get_node(cur_attack_food_text)
+export(NodePath) onready var food_slider = get_node(food_slider)
+export(NodePath) onready var attack_slider = get_node(attack_slider)
+
+export(NodePath) onready var kill_shroom = get_node(kill_shroom) as TextureButton
+export(NodePath) onready var gather_shroom = get_node(gather_shroom)
+export(NodePath) onready var poison_shroom = get_node(poison_shroom)
+export(NodePath) onready var scout_shroom = get_node(scout_shroom)
+
+export(NodePath) onready var slider_cont = get_node(slider_cont)
+export(NodePath) onready var move_food_butt = get_node(move_food_butt)
+
+export(NodePath) onready var attack_cont = get_node(attack_cont)
+export(NodePath) onready var attack_butt = get_node(attack_butt)
+export(NodePath) onready var next_ui = get_node(next_ui) as RadialButtons
 
 var food_move_amount: int = 0
 var food_attack_amount: int = 0
@@ -74,6 +79,8 @@ func make_build_menu(var cur_food: int, var tile: Tile) -> void:
 		attack_slider.max_value = Globals.MAX_FOOD_MOVE
 		attack_slider.value = Globals.MAX_FOOD_MOVE
 	selected_tile = tile
+	if next_ui:
+		next_ui.display()
 	window.popup()
 
 func _on_HSlider_value_changed(value):
@@ -133,3 +140,4 @@ func _on_RequestFood_pressed() -> void:
 		selected_tile.snd_food.play()
 		selected_tile.region_food_request(selected_tile.region_neighbors, 5)
 	_close_menu()
+

@@ -28,10 +28,9 @@ func search_shroom_to_eat() -> void:
 	for shroom in nearby_shrooms:
 		if shroom.is_in_group("poison"):
 			critter.eating_mushroom = shroom
-			break
+			return
 	# If there are not poisoned close eat any
-	if not critter.eating_mushroom:
-		nearby_shrooms.shuffle()
-		critter.eating_mushroom = nearby_shrooms.pop_front()
+	nearby_shrooms.shuffle()
+	critter.eating_mushroom = nearby_shrooms.pop_front()
 
 

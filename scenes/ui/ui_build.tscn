@@ -10,6 +10,13 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+food_amount_text = NodePath("build_popup/VBoxContainer/HBoxContainer2/food_amount")
+cur_food_text = NodePath("build_popup/VBoxContainer/HBoxContainer/cur_food_label")
+cur_attack_food_text = NodePath("build_popup/VBoxContainer/HBoxContainer3/attack_food_amount")
+food_slider = NodePath("build_popup/VBoxContainer/HBoxContainer2/HSlider")
+attack_slider = NodePath("build_popup/VBoxContainer/HBoxContainer3/HSlider2")
+slider_cont = NodePath("build_popup/VBoxContainer/HBoxContainer2")
+attack_cont = NodePath("build_popup/VBoxContainer/HBoxContainer3")
 
 [node name="build_popup" type="PopupPanel" parent="."]
 visible = true
@@ -30,9 +37,9 @@ anchor_left = 0.1
 anchor_top = 0.1
 anchor_right = 0.7
 anchor_bottom = 0.7
-margin_left = -17.4
+margin_left = -17.28
 margin_top = -20.8
-margin_right = 60.2
+margin_right = 59.84
 margin_bottom = 70.4
 grow_horizontal = 2
 grow_vertical = 2
@@ -42,15 +49,15 @@ __meta__ = {
 }
 
 [node name="close_button" type="Button" parent="build_popup/VBoxContainer"]
-margin_top = 9.0
-margin_right = 206.0
-margin_bottom = 29.0
+margin_top = 81.0
+margin_right = 204.0
+margin_bottom = 101.0
 text = "Close"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="build_popup/VBoxContainer"]
-margin_top = 33.0
-margin_right = 206.0
-margin_bottom = 47.0
+margin_top = 105.0
+margin_right = 204.0
+margin_bottom = 119.0
 
 [node name="Label" type="Label" parent="build_popup/VBoxContainer/HBoxContainer"]
 margin_right = 141.0
@@ -66,25 +73,25 @@ margin_bottom = 14.0
 text = "0"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="build_popup/VBoxContainer"]
-margin_top = 51.0
-margin_right = 206.0
-margin_bottom = 67.0
+margin_top = 123.0
+margin_right = 204.0
+margin_bottom = 139.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="HSlider" type="HSlider" parent="build_popup/VBoxContainer/HBoxContainer2"]
-margin_right = 194.0
+margin_right = 192.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 10.0
 
 [node name="food_amount" type="Label" parent="build_popup/VBoxContainer/HBoxContainer2"]
-margin_left = 198.0
+margin_left = 196.0
 margin_top = 1.0
-margin_right = 206.0
+margin_right = 204.0
 margin_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -92,32 +99,26 @@ text = "0"
 align = 1
 valign = 1
 
-[node name="move_food_button" type="Button" parent="build_popup/VBoxContainer"]
-margin_top = 71.0
-margin_right = 206.0
-margin_bottom = 91.0
-text = "Move Food"
-
 [node name="HBoxContainer3" type="HBoxContainer" parent="build_popup/VBoxContainer"]
-margin_top = 95.0
-margin_right = 206.0
-margin_bottom = 111.0
+margin_top = 143.0
+margin_right = 204.0
+margin_bottom = 159.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="HSlider2" type="HSlider" parent="build_popup/VBoxContainer/HBoxContainer3"]
-margin_right = 194.0
+margin_right = 192.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 10.0
 
 [node name="attack_food_amount" type="Label" parent="build_popup/VBoxContainer/HBoxContainer3"]
-margin_left = 198.0
+margin_left = 196.0
 margin_top = 1.0
-margin_right = 206.0
+margin_right = 204.0
 margin_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -125,53 +126,6 @@ text = "0"
 align = 1
 valign = 1
 
-[node name="RequestFood" type="Button" parent="build_popup/VBoxContainer"]
-margin_top = 115.0
-margin_right = 206.0
-margin_bottom = 135.0
-text = "Request 5 food"
-
-[node name="attack_button" type="Button" parent="build_popup/VBoxContainer"]
-margin_top = 139.0
-margin_right = 206.0
-margin_bottom = 159.0
-text = "Attack Neighbor"
-
-[node name="gather_shroom_button" type="Button" parent="build_popup/VBoxContainer"]
-margin_top = 163.0
-margin_right = 206.0
-margin_bottom = 183.0
-text = "Build Gatherer Shroom: 5 food"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="poison_shroom" type="Button" parent="build_popup/VBoxContainer"]
-margin_top = 187.0
-margin_right = 206.0
-margin_bottom = 207.0
-text = "Build Poison Shroom: 5 food"
-
-[node name="scout_shroom" type="Button" parent="build_popup/VBoxContainer"]
-margin_top = 211.0
-margin_right = 206.0
-margin_bottom = 231.0
-text = "Build Scout Shroom: 5 food"
-
-[node name="kill_shroom" type="Button" parent="build_popup/VBoxContainer"]
-visible = false
-margin_top = 189.0
-margin_right = 206.0
-margin_bottom = 209.0
-text = "Kill Shroom"
-
 [connection signal="pressed" from="build_popup/VBoxContainer/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="value_changed" from="build_popup/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_HSlider_value_changed"]
-[connection signal="pressed" from="build_popup/VBoxContainer/move_food_button" to="." method="_on_move_food_button_pressed"]
 [connection signal="value_changed" from="build_popup/VBoxContainer/HBoxContainer3/HSlider2" to="." method="_on_HSlider2_value_changed"]
-[connection signal="pressed" from="build_popup/VBoxContainer/RequestFood" to="." method="_on_RequestFood_pressed"]
-[connection signal="pressed" from="build_popup/VBoxContainer/attack_button" to="." method="_on_attack_button_pressed"]
-[connection signal="pressed" from="build_popup/VBoxContainer/gather_shroom_button" to="." method="_on_gather_shroom_button_pressed"]
-[connection signal="pressed" from="build_popup/VBoxContainer/poison_shroom" to="." method="_on_poison_shroom_pressed"]
-[connection signal="pressed" from="build_popup/VBoxContainer/scout_shroom" to="." method="_on_scout_shroom_pressed"]
-[connection signal="pressed" from="build_popup/VBoxContainer/kill_shroom" to="." method="_on_kill_shroom_pressed"]
