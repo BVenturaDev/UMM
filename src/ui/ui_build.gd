@@ -26,6 +26,7 @@ var tile_food: int = 0
 var selected_tile: Tile = null
 
 func _ready() -> void:
+	window.rect_global_position = Vector2(-200, 0)
 	Globals.build_ui = self
 
 func make_build_menu(var cur_food: int, var tile: Tile) -> void:
