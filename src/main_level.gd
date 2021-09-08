@@ -17,11 +17,17 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		if pause_menu.visible == false:
-			pause_menu.visible = true
-			pause_menu.options.visible = false
-			pause_menu.menu.visible = true
-			Globals.options = true
-		else:
-			pause_menu.visible = false
-			Globals.options = false
+		_toggle_pause()
+
+func _toggle_pause() -> void:
+	if pause_menu.visible == false:
+		pause_menu.visible = true
+		pause_menu.options.visible = false
+		pause_menu.menu.visible = true
+		Globals.options = true
+	else:
+		pause_menu.visible = false
+		Globals.options = false
+
+func _on_menu_butt_pressed() -> void:
+	_toggle_pause()
