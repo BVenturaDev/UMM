@@ -5,6 +5,7 @@ const DEBUG: bool = false
 const DEBUG_SM: bool = false
 # Game variables
 const BUILD_MOBILE: bool = false
+const BUILD_LIGHTS_OFF: bool = false
 const BUILD_GATHER_COST = 5
 const BUILD_POISON_COST = 5
 const BUILD_SCOUT_COST = 5
@@ -23,12 +24,14 @@ var rng = RandomNumberGenerator.new()
 var moving_tile: Object = null
 var game_over: bool = false
 var options: bool = false
+var left_mobile_control: Object
+var right_mobile_control: Object
 
 # Settings variables
 var rot_speed: float = 0.05
 var stick_speed: float = 600.0
-var lights: bool = !BUILD_MOBILE
-var shadows: bool = !BUILD_MOBILE
+var lights: bool = !BUILD_LIGHTS_OFF
+var shadows: bool = !BUILD_LIGHTS_OFF
 var _bus_index: int = 0
 var bus_name = "Master"
 var volume: float = 1.0

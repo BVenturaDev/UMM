@@ -10,7 +10,7 @@ onready var resume = $Menu_Options/VBoxContainer/resume_button
 var main_menu = load("res://scenes/levels/main_menu.tscn")
 
 func _ready():
-	if Globals.BUILD_MOBILE:
+	if Globals.BUILD_LIGHTS_OFF:
 		quit.hide()
 	else:
 		quit.show()

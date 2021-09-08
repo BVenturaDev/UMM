@@ -35,6 +35,10 @@ func _process(var delta: float) -> void:
 		in_dir = in_dir.normalized()
 		
 		var h_vel: Vector2 = in_dir * MAX_SPEED * delta
+		if Globals.left_mobile_control:
+			if not Globals.left_mobile_control.dir == Vector2():
+				h_vel = Globals.left_mobile_control.dir * MAX_SPEED * delta
+		
 		transform.origin.x += h_vel.x
 		transform.origin.z += h_vel.y
 		
@@ -62,21 +66,30 @@ func _process(var delta: float) -> void:
 			if transform.origin.z > max_z:
 				transform.origin.z = max_z
 		
+		if Globals.right_mobile_control:
+			if Globals.right_mobile_control.is_pressed:
+				can_rot = true
+				_do_cam_rot(Globals.right_mobile_control.dir * -20.0)
+			else:
+				_reset_rot()
 		# Camera Rotation
-		if Input.is_action_pressed("ui_right_click"):
+		elif Input.is_action_pressed("ui_right_click"):
 			# Capture the mouse for rotation
 			Globals.capture_mouse()
 			can_rot = true
 			if not stick_mouse_move == Vector2():
 				_do_cam_rot(stick_mouse_move * -2.0)
 		else:
-			can_rot = false
-			rotation.y = lerp(rotation.y, 0, ROT_AMOUNT)
-			rotation.x = lerp(rotation.x, deg2rad(DEF_X_ANGLE), ROT_AMOUNT)
-			Globals.free_mouse()
+			_reset_rot()
 		if Input.is_action_just_released("ui_right_click"):
-			get_viewport().warp_mouse(last_mouse)# - get_viewport().get_mouse_position())
-		
+			get_viewport().warp_mouse(last_mouse)
+
+func _reset_rot() -> void:
+	can_rot = false
+	rotation.y = lerp(rotation.y, 0, ROT_AMOUNT)
+	rotation.x = lerp(rotation.x, deg2rad(DEF_X_ANGLE), ROT_AMOUNT)
+	Globals.free_mouse()
+	
 func _input(var event: InputEvent) -> void:
 	if event is InputEventMouseMotion and can_rot and not Globals.game_over:
 		_do_cam_rot(Vector2(-event.relative.x, -event.relative.y))
