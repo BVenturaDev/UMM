@@ -57,6 +57,6 @@ func attack_neighbor_with_scout(tile: Tile):
 			continue
 		if neighbor.cur_shroom.is_in_group("scout"):
 			# warning-ignore:narrowing_conversion
-			tile.attack(clamp(tile.tile_food.size() -1, 0, 5))
+			tile.attack(clamp(tile.tile_food -1, 0, 5))
 			Globals.moving_tile = tile
 			tile.do_attack(neighbor)

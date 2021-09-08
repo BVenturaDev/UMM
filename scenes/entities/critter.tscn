@@ -14,6 +14,7 @@
 [node name="critter" type="Spatial" groups=[
 "nature",
 ]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0 )
 script = ExtResource( 1 )
 resource_critter_scene = ExtResource( 10 )
 tween = NodePath("Tween")

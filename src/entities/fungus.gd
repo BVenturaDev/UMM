@@ -52,7 +52,7 @@ func do_turn() -> void:
 	# Expand the fungus
 	for tile in owned_tiles:
 		# Try to expand
-		if tile.tile_food.size() >= 6:
+		if tile.tile_food >= 6:
 			var clean_neighbors: Array = Globals.grid.find_neighbors(tile.x, tile.y)
 			# Has enough food check for expansion tile
 			if clean_neighbors.size() > 0:
@@ -66,14 +66,14 @@ func do_turn() -> void:
 					var chosen_tile: Object = clean_neighbors[Globals.rng.randi_range(0, clean_neighbors.size() - 1)]
 					tile.remove_num_food(5)
 					claim_tile(chosen_tile)
-					chosen_tile.spawn_food()
+					chosen_tile.add_food()
 		var neighbors = Globals.grid.find_neighbors(tile.x, tile.y)
 		# Equalize food to neighboring owned tiles
 		for neighbor in neighbors:
 			if neighbor.owner_fungus == self:
-				if neighbor.tile_food.size() < tile.tile_food.size():
+				if neighbor.tile_food < tile.tile_food:
 					tile.remove_num_food(1)
-					neighbor.spawn_food()
+					neighbor.add_food()
 	if not _check_if_survivable():
 		if my_owner.name == "player":
 			GameSignals.emit_signal("game_finished_with_winner", Globals.ai)
@@ -87,9 +87,9 @@ func _check_if_survivable() -> bool:
 	for i in owned_tiles:
 		if i.cur_shroom:
 			has_shroom = true
-		if i.tile_food.size() > 1:
+		if i.tile_food > 1:
 			#print(str(self) + " owner: " + str(my_owner.name) + " cur_food: " + str(cur_food - 1) + " , shroom: " + str(has_shroom))
-			cur_food += i.tile_food.size() - 1
+			cur_food += i.tile_food - 1
 	if has_shroom or cur_food > 5:
 		return true
 	else:
