@@ -76,7 +76,6 @@ gdscript/warnings/treat_warnings_as_errors=true
 
 window/size/width=960
 window/size/height=640
-window/size/fullscreen=true
 mouse_cursor/custom_image="res://mouse.png"
 
 [editor]
