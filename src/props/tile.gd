@@ -2,7 +2,6 @@ extends Spatial
 class_name Tile
 const stack_offset: float = 0.2
 
-var food = preload("res://scenes/entities/food.tscn")
 var gather_shroom = preload("res://scenes/entities/gather_shroom.tscn")
 var poison_shroom = preload("res://scenes/entities/poison_shroom.tscn")
 var scout_shroom = preload("res://scenes/entities/scout_shroom.tscn")
@@ -33,11 +32,11 @@ var cur_resource: Object = null setget set_cur_resource
 var move_amount: int = 0
 
 # Array of all food stored in this tile
-var tile_food: Array = []
+var tile_food: int = 0
 var food_in_region := 0 setget , get_food_in_region
 var food_amount := 0 setget , get_food_amount
 func get_food_amount() -> int:
-	return tile_food.size()
+	return tile_food
 # Array of region available to
 var region: Array = []
 # Array of neighboring enemy tiles
@@ -119,36 +118,22 @@ func find_enemies() -> void:
 				if owner_fungus.my_owner.name == "player":
 					neighbor.enemy = true
 
-func spawn_food() -> void:
-	var new_food = food.instance()
-	add_child(new_food)
-	add_food(new_food)
 
 func spawn_num_food(var num: int) -> void:
-	if num > 0:
-		for _i in range(0, num):
-			spawn_food()
+	tile_food += num
 
 # Add food to our tile
-func add_food(var new_food: Object) -> void:
-	new_food.cur_tile = self
-	new_food.id = tile_food.size()
-	new_food.global_transform.origin = stack.global_transform.origin
-	new_food.get_parent().remove_child(new_food)
-	self.add_child(new_food)
-	new_food.global_transform.origin.y += float(new_food.id) * stack_offset
-	tile_food.append(new_food)
+func add_food() -> void:
+	tile_food += 1
 
 # Remove food from our tile
-func remove_food(var id: int) -> void:
-	if id > -1 and id < tile_food.size():
-		tile_food[id].queue_free()
-		tile_food.remove(id)
+func remove_food() -> void:
+	if tile_food > 1:
+		tile_food -= 1
 
 func remove_num_food(var amount: int) -> void:
-	if amount > 0:
-		for _i in range(0, amount):
-			remove_food(tile_food.size() - 1)
+	if tile_food - amount > 0:
+		tile_food -= amount
 
 func spawn_log() -> void:
 	if not cur_resource:
@@ -178,9 +163,9 @@ func clicked() -> void:
 			Globals.moving_tile.stop_move_food()
 
 func build_gather_shroom() -> void:
-	if tile_food.size() <= Globals.BUILD_GATHER_COST:
-		region_food_request(region_neighbors, Globals.BUILD_GATHER_COST - tile_food.size() + 1) 
-	if tile_food.size() > Globals.BUILD_GATHER_COST and not cur_shroom and cur_resource and not turn_used and not critter:
+	if tile_food <= Globals.BUILD_GATHER_COST:
+		region_food_request(region_neighbors, Globals.BUILD_GATHER_COST - tile_food + 1) 
+	if tile_food > Globals.BUILD_GATHER_COST and not cur_shroom and cur_resource and not turn_used and not critter:
 		var new_shroom = gather_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
@@ -222,9 +207,9 @@ func disable_glow() -> void:
 	hex.disable_b_r()
 
 func build_poison_shroom() -> void:
-	if tile_food.size() <= Globals.BUILD_POISON_COST:
-		region_food_request(region_neighbors, Globals.BUILD_POISON_COST - tile_food.size() + 1) 
-	if tile_food.size() > Globals.BUILD_POISON_COST and not cur_shroom and not turn_used and not critter:
+	if tile_food <= Globals.BUILD_POISON_COST:
+		region_food_request(region_neighbors, Globals.BUILD_POISON_COST - tile_food + 1) 
+	if tile_food > Globals.BUILD_POISON_COST and not cur_shroom and not turn_used and not critter:
 		var new_shroom = poison_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
@@ -234,9 +219,9 @@ func build_poison_shroom() -> void:
 		turn_complete()
 
 func build_scout_shroom() -> void:
-	if tile_food.size() <= Globals.BUILD_GATHER_COST:
-		region_food_request(region_neighbors, Globals.BUILD_GATHER_COST - tile_food.size() + 1) 
-	if tile_food.size() > Globals.BUILD_GATHER_COST and not cur_shroom and not turn_used and not critter:
+	if tile_food <= Globals.BUILD_GATHER_COST:
+		region_food_request(region_neighbors, Globals.BUILD_GATHER_COST - tile_food + 1) 
+	if tile_food > Globals.BUILD_GATHER_COST and not cur_shroom and not turn_used and not critter:
 		var new_shroom = scout_shroom.instance()
 		add_child(new_shroom)
 		new_shroom.transform.origin = resource_pos.transform.origin
@@ -246,7 +231,7 @@ func build_scout_shroom() -> void:
 		turn_complete()
 
 func move_food(var amount: int) -> void:
-	if tile_food.size() >= amount and not Globals.moving_tile and owner_fungus:
+	if tile_food >= amount and not Globals.moving_tile and owner_fungus:
 		move_amount = amount
 		Globals.moving_tile = self
 		region = Globals.grid.find_region(x, y)
@@ -285,7 +270,7 @@ func do_move_food(var other_tile: Object, var amount: int) -> void:
 	turn_complete()
 
 func attack(var amount: int) -> void:
-	if tile_food.size() >= amount and not Globals.moving_tile and owner_fungus:
+	if tile_food >= amount and not Globals.moving_tile and owner_fungus:
 		move_amount = amount
 		attacking = true
 		Globals.moving_tile = self
@@ -312,7 +297,7 @@ func try_attack(var other_tile: Object) -> void:
 func do_attack(var other_tile: Object) -> void:
 	turn_complete()
 	snd_combat.play()
-	var left_over_food: int = other_tile.tile_food.size() - move_amount
+	var left_over_food: int = other_tile.tile_food - move_amount
 	if left_over_food > 0:
 		remove_num_food(move_amount)
 		other_tile.remove_num_food(move_amount)
@@ -339,7 +324,7 @@ func disable_grayed_out() -> void:
 func remove_fungus() -> void:
 	owner_fungus.remove_tile_object(self)
 	owner_fungus = null
-	tile_food = []
+	tile_food = 0
 	turn_used = false
 	enemy = false
 	enemies = []
@@ -368,9 +353,9 @@ func get_food_in_region() -> int:
 	for neigbor in region_neighbors:
 		if neigbor.owner_fungus != owner_fungus:
 			continue
-		if neigbor.tile_food.size() > 1 and not neigbor.turn_used:
-			_food_in_region += neigbor.tile_food.size() - 1
-	_food_in_region += tile_food.size()
+		if neigbor.tile_food > 1 and not neigbor.turn_used:
+			_food_in_region += neigbor.tile_food - 1
+	_food_in_region += tile_food
 	return _food_in_region
 
 func region_food_request(_region: Array, value: int) -> void:
@@ -378,7 +363,7 @@ func region_food_request(_region: Array, value: int) -> void:
 	for tile in _region:
 		if tile.owner_fungus != owner_fungus:
 			continue
-		if tile.tile_food.size() > 1 and not tile.turn_used:
+		if tile.tile_food > 1 and not tile.turn_used:
 			tiles_with_enough_food.append(tile)
 
 	var food_requested := 0
@@ -389,7 +374,7 @@ func region_food_request(_region: Array, value: int) -> void:
 				break
 		else:
 			tiles_with_enough_food[0].remove_num_food(1)
-			if tiles_with_enough_food[0].tile_food.size() <= 1:
+			if tiles_with_enough_food[0].tile_food <= 1:
 				tiles_with_enough_food[0].turn_complete()
 				tiles_with_enough_food.remove(i)
 			spawn_num_food(1)
