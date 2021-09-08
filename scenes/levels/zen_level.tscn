@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
@@ -19,6 +19,12 @@
 [ext_resource path="res://scenes/props/water.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main_level.gd" type="Script" id=18]
 [ext_resource path="res://scenes/ui/pause_menu.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/ui/mobile_joystick.gd" type="Script" id=20]
+[ext_resource path="res://assets/textures/joystick_paddle.png" type="Texture" id=21]
+[ext_resource path="res://assets/textures/joystick.png" type="Texture" id=22]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 64.0
 
 [node name="zen_level" type="Spatial"]
 script = ExtResource( 18 )
@@ -54,13 +60,13 @@ transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 9
 
 [node name="next_turn_buttons" parent="CanvasLayer" instance=ExtResource( 14 )]
 anchor_left = 0.7
-anchor_top = 0.7
+anchor_top = 0.1
 anchor_right = 0.8
-anchor_bottom = 0.8
+anchor_bottom = 0.1
 margin_left = 0.0
 margin_top = 0.0
-margin_right = 0.0
-margin_bottom = 0.0
+margin_right = 143.0
+margin_bottom = 118.0
 
 [node name="pause_menu" parent="CanvasLayer" instance=ExtResource( 19 )]
 visible = false
@@ -82,5 +88,53 @@ script = ExtResource( 13 )
 
 [node name="fungus" parent="player" instance=ExtResource( 3 )]
 PLAYER_OFFSET = 0.5
+
+[node name="left_mobile_joystick" type="CanvasLayer" parent="."]
+script = ExtResource( 20 )
+
+[node name="Control" type="Control" parent="left_mobile_joystick"]
+visible = false
+anchor_left = 0.1
+anchor_top = 0.75
+anchor_right = 0.1
+anchor_bottom = 0.75
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="left_mobile_joystick/Control"]
+normal = ExtResource( 22 )
+shape = SubResource( 1 )
+
+[node name="paddle" type="Sprite" parent="left_mobile_joystick"]
+visible = false
+position = Vector2( 64, 64 )
+texture = ExtResource( 21 )
+
+[node name="right_mobile_joystick" type="CanvasLayer" parent="."]
+script = ExtResource( 20 )
+
+[node name="Control" type="Control" parent="right_mobile_joystick"]
+visible = false
+anchor_left = 0.78
+anchor_top = 0.75
+anchor_right = 0.8
+anchor_bottom = 0.75
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="right_mobile_joystick/Control"]
+normal = ExtResource( 22 )
+shape = SubResource( 1 )
+
+[node name="paddle" type="Sprite" parent="right_mobile_joystick"]
+visible = false
+position = Vector2( 64, 64 )
+texture = ExtResource( 21 )
 
 [editable path="Test_Grid"]

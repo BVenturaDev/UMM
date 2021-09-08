@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scenes/levels/test_grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/props/grid.tscn" type="PackedScene" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://src/ui/mobile_joystick.gd" type="Script" id=24]
 [ext_resource path="res://assets/textures/joystick_paddle.png" type="Texture" id=25]
 [ext_resource path="res://assets/textures/joystick.png" type="Texture" id=26]
+[ext_resource path="res://scenes/ui/theme.tres" type="Theme" id=27]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 64.0
@@ -83,6 +84,26 @@ volume_db = -5.0
 
 [node name="lose_sound" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource( 23 )
+
+[node name="Menu_Button" type="Control" parent="CanvasLayer"]
+anchor_left = 0.015
+anchor_top = 0.015
+anchor_right = 0.015
+anchor_bottom = 0.015
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+theme = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="menu_butt" type="Button" parent="CanvasLayer/Menu_Button"]
+margin_right = 12.0
+margin_bottom = 20.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Menu"
 
 [node name="left_mobile_joystick" type="CanvasLayer" parent="."]
 script = ExtResource( 24 )
@@ -150,5 +171,7 @@ script = ExtResource( 21 )
 script = ExtResource( 13 )
 
 [node name="fungus" parent="player" instance=ExtResource( 3 )]
+
+[connection signal="pressed" from="CanvasLayer/Menu_Button/menu_butt" to="." method="_on_menu_butt_pressed"]
 
 [editable path="Test_Grid"]
